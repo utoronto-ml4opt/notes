@@ -1,0 +1,62 @@
+Traceback (most recent call last):
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/lyes/anaconda3/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from sympy import Symbol, sin, cos, Polygon, solve, lambdify, Rational, pi
+from sympy.plotting import plot
+from spb import *
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+sns.set_theme()
+
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+
+# This is the famous Branin function: https://www.sfu.ca/~ssurjano/branin.html
+a=1
+b=5.1/(4*pi**2)
+c=5/pi
+r=6
+s=10
+t=1/(8*pi)
+x1, x2 = symbols('x1 x2')
+funky_function = a*(x2-b*x1**2+c*x1-r)**2+s*(1-t)*cos(x1)+s
+funky_function_lambda = lambdify([x1, x2], funky_function)
+
+sol = [float(N(-pi)),12.275] #[9.42478, 2.475] #[-pi,12.275]
+plt.scatter([sol[0]], [sol[1]], [funky_function_lambda(sol[0], sol[1])], marker='o', color='r')
+
+p1 = plot3d(funky_function, (x1, -5, 10), (x2, 0, 15), show=False, legend=True, fig=fig, ax=ax)
+# p2 = plot3d(funky_function.diff(x), {'linestyle':'--'}, show=False, xlim=(-4,4), fig=fig, ax=ax)
+# p1.append(p2[0])
+p1.show()
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[3], line 20[0m
+[1;32m     18[0m s[38;5;241m=[39m[38;5;241m10[39m
+[1;32m     19[0m t[38;5;241m=[39m[38;5;241m1[39m[38;5;241m/[39m([38;5;241m8[39m[38;5;241m*[39mpi)
+[0;32m---> 20[0m x1, x2 [38;5;241m=[39m [43msymbols[49m([38;5;124m'[39m[38;5;124mx1 x2[39m[38;5;124m'[39m)
+[1;32m     21[0m funky_function [38;5;241m=[39m a[38;5;241m*[39m(x2[38;5;241m-[39mb[38;5;241m*[39mx1[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m[38;5;241m+[39mc[38;5;241m*[39mx1[38;5;241m-[39mr)[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m[38;5;241m+[39ms[38;5;241m*[39m([38;5;241m1[39m[38;5;241m-[39mt)[38;5;241m*[39mcos(x1)[38;5;241m+[39ms
+[1;32m     22[0m funky_function_lambda [38;5;241m=[39m lambdify([x1, x2], funky_function)
+
+[0;31mNameError[0m: name 'symbols' is not defined
+

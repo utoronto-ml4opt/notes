@@ -1,0 +1,43 @@
+Traceback (most recent call last):
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/lyes/anaconda3/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#https://stackoverflow.com/questions/64184184/sympy-functions
+from sympy import IndexedBase, Symbol, log, Sum, pi
+x = IndexedBase('x', real=True)                                                                                                      
+
+n, i = symbols('n, i', integer=True, positive=True)                                                                                  
+
+theta = Symbol('theta', real=True)                                                                                                   
+
+objective = -n*log(pi) - Sum(log(1 + (x[i] - theta)**2), (i, 0, n-1))                                                                
+
+objective                                                                                                                            
+objective.diff(theta)                                                                                                                
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 5[0m
+[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01msympy[39;00m [38;5;28;01mimport[39;00m IndexedBase, Symbol, log, Sum, pi
+[1;32m      3[0m x [38;5;241m=[39m IndexedBase([38;5;124m'[39m[38;5;124mx[39m[38;5;124m'[39m, real[38;5;241m=[39m[38;5;28;01mTrue[39;00m)                                                                                                      
+[0;32m----> 5[0m n, i [38;5;241m=[39m [43msymbols[49m([38;5;124m'[39m[38;5;124mn, i[39m[38;5;124m'[39m, integer[38;5;241m=[39m[38;5;28;01mTrue[39;00m, positive[38;5;241m=[39m[38;5;28;01mTrue[39;00m)                                                                                  
+[1;32m      7[0m theta [38;5;241m=[39m Symbol([38;5;124m'[39m[38;5;124mtheta[39m[38;5;124m'[39m, real[38;5;241m=[39m[38;5;28;01mTrue[39;00m)                                                                                                   
+[1;32m      9[0m objective [38;5;241m=[39m [38;5;241m-[39mn[38;5;241m*[39mlog(pi) [38;5;241m-[39m Sum(log([38;5;241m1[39m [38;5;241m+[39m (x[i] [38;5;241m-[39m theta)[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m), (i, [38;5;241m0[39m, n[38;5;241m-[39m[38;5;241m1[39m))                                                                
+
+[0;31mNameError[0m: name 'symbols' is not defined
+

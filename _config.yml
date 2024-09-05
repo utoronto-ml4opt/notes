@@ -1,0 +1,44 @@
+title : Machine Learning for Mathematical Optimization
+author: Elias B. Khalil
+copyright: "2024"
+
+# Short description about the book
+description: >-
+  Lecture notes for MIE1666.
+
+execute:
+  execute_notebooks           : cache
+
+# HTML-specific settings
+html:
+  home_page_in_navbar         : false
+
+# Interact link settings
+notebook_interface            : "notebook"
+
+# Launch button settings
+repository:
+  url                         : https://github.com/executablebooks/quantecon-mini-example
+  path_to_book                : "notes"
+
+binder:
+  binderhub_url               : "https://mybinder.org"
+  text                        : "Launch binder"
+
+# LaTeX settings
+bibtex_bibfiles:
+   - _bibliography/references.bib
+latex:
+  latex_engine                : "xelatex"
+  latex_documents:
+    targetname: book.tex
+
+sphinx:
+  extra_extensions:
+    - sphinx_proof
+  config:
+    language: en
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    myst_enable_extensions:
+      - amsmath
+      - dollarmath
