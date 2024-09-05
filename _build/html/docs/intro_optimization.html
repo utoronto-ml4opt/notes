@@ -318,7 +318,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notation">Notation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-one-and-two-dimensional-functions">Some one and two-dimensional functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-one-and-two-dimensional-functions">Some one and two-dimensional functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saddle-points">Saddle points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contour-plots">Contour plots</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-of-local-and-global-minimizers">Definitions of local and global minimizers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient descent</a></li>
 </ul>
             </nav>
         </div>
@@ -410,16 +416,16 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">funky_function</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">10</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-<span class="n">funky_function_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">funky_function</span><span class="p">)</span>
+<span class="n">funky_function2</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">10</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">funky_function2_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">funky_function2</span><span class="p">)</span>
 
-<span class="n">funky_function_derivative_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">funky_function</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="n">sols</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">funky_function_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">funky_function2_derivative_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">funky_function2</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">sols</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">funky_function2_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sols</span><span class="p">,</span> <span class="p">[</span><span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">sols</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sols</span><span class="p">,</span> <span class="p">[</span><span class="n">funky_function2_lambda</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">sols</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
-<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function2</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function2</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -440,28 +446,27 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot3d</span>
 
-<span class="c1"># This is the famous Branin function: https://www.sfu.ca/~ssurjano/branin.html</span>
-<span class="n">a</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">b</span><span class="o">=</span><span class="mf">5.1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">c</span><span class="o">=</span><span class="mi">5</span><span class="o">/</span><span class="n">pi</span>
-<span class="n">r</span><span class="o">=</span><span class="mi">6</span>
-<span class="n">s</span><span class="o">=</span><span class="mi">10</span>
-<span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">pi</span><span class="p">)</span>
-<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x1 x2&#39;</span><span class="p">)</span>
-<span class="n">funky_function</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">+</span><span class="n">s</span>
-<span class="n">funky_function_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="n">funky_function</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
-<span class="c1"># sol = [float(-pi),12.275] # The two other minima are [9.42478, 2.475] and [-pi,12.275]</span>
+<span class="c1"># This is the famous Branin function: https://www.sfu.ca/~ssurjano/branin.html</span>
+<span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">b</span><span class="o">=</span><span class="mf">5.1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">);</span> <span class="n">c</span><span class="o">=</span><span class="mi">5</span><span class="o">/</span><span class="n">pi</span><span class="p">;</span> <span class="n">r</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x1 x2&#39;</span><span class="p">)</span>
+<span class="n">branin_function</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">s</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">+</span><span class="n">s</span>
+
+<span class="c1"># sol = [float(-pi),12.275] # The two other minima are [9.42478, 2.475] and [pi,2.275]</span>
 <span class="c1"># plt.scatter([sol[0]], [sol[1]], [funky_function_lambda(sol[0], sol[1])], marker=&#39;o&#39;, color=&#39;r&#39;)</span>
 
-<span class="n">plot3d</span><span class="p">(</span><span class="n">funky_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
-<span class="n">funky_function</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">branin_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">branin_function</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/3f205654cb50092f4944cc0b86f7b7f077f86b54817a70201ee83431b2f3c781.png" src="../_images/3f205654cb50092f4944cc0b86f7b7f077f86b54817a70201ee83431b2f3c781.png" />
+<img alt="../_images/9425d7b808d63bbe00367967cfa6a57bd39bd0065f4401b0f1615c32b418e6ac.png" src="../_images/9425d7b808d63bbe00367967cfa6a57bd39bd0065f4401b0f1615c32b418e6ac.png" />
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle 36 \left(- \frac{0.2125 x_{1}^{2}}{\pi^{2}} + \frac{5 x_{1}}{6 \pi} + \frac{x_{2}}{6} - 1\right)^{2} + \left(10 - \frac{5}{4 \pi}\right) \cos{\left(x_{1} \right)} + 10\]</div>
 </div>
@@ -476,28 +481,36 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot3d</span>
 
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
 <span class="c1"># This is this function: https://www.sfu.ca/~ssurjano/stybtang.html</span>
 <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x1 x2&#39;</span><span class="p">)</span>
-<span class="n">funky_function</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">x1</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="n">x2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span>
-<span class="n">funky_function_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="n">funky_function</span><span class="p">)</span>
+<span class="n">stybtang_function</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">x1</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="n">x2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">stybtang_function_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="n">stybtang_function</span><span class="p">)</span>
 
 <span class="c1"># The global minimum; unable to plot it for some reason</span>
 <span class="c1"># sol = [-2.903534, -2.903534] </span>
 <span class="c1"># plt.scatter([sol[0]], [sol[1]], [funky_function_lambda(sol[0], sol[1])], marker=&#39;o&#39;, color=&#39;r&#39;)</span>
 
-<span class="n">plot3d</span><span class="p">(</span><span class="n">funky_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">funky_function</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">stybtang_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">stybtang_function</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/fb3e55535d89894046f61e6d2c301e7644d2d25863a49738f0a0d80d2f079f8c.png" src="../_images/fb3e55535d89894046f61e6d2c301e7644d2d25863a49738f0a0d80d2f079f8c.png" />
+<img alt="../_images/b0bf1555d18186a4cfb3cbddaa8fa98f469df8f74eacb92226efaa894237c129.png" src="../_images/b0bf1555d18186a4cfb3cbddaa8fa98f469df8f74eacb92226efaa894237c129.png" />
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle 0.5 x_{1}^{4} - 8.0 x_{1}^{2} + 2.5 x_{1} + 0.5 x_{2}^{4} - 8.0 x_{2}^{2} + 2.5 x_{2}\]</div>
 </div>
 </div>
+<section id="saddle-points">
+<h3>Saddle points<a class="headerlink" href="#saddle-points" title="Link to this heading">#</a></h3>
 <p>Lastly, a very simple function in which a critical point with gradient (i.e., derivative in two dimensions or more) zero that is <strong>not</strong> a local minimum or maximum! Can you identify where the point is?</p>
+<p>We call <em>saddle point</em> any point which has zero derivatives in all variables but is not a local extremum (minimum or maximum). You should already be able to imagine that the existence of saddle points can make optimization difficult!</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -509,13 +522,14 @@ document.write(`
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_box_aspect</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 
 <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x1 x2&#39;</span><span class="p">)</span>
-<span class="n">funky_function</span> <span class="o">=</span> <span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x2</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">funky_function_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="n">funky_function</span><span class="p">)</span>
+<span class="n">saddle_function</span> <span class="o">=</span> <span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x2</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">saddle_function_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="n">saddle_function</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">funky_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="n">funky_function</span>
 </pre></div>
@@ -523,23 +537,140 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/b1fdf644d7026056f2ba4a8c793da45c267853224096d38a421bb5c081936104.png" src="../_images/b1fdf644d7026056f2ba4a8c793da45c267853224096d38a421bb5c081936104.png" />
+<img alt="../_images/7718e89fb51c9af724e4e3ead3573a300c787f39fb4a381e70ee08bce57299ed.png" src="../_images/7718e89fb51c9af724e4e3ead3573a300c787f39fb4a381e70ee08bce57299ed.png" />
 <div class="output text_latex math notranslate nohighlight">
-\[\displaystyle x_{1}^{2} - x_{2}^{2}\]</div>
+\[\displaystyle \sin{\left(x \right)} + \sin{\left(\frac{10 x}{3} \right)}\]</div>
 </div>
 </div>
+</section>
+<section id="contour-plots">
+<h3>Contour plots<a class="headerlink" href="#contour-plots" title="Link to this heading">#</a></h3>
+<p>What if we wanted to visualize this last function in <em>two dimensions</em> rather than three? Contour plots enable that as you can see in the next figure. The annotated curves show the function value achieved by points on that curve. Notice that our saddle point <span class="math notranslate nohighlight">\((0,0)\)</span> is in the middle and it achieves a value of zero. Move up or down from it, and the value is smaller, i.e., the saddle point is <em>not</em> a local minimizer!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot3d</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span><span class="c1">#projection=&#39;3d&#39;)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">is_filled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/23cbe515bedc1809b2b48582df3e5710cfb68ac07de1bbad9a61860beac030f0.png" src="../_images/23cbe515bedc1809b2b48582df3e5710cfb68ac07de1bbad9a61860beac030f0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="definitions-of-local-and-global-minimizers">
+<h2>Definitions of local and global minimizers<a class="headerlink" href="#definitions-of-local-and-global-minimizers" title="Link to this heading">#</a></h2>
+<div class="proof definition admonition" id="local-min">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (Local minimizer)</p>
+<section class="definition-content" id="proof-content">
+<p>A <em>local minimizer</em> is a point that minimizes a function <span class="math notranslate nohighlight">\(f\)</span> within a neighborhood. In other words, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{x}}\)</span> is a local minimizer if there exists a <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span> such that <span class="math notranslate nohighlight">\(f(\hat{\boldsymbol{x}}) \leq  f(x)\)</span> whenever <span class="math notranslate nohighlight">\(\hat{\boldsymbol{x}}\neq \boldsymbol{x}\)</span> and <span class="math notranslate nohighlight">\(\lVert \boldsymbol{x}-\hat{\boldsymbol{x}}\rVert&lt;\delta\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="global-min">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span> (Global minimizer)</p>
+<section class="definition-content" id="proof-content">
+<p>A <em>global minimizer</em> is a point that minimizes a function <span class="math notranslate nohighlight">\(f\)</span>, i.e., <span class="math notranslate nohighlight">\(f(\hat{\boldsymbol{x}}) \leq  f(\boldsymbol{x})\)</span> for all <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\mathcal{X}\)</span>.</p>
+</section>
+</div></section>
+<section id="gradient-descent">
+<h2>Gradient descent<a class="headerlink" href="#gradient-descent" title="Link to this heading">#</a></h2>
+<p>In some of the plots of one-dimensional functions earlier, we saw the function <span class="math notranslate nohighlight">\(f\)</span> as well as its derivative <span class="math notranslate nohighlight">\(f'\)</span> in orange. For a one-dimensional function, the derivative at a given point is the rate at which the value of <span class="math notranslate nohighlight">\(f\)</span> changes at a given point <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>. The value of the derivative is equal to the slope of the tangent line at point <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>. Let’s visualize this.</p>
+<p>The green line is the tangent to <span class="math notranslate nohighlight">\(f\)</span> at the red point <span class="math notranslate nohighlight">\(x\)</span>. The slope of the tangent shown in the legend is the the value of the derivative <span class="math notranslate nohighlight">\(f'\)</span>. How do we interpret the value of this derivative? If we move very slightly away from the red point towards the right, the value of <span class="math notranslate nohighlight">\(f\)</span> will decrease by <span class="math notranslate nohighlight">\(\approx -2.11\)</span>.</p>
+<p>The other important use of the derivative here is that if we wanted to decrease the value of <span class="math notranslate nohighlight">\(f\)</span> starting from the red point <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>, we should indeed move in the direction <em>opposite</em> to the derivative, i.e., we should move to a new point $<span class="math notranslate nohighlight">\(\hat{\boldsymbol{x}} = \boldsymbol{x} - \eta f'(\boldsymbol{x}),\)</span><span class="math notranslate nohighlight">\( where \)</span>\eta &gt; 0<span class="math notranslate nohighlight">\( is the **step-size**. Multiplying \)</span>-2.11<span class="math notranslate nohighlight">\( by \)</span>-1<span class="math notranslate nohighlight">\( means that the new point \)</span>\hat{\boldsymbol{x}}<span class="math notranslate nohighlight">\( will be to the right of \)</span>{\boldsymbol{x}}$, as desired. This is a <em>gradient descent</em> step!</p>
+<p>If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span> instead, you would move in the other direction, i.e., <span class="math notranslate nohighlight">\(\hat{\boldsymbol{x}} = \boldsymbol{x} + \eta f'(\boldsymbol{x})\)</span>. Notice here that the choice of step-size is important: too big or too small a step can move us away from good local minima or maxima.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1">#Symbol, symbols, sin, cos, Polygon, solve, lambdify, Rational, pi, N</span>
+<span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
+<span class="kn">from</span> <span class="nn">spb</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">funky_function</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">sin</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">funky_function_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">funky_function</span><span class="p">)</span>
+
+<span class="n">funky_function_derivative_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">funky_function</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">sols</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">funky_function_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">sols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">p3</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function_derivative_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">point</span><span class="p">)</span> <span class="o">+</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/38d6654b20fb316c5fa80ed4d65862a5623ef2b9dad8a6a758c605f0f9ca2f5b.png" src="../_images/38d6654b20fb316c5fa80ed4d65862a5623ef2b9dad8a6a758c605f0f9ca2f5b.png" />
+</div>
+</div>
+<p>Let’s implement gradient descent and apply it to this function! The Python function takes as input the function to be minimized, the function representing its derivative, an initial point, and optional step-size and iteration limit parameters.</p>
+<p>We print out what happens in every iteration. You can see that depending on <code class="docutils literal notranslate"><span class="pre">initial_point</span></code>, you may end up at a different local minimum. Increasing the step-size by a lot is risky; try it out!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graphics</span><span class="p">(</span>
-    <span class="n">geometry</span><span class="p">(</span><span class="n">Polygon</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)),</span>
-    <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fprime</span><span class="p">,</span> <span class="n">initial_point</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">iteration_limit</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># the number of variables</span>
+    <span class="n">dimension</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_point</span><span class="p">)</span>
+    <span class="n">all_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dimension</span><span class="p">)</span>
+
+    <span class="c1"># initial point, value, and gradient</span>
+    <span class="n">current_iterate</span> <span class="o">=</span> <span class="n">initial_point</span>
+    <span class="n">current_value</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">current_iterate</span><span class="p">)</span>
+    <span class="n">grad</span> <span class="o">=</span> <span class="n">fprime</span><span class="p">(</span><span class="n">current_iterate</span><span class="p">)</span>
+    <span class="n">iter_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;iteration, x, f(x), f&#39;(x)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">iter_counter</span><span class="p">,</span> <span class="n">current_iterate</span><span class="p">,</span> <span class="n">current_value</span><span class="p">,</span> <span class="n">grad</span><span class="p">)</span>
+
+    <span class="c1"># the algorithm terminates if iteration_limit is hit or the gradient at the current iterate is close to zero</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="n">all_zeros</span><span class="p">)</span> <span class="ow">and</span> <span class="n">iter_counter</span> <span class="o">&lt;</span> <span class="n">iteration_limit</span><span class="p">:</span>
+        <span class="c1"># gradient descent step</span>
+        <span class="n">current_iterate</span> <span class="o">-=</span> <span class="n">stepsize</span> <span class="o">*</span> <span class="n">fprime</span><span class="p">(</span><span class="n">current_iterate</span><span class="p">)</span>
+        <span class="n">current_value</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">current_iterate</span><span class="p">)</span>
+        <span class="n">grad</span> <span class="o">=</span> <span class="n">fprime</span><span class="p">(</span><span class="n">current_iterate</span><span class="p">)</span>
+        <span class="n">iter_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">iter_counter</span><span class="p">,</span> <span class="n">current_iterate</span><span class="p">,</span> <span class="n">current_value</span><span class="p">,</span> <span class="n">grad</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">current_iterate</span>
+
+<span class="n">local_min</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">funky_function_lambda</span><span class="p">,</span> <span class="n">funky_function_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">4.0</span><span class="p">]),</span> <span class="n">stepsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0a816e05f3c2593380f3e70dd0d217dcedf3450d9f214399551260c3946188f5.png" src="../_images/0a816e05f3c2593380f3e70dd0d217dcedf3450d9f214399551260c3946188f5.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;spb.backends.matplotlib.matplotlib.MatplotlibBackend at 0x7fa74638dc60&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iteration, x, f(x), f&#39;(x)
+0 [-4.] [0.06285096] [1.74642876]
+1 [-4.17464288] [-0.11666179] [0.22072933]
+2 [-4.19671581] [-0.11909016] [-0.00120963]
+3 [-4.19659485] [-0.11909023] [1.44181969e-05]
+4 [-4.19659629] [-0.11909023] [-1.71428281e-07]
+5 [-4.19659627] [-0.11909023] [2.03829825e-09]
 </pre></div>
 </div>
 </div>
@@ -603,7 +734,13 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notation">Notation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-one-and-two-dimensional-functions">Some one and two-dimensional functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-one-and-two-dimensional-functions">Some one and two-dimensional functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saddle-points">Saddle points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contour-plots">Contour plots</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-of-local-and-global-minimizers">Definitions of local and global minimizers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient descent</a></li>
 </ul>
   </nav></div>
 
