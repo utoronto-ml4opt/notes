@@ -324,7 +324,11 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-of-local-and-global-minimizers">Definitions of local and global minimizers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient descent</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-implementation">Gradient descent implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-on-a-convex-function">Gradient descent on a convex function</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -595,16 +599,7 @@ document.write(`
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1">#Symbol, symbols, sin, cos, Polygon, solve, lambdify, Rational, pi, N</span>
-<span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
-<span class="kn">from</span> <span class="nn">spb</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="n">funky_function</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">sin</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
@@ -632,6 +627,8 @@ document.write(`
 <img alt="../_images/38d6654b20fb316c5fa80ed4d65862a5623ef2b9dad8a6a758c605f0f9ca2f5b.png" src="../_images/38d6654b20fb316c5fa80ed4d65862a5623ef2b9dad8a6a758c605f0f9ca2f5b.png" />
 </div>
 </div>
+<section id="gradient-descent-implementation">
+<h3>Gradient descent implementation<a class="headerlink" href="#gradient-descent-implementation" title="Link to this heading">#</a></h3>
 <p>Let’s implement gradient descent and apply it to this function! The Python function takes as input the function to be minimized, the function representing its derivative, an initial point, and optional step-size and iteration limit parameters.</p>
 <p>We print out what happens in every iteration. You can see that depending on <code class="docutils literal notranslate"><span class="pre">initial_point</span></code>, you may end up at a different local minimum. Increasing the step-size by a lot is risky; try it out!</p>
 <div class="cell docutils container">
@@ -658,8 +655,13 @@ document.write(`
         <span class="n">iter_counter</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">iter_counter</span><span class="p">,</span> <span class="n">current_iterate</span><span class="p">,</span> <span class="n">current_value</span><span class="p">,</span> <span class="n">grad</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">current_iterate</span>
-
-<span class="n">local_min</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">funky_function_lambda</span><span class="p">,</span> <span class="n">funky_function_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">4.0</span><span class="p">]),</span> <span class="n">stepsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_min</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">funky_function_lambda</span><span class="p">,</span> <span class="n">funky_function_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">4.0</span><span class="p">]),</span> <span class="n">stepsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -675,6 +677,122 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="gradient-descent-on-a-convex-function">
+<h3>Gradient descent on a convex function<a class="headerlink" href="#gradient-descent-on-a-convex-function" title="Link to this heading">#</a></h3>
+<p>Let’s apply the same procedure to the function <span class="math notranslate nohighlight">\(f(x)=x\log{x}\)</span>. Here the behavior of gradient descent (GD) is much nicer. No matter the initial point, the same unique global optimum will be recovered. There are no other local minima to worry about. Note that a global minimum is also, by definition, a local minimum.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">convex_function1</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">convex_function1_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">convex_function1</span><span class="p">)</span>
+
+<span class="n">convex_function1_derivative_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">convex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">convex_function1</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">convex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">global_min</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">convex_function1_lambda</span><span class="p">,</span> <span class="n">convex_function1_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.0</span><span class="p">]),</span> <span class="n">stepsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">global_min</span><span class="p">,</span> <span class="n">convex_function1_lambda</span><span class="p">(</span><span class="n">global_min</span><span class="p">),</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span> 
+
+<span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iteration, x, f(x), f&#39;(x)
+0 [3.] [3.29583687] [2.09861229]
+1 [2.79013877] [2.86293721] [2.02609133]
+2 [2.58752964] [2.45997377] [1.95070361]
+3 [2.39245928] [2.08699444] [1.87232182]
+4 [2.20522709] [1.74396083] [1.79083049]
+5 [2.02614404] [1.43073021] [1.7061345]
+6 [1.85553059] [1.14703463] [1.61817069]
+7 [1.69371353] [0.89245741] [1.52692347]
+8 [1.54102118] [0.66640737] [1.4324453]
+9 [1.39777665] [0.46809145] [1.33488287]
+10 [1.26428836] [0.29648751] [1.2345094]
+11 [1.14083742] [0.15031967] [1.13176257]
+12 [1.02766116] [0.02804025] [1.02728551]
+13 [0.92493261] [-0.07217656] [0.92196561]
+14 [0.83273605] [-0.1524228] [0.81696145]
+15 [0.75103991] [-0.21502009] [0.71370351]
+16 [0.67966956] [-0.26245341] [0.61385146]
+17 [0.61828441] [-0.2972753] [0.51919329]
+18 [0.56636508] [-0.32198783] [0.43148361]
+19 [0.52321672] [-0.33891861] [0.35224048]
+20 [0.48799267] [-0.35011273] [0.28254511]
+21 [0.45973816] [-0.35726168] [0.22290184]
+22 [0.43744798] [-0.36168089] [0.17320251]
+23 [0.42012773] [-0.3643333] [0.1328035]
+24 [0.40684738] [-0.36588483] [0.10068284]
+25 [0.39677909] [-0.36677291] [0.07562441]
+26 [0.38921665] [-0.36727228] [0.05638086]
+27 [0.38357857] [-0.36754913] [0.04178919]
+28 [0.37939965] [-0.36770092] [0.03083485]
+29 [0.37631616] [-0.36778343] [0.02267437]
+30 [0.37404873] [-0.367828] [0.01663079]
+31 [0.37238565] [-0.36785195] [0.01217472]
+32 [0.37116817] [-0.36786478] [0.00889998]
+33 [0.37027818] [-0.36787164] [0.00649927]
+34 [0.36962825] [-0.36787529] [0.00474249]
+35 [0.369154] [-0.36787724] [0.00345862]
+36 [0.36880814] [-0.36787827] [0.00252128]
+37 [0.36855601] [-0.36787882] [0.00183742]
+38 [0.36837227] [-0.36787911] [0.00133875]
+39 [0.36823839] [-0.36787927] [0.00097526]
+40 [0.36814087] [-0.36787935] [0.00071038]
+41 [0.36806983] [-0.36787939] [0.0005174]
+42 [0.36801809] [-0.36787942] [0.00037682]
+43 [0.36798041] [-0.36787943] [0.00027442]
+44 [0.36795297] [-0.36787943] [0.00019984]
+45 [0.36793298] [-0.36787944] [0.00014553]
+46 [0.36791843] [-0.36787944] [0.00010598]
+47 [0.36790783] [-0.36787944] [7.71709187e-05]
+48 [0.36790011] [-0.36787944] [5.61950869e-05]
+49 [0.3678945] [-0.36787944] [4.09204203e-05]
+50 [0.3678904] [-0.36787944] [2.97974901e-05]
+51 [0.36788742] [-0.36787944] [2.16979011e-05]
+52 [0.36788525] [-0.36787944] [1.57999106e-05]
+53 [0.36788367] [-0.36787944] [1.15051083e-05]
+54 [0.36788252] [-0.36787944] [8.37772668e-06]
+55 [0.36788169] [-0.36787944] [6.10044095e-06]
+56 [0.36788108] [-0.36787944] [4.44217791e-06]
+57 [0.36788063] [-0.36787944] [3.2346734e-06]
+58 [0.36788031] [-0.36787944] [2.35540046e-06]
+59 [0.36788007] [-0.36787944] [1.71513754e-06]
+60 [0.3678799] [-0.36787944] [1.24891551e-06]
+61 [0.36787978] [-0.36787944] [9.09425442e-07]
+62 [0.36787968] [-0.36787944] [6.62218171e-07]
+63 [0.36787962] [-0.36787944] [4.82208712e-07]
+64 [0.36787957] [-0.36787944] [3.51130848e-07]
+65 [0.36787954] [-0.36787944] [2.55683617e-07]
+66 [0.36787951] [-0.36787944] [1.86181619e-07]
+67 [0.36787949] [-0.36787944] [1.35572216e-07]
+68 [0.36787948] [-0.36787944] [9.87198714e-08]
+69 [0.36787947] [-0.36787944] [7.18850305e-08]
+70 [0.36787946] [-0.36787944] [5.23446544e-08]
+71 [0.36787946] [-0.36787944] [3.81159029e-08]
+72 [0.36787945] [-0.36787944] [2.77549266e-08]
+73 [0.36787945] [-0.36787944] [2.02103555e-08]
+74 [0.36787945] [-0.36787944] [1.47166114e-08]
+75 [0.36787945] [-0.36787944] [1.07162217e-08]
+76 [0.36787944] [-0.36787944] [7.80325071e-09]
+</pre></div>
+</div>
+<img alt="../_images/3816f72371dab5140985478e85626791a97015aef21776a4a2c98d4142ac5494.png" src="../_images/3816f72371dab5140985478e85626791a97015aef21776a4a2c98d4142ac5494.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -740,7 +858,11 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-of-local-and-global-minimizers">Definitions of local and global minimizers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient descent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient descent</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-implementation">Gradient descent implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-on-a-convex-function">Gradient descent on a convex function</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
