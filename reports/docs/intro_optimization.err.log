@@ -15,48 +15,21 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from sympy import Symbol, sin, cos, Polygon, solve, lambdify, Rational, pi
-from sympy.plotting import plot
-from spb import *
-from scipy.optimize import fsolve
-import matplotlib.pyplot as plt
-import numpy as np
-import seaborn as sns
-sns.set_theme()
-
-fig = plt.figure()
-ax = fig.add_subplot(projection='3d')
-
-# This is the famous Branin function: https://www.sfu.ca/~ssurjano/branin.html
-a=1
-b=5.1/(4*pi**2)
-c=5/pi
-r=6
-s=10
-t=1/(8*pi)
-x1, x2 = symbols('x1 x2')
-funky_function = a*(x2-b*x1**2+c*x1-r)**2+s*(1-t)*cos(x1)+s
-funky_function_lambda = lambdify([x1, x2], funky_function)
-
-sol = [float(N(-pi)),12.275] #[9.42478, 2.475] #[-pi,12.275]
-plt.scatter([sol[0]], [sol[1]], [funky_function_lambda(sol[0], sol[1])], marker='o', color='r')
-
-p1 = plot3d(funky_function, (x1, -5, 10), (x2, 0, 15), show=False, legend=True, fig=fig, ax=ax)
-# p2 = plot3d(funky_function.diff(x), {'linestyle':'--'}, show=False, xlim=(-4,4), fig=fig, ax=ax)
-# p1.append(p2[0])
+fig, ax = plt.subplots()
+x = Symbol('x')
+# piecewise_fun = Piecewise(((x+1)**2, x <= -1), (0, x < 1), ((x-1)**2, x >= 1))
+p1 = plot(piecewise_fun, show=False, legend=False, fig=fig, ax=ax)
 p1.show()
-
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[3], line 20[0m
-[1;32m     18[0m s[38;5;241m=[39m[38;5;241m10[39m
-[1;32m     19[0m t[38;5;241m=[39m[38;5;241m1[39m[38;5;241m/[39m([38;5;241m8[39m[38;5;241m*[39mpi)
-[0;32m---> 20[0m x1, x2 [38;5;241m=[39m [43msymbols[49m([38;5;124m'[39m[38;5;124mx1 x2[39m[38;5;124m'[39m)
-[1;32m     21[0m funky_function [38;5;241m=[39m a[38;5;241m*[39m(x2[38;5;241m-[39mb[38;5;241m*[39mx1[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m[38;5;241m+[39mc[38;5;241m*[39mx1[38;5;241m-[39mr)[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m[38;5;241m+[39ms[38;5;241m*[39m([38;5;241m1[39m[38;5;241m-[39mt)[38;5;241m*[39mcos(x1)[38;5;241m+[39ms
-[1;32m     22[0m funky_function_lambda [38;5;241m=[39m lambdify([x1, x2], funky_function)
+Cell [0;32mIn[12], line 4[0m
+[1;32m      2[0m x [38;5;241m=[39m Symbol([38;5;124m'[39m[38;5;124mx[39m[38;5;124m'[39m)
+[1;32m      3[0m [38;5;66;03m# piecewise_fun = Piecewise(((x+1)**2, x <= -1), (0, x < 1), ((x-1)**2, x >= 1))[39;00m
+[0;32m----> 4[0m p1 [38;5;241m=[39m plot([43mpiecewise_fun[49m, show[38;5;241m=[39m[38;5;28;01mFalse[39;00m, legend[38;5;241m=[39m[38;5;28;01mFalse[39;00m, fig[38;5;241m=[39mfig, ax[38;5;241m=[39max)
+[1;32m      5[0m p1[38;5;241m.[39mshow()
 
-[0;31mNameError[0m: name 'symbols' is not defined
+[0;31mNameError[0m: name 'piecewise_fun' is not defined
 
