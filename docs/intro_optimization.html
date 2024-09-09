@@ -329,6 +329,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-on-a-convex-function">Gradient descent on a convex function</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a></li>
 </ul>
             </nav>
         </div>
@@ -561,14 +562,14 @@ document.write(`
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span><span class="c1">#projection=&#39;3d&#39;)</span>
-<span class="n">p1</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">is_filled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">is_filled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/23cbe515bedc1809b2b48582df3e5710cfb68ac07de1bbad9a61860beac030f0.png" src="../_images/23cbe515bedc1809b2b48582df3e5710cfb68ac07de1bbad9a61860beac030f0.png" />
+<img alt="../_images/ef81a11cf170f03462b099b76d61d593febb63be95d496bb6978b11aa02e0ef3.png" src="../_images/ef81a11cf170f03462b099b76d61d593febb63be95d496bb6978b11aa02e0ef3.png" />
 </div>
 </div>
 </section>
@@ -636,6 +637,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 <h3>Gradient descent implementation<a class="headerlink" href="#gradient-descent-implementation" title="Link to this heading">#</a></h3>
 <p>Let’s implement gradient descent and apply it to this function! The Python function takes as input the function to be minimized, the function representing its derivative, an initial point, and optional step-size and iteration limit parameters.</p>
 <p>We print out what happens in every iteration. You can see that depending on <code class="docutils literal notranslate"><span class="pre">initial_point</span></code>, you may end up at a different local minimum. Increasing the step-size by a lot is risky; try it out!</p>
+<p>The plot after the algorithm terminates shows both the initial point and final solution in green and red, respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fprime</span><span class="p">,</span> <span class="n">initial_point</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">iteration_limit</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
@@ -644,7 +646,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
     <span class="n">all_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dimension</span><span class="p">)</span>
 
     <span class="c1"># initial point, value, and gradient</span>
-    <span class="n">current_iterate</span> <span class="o">=</span> <span class="n">initial_point</span>
+    <span class="n">current_iterate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">initial_point</span><span class="p">)</span>
     <span class="n">current_value</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">current_iterate</span><span class="p">)</span>
     <span class="n">grad</span> <span class="o">=</span> <span class="n">fprime</span><span class="p">(</span><span class="n">current_iterate</span><span class="p">)</span>
     <span class="n">iter_counter</span> <span class="o">=</span> <span class="mi">0</span>
@@ -659,33 +661,54 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
         <span class="n">grad</span> <span class="o">=</span> <span class="n">fprime</span><span class="p">(</span><span class="n">current_iterate</span><span class="p">)</span>
         <span class="n">iter_counter</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">iter_counter</span><span class="p">,</span> <span class="n">current_iterate</span><span class="p">,</span> <span class="n">current_value</span><span class="p">,</span> <span class="n">grad</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">initial_point</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">current_iterate</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_min</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">funky_function_lambda</span><span class="p">,</span> <span class="n">funky_function_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">4.0</span><span class="p">]),</span> <span class="n">stepsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.0</span><span class="p">])</span>
+<span class="n">local_min</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">funky_function_lambda</span><span class="p">,</span> <span class="n">funky_function_derivative_lambda</span><span class="p">,</span> <span class="n">initial_point</span><span class="p">,</span> <span class="n">stepsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">point</span> <span class="o">=</span> <span class="n">local_min</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">initial_point</span><span class="p">,</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">initial_point</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iteration, x, f(x), f&#39;(x)
-0 [-4.] [0.06285096] [1.74642876]
-1 [-4.17464288] [-0.11666179] [0.22072933]
-2 [-4.19671581] [-0.11909016] [-0.00120963]
-3 [-4.19659485] [-0.11909023] [1.44181969e-05]
-4 [-4.19659629] [-0.11909023] [-1.71428281e-07]
-5 [-4.19659627] [-0.11909023] [2.03829825e-09]
+0 [2.] [1.28344866] [2.67507884]
+1 [1.73249212] [0.50034005] [2.75106181]
+2 [1.45738594] [0.0041517] [0.59666951]
+3 [1.39771898] [-0.01351905] [-0.00545358]
+4 [1.39826434] [-0.01352052] [6.03944163e-05]
+5 [1.3982583] [-0.01352052] [-6.71686638e-07]
+6 [1.39825837] [-0.01352052] [7.46992626e-09]
+[2.]
 </pre></div>
 </div>
+<img alt="../_images/17bdb170f0e10bc8dbbdc4d8dd756ff7c7bf6b8163bf88105e53490540e0e4ca.png" src="../_images/17bdb170f0e10bc8dbbdc4d8dd756ff7c7bf6b8163bf88105e53490540e0e4ca.png" />
 </div>
 </div>
 </section>
 <section id="gradient-descent-on-a-convex-function">
 <h3>Gradient descent on a convex function<a class="headerlink" href="#gradient-descent-on-a-convex-function" title="Link to this heading">#</a></h3>
-<p>Let’s apply the same procedure to the function <span class="math notranslate nohighlight">\(f(x)=x\log{x}\)</span>. Here the behavior of gradient descent (GD) is much nicer. No matter the initial point, the same unique global optimum will be recovered. There are no other local minima to worry about. Note that a global minimum is also, by definition, a local minimum.</p>
+<p>Let’s apply the same procedure to the function <span class="math notranslate nohighlight">\(f(x)=x\log{x}\)</span>. Here the behavior of gradient descent (GD) is much nicer. No matter the initial point, the same unique global optimum will be recovered; this is a property of <em>convex functions</em>, which we will discuss shortly. There are no other local minima to worry about. Note that a global minimum is also, by definition, a local minimum.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -701,11 +724,11 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 
 <span class="n">convex_function1_derivative_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">convex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
-<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">convex_function1</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">convex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">convex_function1</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">convex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
 <span class="n">global_min</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">convex_function1_lambda</span><span class="p">,</span> <span class="n">convex_function1_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.0</span><span class="p">]),</span> <span class="n">stepsize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">global_min</span><span class="p">,</span> <span class="n">convex_function1_lambda</span><span class="p">(</span><span class="n">global_min</span><span class="p">),</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">global_min</span><span class="p">,</span> <span class="n">convex_function1_lambda</span><span class="p">(</span><span class="n">global_min</span><span class="p">),</span> <span class="s1">&#39;k*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
 
 <span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -792,12 +815,174 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 74 [0.36787945] [-0.36787944] [1.47166114e-08]
 75 [0.36787945] [-0.36787944] [1.07162217e-08]
 76 [0.36787944] [-0.36787944] [7.80325071e-09]
+[3.]
 </pre></div>
 </div>
-<img alt="../_images/3816f72371dab5140985478e85626791a97015aef21776a4a2c98d4142ac5494.png" src="../_images/3816f72371dab5140985478e85626791a97015aef21776a4a2c98d4142ac5494.png" />
+<img alt="../_images/ed02f7b8a37f301094da7f8570db28859dd280b51e6c149a73700815b8e19a9c.png" src="../_images/ed02f7b8a37f301094da7f8570db28859dd280b51e6c149a73700815b8e19a9c.png" />
 </div>
 </div>
 </section>
+</section>
+<section id="necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">
+<h2>Necessary and sufficient conditions for local optimality in unconstrained optimization<a class="headerlink" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization" title="Link to this heading">#</a></h2>
+<p>We’ve already seen that a point with derivative zero may or may not be a local optimum. For functions that are <em>twice-differentiable</em>, i.e., for which the function <span class="math notranslate nohighlight">\(f''(\cdot)\)</span> exists for all points in the domain of <span class="math notranslate nohighlight">\(f\)</span>, the second derivative of a univariate function is defined as</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f''(x)=\frac{d}{dx}\left(\frac{d}{dx}\left( f(x)\right)\right)\text{.}
+\end{equation*}\]</div>
+<p>It turns out that the polarity (or sign) of the second derivative is crucial to determining whether a point is a local optimum or not. Let’s look at an illustrating example.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="s2">&quot;The second derivative (red dots) is positive when the function (orange)</span><span class="se">\n\</span>
+<span class="s2">    is curved upwards and negative when it is curved downwards.</span><span class="se">\n\</span>
+<span class="s2">    The black circle is the inflection point at which this transition occurs.</span><span class="se">\n\</span>
+<span class="s2">    The blue stars are local extrema.&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">nonconvex_function1</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">nonconvex_function1_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nonconvex_function1</span><span class="p">)</span>
+
+<span class="n">nonconvex_function1_derivative_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nonconvex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">nonconvex_function1_derivative2_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nonconvex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">nonconvex_function1</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">nonconvex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">nonconvex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;dotted&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">inflection_point</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">nonconvex_function1</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inflection_point</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
+
+<span class="n">sols</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">nonconvex_function1_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sols</span><span class="p">,</span> <span class="p">[</span><span class="n">nonconvex_function1_lambda</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">sols</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/8ccbad371406b6b19bd0c2062fd2a6e154ff3ddf413340bfc4b9d97dd5ee94dd.png" src="../_images/8ccbad371406b6b19bd0c2062fd2a6e154ff3ddf413340bfc4b9d97dd5ee94dd.png" />
+</div>
+</div>
+<!-- Unconstrained wrap-up
+
+zero-order sufficient condition not useful
+
+Second derivative intuition
+
+Optimality conditions (second-derivative)
+
+Constrained opt
+
+Taylor 1st order 
+https://mathinsight.org/dot_product
+
+
+Constraints, polytopes, QLP illustration
+
+LP
+
+https://en.wikipedia.org/wiki/Lagrange_multiplier#Examples
+
+https://github.com/mechmotum/cyipopt/blob/master/examples/hs071_scipy_jax.py
+
+Solvers (cvxpy, ipopt)
+ --><div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots()</span>
+<span class="c1"># # ax.set_axis_off()</span>
+
+<span class="c1"># # x = MatrixSymbol(&#39;x&#39;, 2, 1)</span>
+<span class="c1"># # line1 = x[0,0]+x[1,0]</span>
+<span class="c1"># # p1 = plot_contour(line1,  is_filled=False, fig=fig, ax=ax)</span>
+<span class="c1"># x1, x2 = symbols(&#39;x1 x2&#39;)</span>
+<span class="c1"># line1 = x1 + x2</span>
+<span class="c1"># quadratic1 = x1*x2 + 0.3*x1**2 + line1</span>
+<span class="c1"># # convex_function1 = x1*log(x2)</span>
+<span class="c1"># # objective_contour = plot_contour(line1,  (x1, -2, 6), (x2, -1, 2), {&quot;levels&quot;: 20}, is_filled=False, show=False, legend=False, fig=fig, ax=ax)</span>
+<span class="c1"># objective_contour = plot_contour(quadratic1,  (x1, -2, 6), (x2, -1, 2), {&quot;levels&quot;: 25}, is_filled=False, show=False, legend=False, fig=fig, ax=ax)</span>
+
+<span class="c1"># pt1, pt2, pt3, pt4, pt5 = [(0.25, 0.5), (1, 0), (5, 1), (0, 1), (2, 1)]</span>
+<span class="c1"># polytope = plot_geometry(Polygon(pt1, pt2, pt3, pt4, pt5), dict(color=&quot;purple&quot;, linewidth=2, label=&#39;&#39;, alpha=0.4), show_in_legend=False, is_filled=True, show=False, fig=fig, ax=ax)</span>
+
+<span class="c1"># objective_contour.append(polytope[0])</span>
+<span class="c1"># objective_contour.show()</span>
+
+<span class="c1"># # can use this to plot points: https://sympy-plot-backends.readthedocs.io/en/v2.2.0/modules/functions.html#spb.functions.plot_list</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots()</span>
+<span class="c1"># ax.set_axis_off()</span>
+
+<span class="c1"># # x = MatrixSymbol(&#39;x&#39;, 2, 1)</span>
+<span class="c1"># # line1 = x[0,0]+x[1,0]</span>
+<span class="c1"># # p1 = plot_contour(line1,  is_filled=False, fig=fig, ax=ax)</span>
+<span class="c1"># x1, x2 = symbols(&#39;x1 x2&#39;)</span>
+<span class="c1"># line1 = x1 + x2</span>
+<span class="c1"># quadratic1 = x1*x2 + 0.3*x1**2 + line1</span>
+<span class="c1"># # convex_function1 = x1*log(x2)</span>
+<span class="c1"># # objective_contour = plot_contour(line1,  (x1, -2, 6), (x2, -1, 2), {&quot;levels&quot;: 20}, is_filled=False, show=False, legend=False, fig=fig, ax=ax)</span>
+<span class="c1"># objective_contour = plot_contour(quadratic1,  (x1, -2, 6), (x2, -4, 6), {&quot;levels&quot;: 25}, is_filled=False, show=False, legend=False, fig=fig, ax=ax)</span>
+
+<span class="c1"># # pt1, pt2, pt3, pt4, pt5 = [(0.25, 0.5), (1, 0), (5, 1), (0, 1), (2, 1)]</span>
+<span class="c1"># # polytope = plot_geometry(Polygon(pt1, pt2, pt3, pt4, pt5), dict(color=&quot;purple&quot;, linewidth=2, label=&#39;&#39;, alpha=0.4), show_in_legend=False, is_filled=True, show=False, fig=fig, ax=ax)</span>
+<span class="c1"># polytope = plot_geometry(Ellipse(Point(2, 1), hradius=3, eccentricity=Rational(1, 5)), dict(color=&quot;purple&quot;, linestyle=&#39;--&#39;, linewidth=2, label=&#39;&#39;, alpha=0.4), show_in_legend=False, is_filled=False, show=False, fig=fig, ax=ax)</span>
+
+<span class="c1"># objective_contour.append(polytope[0])</span>
+<span class="c1"># objective_contour.show()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import numpy as np</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+
+<span class="c1"># soa = np.array([[-1, 1.5, 3, 2]])</span>
+<span class="c1"># X, Y, U, V = zip(*soa)</span>
+<span class="c1"># plt.figure()</span>
+<span class="c1"># ax = plt.gca()</span>
+<span class="c1"># ax.quiver(X, Y, U, V, angles=&#39;xy&#39;, scale_units=&#39;xy&#39;, scale=1)</span>
+<span class="c1"># ax.set_xlim([-1, 10])</span>
+<span class="c1"># ax.set_ylim([-1, 10])</span>
+<span class="c1"># plt.draw()</span>
+<span class="c1"># plt.show()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
 </section>
 </section>
 
@@ -868,6 +1053,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-on-a-convex-function">Gradient descent on a convex function</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a></li>
 </ul>
   </nav></div>
 
