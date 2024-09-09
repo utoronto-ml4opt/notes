@@ -386,7 +386,11 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="c1"># sns.plotting_context(&quot;notebook&quot;)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
@@ -407,7 +411,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5ccb601419a13005b7d958e13088970d34d07e20c196eab2d5ec3223502befa1.png" src="../_images/5ccb601419a13005b7d958e13088970d34d07e20c196eab2d5ec3223502befa1.png" />
+<img alt="../_images/e335260d3286cd24ab3fc11fffc1ddd85be41b59833332f67bee2032627fb3d0.png" src="../_images/e335260d3286cd24ab3fc11fffc1ddd85be41b59833332f67bee2032627fb3d0.png" />
 </div>
 </div>
 <div class="admonition-programming-note admonition">
@@ -441,7 +445,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/cf8aacca439cb6a3226f8eefd1af3c2caded7a4d66e5cc19d036ca61a7a4e32b.png" src="../_images/cf8aacca439cb6a3226f8eefd1af3c2caded7a4d66e5cc19d036ca61a7a4e32b.png" />
+<img alt="../_images/5a4886b3f9a6ae49338d9372bfbcb3be9723a8360a1a4e183ddbb091fcd86a6a.png" src="../_images/5a4886b3f9a6ae49338d9372bfbcb3be9723a8360a1a4e183ddbb091fcd86a6a.png" />
 </div>
 </div>
 <p>Let’s move on to some two-dimensional functions. This one is a famous “test function” referred to as <a class="reference external" href="https://www.sfu.ca/~ssurjano/branin.html"><em>Branin</em></a>. The color correspond to the z-axis values, more blue for smaller values, more yellow for larger values.</p>
@@ -474,7 +478,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/9425d7b808d63bbe00367967cfa6a57bd39bd0065f4401b0f1615c32b418e6ac.png" src="../_images/9425d7b808d63bbe00367967cfa6a57bd39bd0065f4401b0f1615c32b418e6ac.png" />
+<img alt="../_images/c44855ca2beba578fd98e6cee64e9f5aa8e3f3ae11b75c79facd5c46a8bc6eb9.png" src="../_images/c44855ca2beba578fd98e6cee64e9f5aa8e3f3ae11b75c79facd5c46a8bc6eb9.png" />
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle 36 \left(- \frac{0.2125 x_{1}^{2}}{\pi^{2}} + \frac{5 x_{1}}{6 \pi} + \frac{x_{2}}{6} - 1\right)^{2} + \left(10 - \frac{5}{4 \pi}\right) \cos{\left(x_{1} \right)} + 10\]</div>
 </div>
@@ -510,7 +514,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/b0bf1555d18186a4cfb3cbddaa8fa98f469df8f74eacb92226efaa894237c129.png" src="../_images/b0bf1555d18186a4cfb3cbddaa8fa98f469df8f74eacb92226efaa894237c129.png" />
+<img alt="../_images/39aad546d6d2abf9aee3a4aaeb4687b5f8803875bf5966375833a8b8e636b7f3.png" src="../_images/39aad546d6d2abf9aee3a4aaeb4687b5f8803875bf5966375833a8b8e636b7f3.png" />
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle 0.5 x_{1}^{4} - 8.0 x_{1}^{2} + 2.5 x_{1} + 0.5 x_{2}^{4} - 8.0 x_{2}^{2} + 2.5 x_{2}\]</div>
 </div>
@@ -545,7 +549,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/7718e89fb51c9af724e4e3ead3573a300c787f39fb4a381e70ee08bce57299ed.png" src="../_images/7718e89fb51c9af724e4e3ead3573a300c787f39fb4a381e70ee08bce57299ed.png" />
+<img alt="../_images/43e528f95f6d1db9d1fd1e415de61b3fa46bdfa3b206149489c0e567e956cd2f.png" src="../_images/43e528f95f6d1db9d1fd1e415de61b3fa46bdfa3b206149489c0e567e956cd2f.png" />
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle x_{1}^{2} - x_{2}^{2}\]</div>
 </div>
@@ -572,7 +576,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/ef81a11cf170f03462b099b76d61d593febb63be95d496bb6978b11aa02e0ef3.png" src="../_images/ef81a11cf170f03462b099b76d61d593febb63be95d496bb6978b11aa02e0ef3.png" />
+<img alt="../_images/42ff2740a4c866df8fe44b844ce3f8487a3307af02253d4f37af4e1e6619760f.png" src="../_images/42ff2740a4c866df8fe44b844ce3f8487a3307af02253d4f37af4e1e6619760f.png" />
 </div>
 </div>
 </section>
@@ -633,7 +637,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/38d6654b20fb316c5fa80ed4d65862a5623ef2b9dad8a6a758c605f0f9ca2f5b.png" src="../_images/38d6654b20fb316c5fa80ed4d65862a5623ef2b9dad8a6a758c605f0f9ca2f5b.png" />
+<img alt="../_images/d45c47253bc566138ee19dd49d11eb95111c66aba4536759dd74c6a32d01cdf4.png" src="../_images/d45c47253bc566138ee19dd49d11eb95111c66aba4536759dd74c6a32d01cdf4.png" />
 </div>
 </div>
 <section id="gradient-descent-implementation">
@@ -705,7 +709,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 [2.]
 </pre></div>
 </div>
-<img alt="../_images/17bdb170f0e10bc8dbbdc4d8dd756ff7c7bf6b8163bf88105e53490540e0e4ca.png" src="../_images/17bdb170f0e10bc8dbbdc4d8dd756ff7c7bf6b8163bf88105e53490540e0e4ca.png" />
+<img alt="../_images/ddf92c965c2c96511e1ca3cb6c688a1f0c8ce6c5b62bf34b24297a4586e767da.png" src="../_images/ddf92c965c2c96511e1ca3cb6c688a1f0c8ce6c5b62bf34b24297a4586e767da.png" />
 </div>
 </div>
 </section>
@@ -821,7 +825,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 [3.]
 </pre></div>
 </div>
-<img alt="../_images/ed02f7b8a37f301094da7f8570db28859dd280b51e6c149a73700815b8e19a9c.png" src="../_images/ed02f7b8a37f301094da7f8570db28859dd280b51e6c149a73700815b8e19a9c.png" />
+<img alt="../_images/a375115cc23887042ce27d0a7c52774c2e0a4190a024cfba1ab1e7a808b97523.png" src="../_images/a375115cc23887042ce27d0a7c52774c2e0a4190a024cfba1ab1e7a808b97523.png" />
 </div>
 </div>
 </section>
@@ -873,7 +877,7 @@ f''(x)=\frac{d}{dx}\left(\frac{d}{dx}\left( f(x)\right)\right)\text{.}
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/8ccbad371406b6b19bd0c2062fd2a6e154ff3ddf413340bfc4b9d97dd5ee94dd.png" src="../_images/8ccbad371406b6b19bd0c2062fd2a6e154ff3ddf413340bfc4b9d97dd5ee94dd.png" />
+<img alt="../_images/71159200433c93a39982224bbbb36de8cdeb392c35d69790865e2bcfe2333f0a.png" src="../_images/71159200433c93a39982224bbbb36de8cdeb392c35d69790865e2bcfe2333f0a.png" />
 </div>
 </div>
 <p>Before we state the two sets of conditions for local optimality, we need one more definition:</p>
@@ -932,7 +936,7 @@ f(x)=\begin{cases}
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/7e25642c08e5308f60cea2ffd87f6b6546198028af1b925c7af374f67ec4eae1.png" src="../_images/7e25642c08e5308f60cea2ffd87f6b6546198028af1b925c7af374f67ec4eae1.png" />
+<img alt="../_images/1aaba4e1a5ce18efd60664f3f16aa384b5b17cf6dbd70c3dc84ccc4620ca46c6.png" src="../_images/1aaba4e1a5ce18efd60664f3f16aa384b5b17cf6dbd70c3dc84ccc4620ca46c6.png" />
 </div>
 </div>
 <!-- Unconstrained wrap-up
