@@ -331,6 +331,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-weak-local-minimum">What is a weak local minimum?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-to-multivariate-functions">Generalization to multivariate functions</a></li>
 </ul>
 </li>
 </ul>
@@ -837,7 +838,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 <p>We’ve already seen that a point with derivative zero may or may not be a local optimum. For functions that are <em>twice-differentiable</em>, i.e., for which the function <span class="math notranslate nohighlight">\(f''(\cdot)\)</span> exists for all points in the domain of <span class="math notranslate nohighlight">\(f\)</span>, the second derivative of a univariate function is defined as</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-f''(x)=\frac{d}{dx}\left(\frac{d}{dx}\left( f(x)\right)\right)\text{.}
+f''(x)=\frac{\partial}{\partial x}\left(\frac{\partial f(x)}{\partial x}\right).
 \end{equation*}\]</div>
 <p>It turns out that the polarity (or sign) of the second derivative is crucial to determining whether a point is a local optimum or not. Let’s look at an illustrating example.</p>
 <div class="cell tag_hide-input docutils container">
@@ -907,7 +908,7 @@ f''(x)=\frac{d}{dx}\left(\frac{d}{dx}\left( f(x)\right)\right)\text{.}
 <li><p><span class="math notranslate nohighlight">\(f''(\boldsymbol{x}^\star) \geq 0\)</span>, the <em>second-order necessary condition</em> (SONC).</p></li>
 </ol>
 </section>
-</div><p>Notice the difference between the two is in the second condition. Every point with zero derivative and <strong>strictly positive</strong> second derivative is guaranteed to be a strong local minimum. Every local minimum (weak or strong) has second derivative at least zero. Not every point with second derivative at least zero is a local minimum.</p>
+</div><p>Notice that the difference between the two sets of conditions is in the second one. Every point with zero derivative and <strong>strictly positive</strong> second derivative is guaranteed to be a strong local minimum. Every local minimum (weak or strong) has second derivative at least zero. Not every point with second derivative at least zero is a local minimum.</p>
 <section id="what-is-a-weak-local-minimum">
 <h3>What is a weak local minimum?<a class="headerlink" href="#what-is-a-weak-local-minimum" title="Link to this heading">#</a></h3>
 <p>We have just distinguished two types of local minimum, weak and strong. In many of illustrations above, the local minima we saw happened to be strong. If you look around them, you’ll see they uniquely minimize the function in that neighborhood, i.e., the neighborhood is <em>not</em> flat. Let’s see what weak minima look like!</p>
@@ -930,7 +931,7 @@ f(x)=\begin{cases}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="c1"># piecewise_fun = Piecewise(((x+1)**2, x &lt;= -1), (0, x &lt; 1), ((x-1)**2, x &gt;= 1))</span>
+<span class="n">piecewise_fun</span> <span class="o">=</span> <span class="n">Piecewise</span><span class="p">(((</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">),</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">piecewise_fun</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -938,27 +939,50 @@ f(x)=\begin{cases}
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># piecewise_fun = Piecewise(((x+1)**2, x &lt;= -1), (0, x &lt; 1), ((x-1)**2, x &gt;= 1))</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">piecewise_fun</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;piecewise_fun&#39; is not defined
-</pre></div>
-</div>
-<img alt="../_images/ebbba94544cc1d2d3e89f0f19e967842559fcbbda766dc2b27ce296f8bdb609e.png" src="../_images/ebbba94544cc1d2d3e89f0f19e967842559fcbbda766dc2b27ce296f8bdb609e.png" />
+<img alt="../_images/ec85f06a931ca2b1d4587777bf87a445396f61e7c422a3a4a5778275d46b398e.png" src="../_images/ec85f06a931ca2b1d4587777bf87a445396f61e7c422a3a4a5778275d46b398e.png" />
 </div>
 </div>
+</section>
+<section id="generalization-to-multivariate-functions">
+<h3>Generalization to multivariate functions<a class="headerlink" href="#generalization-to-multivariate-functions" title="Link to this heading">#</a></h3>
+<p>When function <span class="math notranslate nohighlight">\(f\)</span> has two or more inputs, the local optimality conditions above are generalized to use the <em>gradient</em> instead of the derivative (<span class="xref std std-ref">multivariate-necessary-localopt</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a41fa92d-5586-449f-a824-76111a94c639">
+<span class="eqno">(1)<a class="headerlink" href="#equation-a41fa92d-5586-449f-a824-76111a94c639" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\LARGE
+\label{eq:gradient}
+\nabla_{\boldsymbol{x}}f(\hat{\boldsymbol{x}}) =
+\begin{bmatrix}
+    \frac{\partial f(\hat{\boldsymbol{x}})}{\partial{x_1}}, &amp; \frac{\partial f(\hat{\boldsymbol{x}})}{\partial{x_2}}, &amp; \cdots &amp;, \frac{\partial f(\hat{\boldsymbol{x}})}{\partial{x_n}}
+\end{bmatrix}
+\end{equation}\]</div>
+<p>Similarly, the second derivative is generalized to higher dimensions and is referred to as the <em>Hessian</em> matrix,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-82dcc8d9-aa0d-484f-80ab-c7ee594095c7">
+<span class="eqno">(2)<a class="headerlink" href="#equation-82dcc8d9-aa0d-484f-80ab-c7ee594095c7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\LARGE
+\label{eq:hessian}
+\nabla_{\boldsymbol{x}}^2 f(\hat{\boldsymbol{x}}) =
+\begin{bmatrix}
+    \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_1x_1}} &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_1x_2}} &amp; \cdots &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_1x_n}}\\[1ex]
+    \vdots &amp; \ddots &amp; &amp; \vdots\\[1ex]
+    \vdots &amp;  &amp; \ddots &amp; \vdots\\[1ex]
+    \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_nx_1}} &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_nx_2}} &amp; \cdots &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_nx_n}}
+\end{bmatrix}
+\end{equation}\]</div>
+<p>The <span class="math notranslate nohighlight">\((i,j)\)</span>-th entry of this matrix contains the value of the second derivative of <span class="math notranslate nohighlight">\(f\)</span> with respect to the two variables <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_j\)</span>. The Hessian is symmetric, i.e., <span class="math notranslate nohighlight">\(\left(\nabla_{\boldsymbol{x}}^2 f(\hat{\boldsymbol{x}})\right)_{i,j} = \left(\nabla_{\boldsymbol{x}}^2 f(\hat{\boldsymbol{x}})\right)_{j,i}\)</span>.</p>
+<div class="proof theorem admonition" id="multivariate-necessary-localopt">
+<p class="admonition-title"><span class="caption-number">Theorem 3 </span> (Necessary conditions for a local minimum for multivariate functions)</p>
+<section class="theorem-content" id="proof-content">
+<p>A local minimizer of a multivariate twice-differentiable function <span class="math notranslate nohighlight">\(f\)</span> satisfies the following:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\nabla_{\boldsymbol{x}}f(\boldsymbol{x}^\star) = \boldsymbol{0}\)</span>, the <em>first-order necessary condition</em> (FONC);</p></li>
+<li><p>The Hessian matrix <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol{x}}^2 f(\boldsymbol{x}^\star)\)</span> is positive semi-definite, the <em>second-order necessary condition</em> (SONC),</p></li>
+</ol>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{0}\)</span> is the <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector of all zeros.</p>
+</section>
+</div><p>We will not go into the mathematical definition of <em>positive semi-definiteness</em> here, but think of it as the multidimensional generalization of a univariate function being flat or curved upwards.</p>
 <!-- Unconstrained wrap-up
 
 zero-order sufficient condition not useful
-
-Second derivative intuition
-
-Optimality conditions (second-derivative)
 
 Constrained opt
 
@@ -1135,6 +1159,7 @@ Solvers (cvxpy, ipopt)
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-weak-local-minimum">What is a weak local minimum?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-to-multivariate-functions">Generalization to multivariate functions</a></li>
 </ul>
 </li>
 </ul>
