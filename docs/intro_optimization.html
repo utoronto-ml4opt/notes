@@ -873,6 +873,32 @@ f''(x)=\frac{d}{dx}\left(\frac{d}{dx}\left( f(x)\right)\right)\text{.}
 <img alt="../_images/8ccbad371406b6b19bd0c2062fd2a6e154ff3ddf413340bfc4b9d97dd5ee94dd.png" src="../_images/8ccbad371406b6b19bd0c2062fd2a6e154ff3ddf413340bfc4b9d97dd5ee94dd.png" />
 </div>
 </div>
+<p>Before we state the two sets of conditions for local optimality, we need one more definition:</p>
+<div class="proof definition admonition" id="strong-local-min">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Strong local minimizer)</p>
+<section class="definition-content" id="proof-content">
+<p>A <em>strong local minimizer</em> is a point that <em>uniquely</em> minimizes a function <span class="math notranslate nohighlight">\(f\)</span> within a neighborhood. In other words, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{x}}\)</span> is a strong local minimizer if there exists a <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span> such that <span class="math notranslate nohighlight">\(f(\hat{\boldsymbol{x}}) &lt;  f(x)\)</span> whenever <span class="math notranslate nohighlight">\(\hat{\boldsymbol{x}}\neq \boldsymbol{x}\)</span> and <span class="math notranslate nohighlight">\(\lVert \boldsymbol{x}-\hat{\boldsymbol{x}}\rVert&lt;\delta\)</span>.</p>
+</section>
+</div><p>A local minimum that is <em>not</em> a strong local minimizer is referred to as a <strong>weak</strong> local minimizer.</p>
+<div class="proof theorem admonition" id="univariate-sufficient-localopt">
+<p class="admonition-title"><span class="caption-number">Theorem 1 </span> (Sufficient conditions for a local minimum for univariate functions)</p>
+<section class="theorem-content" id="proof-content">
+<p>A point <span class="math notranslate nohighlight">\(\boldsymbol{x}^\star\)</span> is a <strong>strong</strong> local minimizer of a twice-differentiable function <span class="math notranslate nohighlight">\(f\)</span> if it satisfies the following:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(f'(\boldsymbol{x}^\star) = 0\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(f''(\boldsymbol{x}^\star) &gt; 0\)</span>.</p></li>
+</ol>
+</section>
+</div><div class="proof theorem admonition" id="univariate-necessary-localopt">
+<p class="admonition-title"><span class="caption-number">Theorem 2 </span> (Necessary conditions for a local minimum for univariate functions)</p>
+<section class="theorem-content" id="proof-content">
+<p>A local minimizer of a twice-differentiable function <span class="math notranslate nohighlight">\(f\)</span> satisfies the following:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(f'(\boldsymbol{x}^\star) = 0\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(f''(\boldsymbol{x}^\star) \geq 0\)</span>.</p></li>
+</ol>
+</section>
+</div><p>Notice the difference between the two is in the second condition. Every point with zero derivative and <strong>strictly positive</strong> second derivative is guaranteed to be a strong local minimum. Every local minimum has second derivative at least zero. Not every point with second derivative at least zero is a local minimum.</p>
 <!-- Unconstrained wrap-up
 
 zero-order sufficient condition not useful
