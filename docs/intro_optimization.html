@@ -329,7 +329,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-on-a-convex-function">Gradient descent on a convex function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-weak-local-minimum">What is a weak local minimum?</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -894,11 +897,44 @@ f''(x)=\frac{d}{dx}\left(\frac{d}{dx}\left( f(x)\right)\right)\text{.}
 <section class="theorem-content" id="proof-content">
 <p>A local minimizer of a twice-differentiable function <span class="math notranslate nohighlight">\(f\)</span> satisfies the following:</p>
 <ol class="arabic simple">
-<li><p><span class="math notranslate nohighlight">\(f'(\boldsymbol{x}^\star) = 0\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(f''(\boldsymbol{x}^\star) \geq 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f'(\boldsymbol{x}^\star) = 0\)</span>, the <em>first-order necessary condition</em> (FONC);</p></li>
+<li><p><span class="math notranslate nohighlight">\(f''(\boldsymbol{x}^\star) \geq 0\)</span>, the <em>second-order necessary condition</em> (SONC).</p></li>
 </ol>
 </section>
-</div><p>Notice the difference between the two is in the second condition. Every point with zero derivative and <strong>strictly positive</strong> second derivative is guaranteed to be a strong local minimum. Every local minimum has second derivative at least zero. Not every point with second derivative at least zero is a local minimum.</p>
+</div><p>Notice the difference between the two is in the second condition. Every point with zero derivative and <strong>strictly positive</strong> second derivative is guaranteed to be a strong local minimum. Every local minimum (weak or strong) has second derivative at least zero. Not every point with second derivative at least zero is a local minimum.</p>
+<section id="what-is-a-weak-local-minimum">
+<h3>What is a weak local minimum?<a class="headerlink" href="#what-is-a-weak-local-minimum" title="Link to this heading">#</a></h3>
+<p>We have just distinguished two types of local minimum, weak and strong. In many of illustrations above, the local minima we saw happened to be strong. If you look around them, you’ll see they uniquely minimize the function in that neighborhood, i.e., the neighborhood is <em>not</em> flat. Let’s see what weak minima look like!</p>
+<p>Consider the following function:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f(x)=\begin{cases} 
+        \left(x + 1\right)^{2} &amp; \text{for}\: x \leq -1 \\
+        0 &amp; \text{for}\: -1 &lt; x &lt; 1 \\
+        \left(x - 1\right)^{2} &amp; \text{for}\: x \geq 1 
+      \end{cases}
+\end{equation*}\]</div>
+<p>Clearly, all points in <span class="math notranslate nohighlight">\([-1,1]\)</span> are minimizers of this function with function value zero. However, none of them is a strong minimizer: the neighborhood around any point in the flat region of this function contains at least one other point with the same function value. These points are then weak minimizers.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">piecewise_fun</span> <span class="o">=</span> <span class="n">Piecewise</span><span class="p">(((</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">),</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">convex_function1</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/bc0cff19b4e75623e62483bab5fa513bce1ccbede42dbfb6037e14625088d742.png" src="../_images/bc0cff19b4e75623e62483bab5fa513bce1ccbede42dbfb6037e14625088d742.png" />
+</div>
+</div>
 <!-- Unconstrained wrap-up
 
 zero-order sufficient condition not useful
@@ -1011,6 +1047,7 @@ Solvers (cvxpy, ipopt)
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1079,7 +1116,10 @@ Solvers (cvxpy, ipopt)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-on-a-convex-function">Gradient descent on a convex function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-weak-local-minimum">What is a weak local minimum?</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
