@@ -835,12 +835,14 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 </section>
 <section id="necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">
 <h2>Necessary and sufficient conditions for local optimality in unconstrained optimization<a class="headerlink" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization" title="Link to this heading">#</a></h2>
-<p>We’ve already seen that a point with derivative zero may or may not be a local optimum. For functions that are <em>twice-differentiable</em>, i.e., for which the function <span class="math notranslate nohighlight">\(f''(\cdot)\)</span> exists for all points in the domain of <span class="math notranslate nohighlight">\(f\)</span>, the second derivative of a univariate function is defined as</p>
+<p>We have already presented one definition of a local minimizer in <span class="xref std std-ref">local-min</span>. This definition is not very useful in computation since it requires comparing a candidate point <span class="math notranslate nohighlight">\(x^\star\)</span> to potentially infinitely many neighboring points.
+We’ve also seen that a point with derivative zero may or may not be a local optimum.</p>
+<p>It turns out that for functions that are <em>twice-differentiable</em>, i.e., for which the function <span class="math notranslate nohighlight">\(f''(\cdot)\)</span> exists for all points in the domain of <span class="math notranslate nohighlight">\(f\)</span>, the polarity (or sign) of the second derivative of a univariate function is crucial to determining whether a point is a local optimum or not. The second derivative is defined as</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f''(x)=\frac{\partial}{\partial x}\left(\frac{\partial f(x)}{\partial x}\right).
 \end{equation*}\]</div>
-<p>It turns out that the polarity (or sign) of the second derivative is crucial to determining whether a point is a local optimum or not. Let’s look at an illustrating example.</p>
+<p>Let’s look at an illustrating example.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -946,8 +948,8 @@ f(x)=\begin{cases}
 <section id="generalization-to-multivariate-functions">
 <h3>Generalization to multivariate functions<a class="headerlink" href="#generalization-to-multivariate-functions" title="Link to this heading">#</a></h3>
 <p>When function <span class="math notranslate nohighlight">\(f\)</span> has two or more inputs, the local optimality conditions above are generalized to use the <em>gradient</em> instead of the derivative (<span class="xref std std-ref">multivariate-necessary-localopt</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a41fa92d-5586-449f-a824-76111a94c639">
-<span class="eqno">(1)<a class="headerlink" href="#equation-a41fa92d-5586-449f-a824-76111a94c639" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d1cdcfac-26f0-43ea-ba22-2bd34472eaa2">
+<span class="eqno">(1)<a class="headerlink" href="#equation-d1cdcfac-26f0-43ea-ba22-2bd34472eaa2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:gradient}
 \nabla_{\boldsymbol{x}}f(\hat{\boldsymbol{x}}) =
@@ -956,8 +958,8 @@ f(x)=\begin{cases}
 \end{bmatrix}
 \end{equation}\]</div>
 <p>Similarly, the second derivative is generalized to higher dimensions and is referred to as the <em>Hessian</em> matrix,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-82dcc8d9-aa0d-484f-80ab-c7ee594095c7">
-<span class="eqno">(2)<a class="headerlink" href="#equation-82dcc8d9-aa0d-484f-80ab-c7ee594095c7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-674c0520-9728-493b-961a-ee913941c79d">
+<span class="eqno">(2)<a class="headerlink" href="#equation-674c0520-9728-493b-961a-ee913941c79d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:hessian}
 \nabla_{\boldsymbol{x}}^2 f(\hat{\boldsymbol{x}}) =
@@ -980,10 +982,11 @@ f(x)=\begin{cases}
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{0}\)</span> is the <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector of all zeros.</p>
 </section>
 </div><p>We will not go into the mathematical definition of <em>positive semi-definiteness</em> here, but think of it as the multidimensional generalization of a univariate function being flat or curved upwards.</p>
-<!-- Unconstrained wrap-up
-
-zero-order sufficient condition not useful
-
+<div class="admonition-if-you-re-curious admonition">
+<p class="admonition-title">If you’re curious…</p>
+<p>about how the Hessian can be used to improve unconstrained optimization, think about the saddle point we saw earlier. Let’s say you are using gradient descent to minimize a function that has saddle points. The descent reaches a point with zero gradient; is it a local minimum? We can compute the Hessian at that point (potentially computationally expensive in high dimensions!) and check if it is positive definite (strong local minimizer), negative definite (strong local maximizer), or has both positive and negative eigenvalues (saddle point). In the latter case, one can take a small random step from the current point to “escape” the saddle. This is discussed at length in this <a class="reference external" href="https://www.offconvex.org/2016/03/22/saddlepoints/">Off the convex path blog post</a>.</p>
+</div>
+<!-- 
 Constrained opt
 
 Taylor 1st order 
