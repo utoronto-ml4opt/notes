@@ -942,21 +942,21 @@ f(x)=\begin{cases}
 <section id="generalization-to-multivariate-functions">
 <h3>Generalization to multivariate functions<a class="headerlink" href="#generalization-to-multivariate-functions" title="Link to this heading">#</a></h3>
 <p>When function <span class="math notranslate nohighlight">\(f\)</span> has two or more inputs, the local optimality conditions above are generalized to use the <em>gradient</em> instead of the derivative (<span class="xref std std-ref">multivariate-necessary-localopt</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0689556d-a118-4be8-b078-fd09d75f530f">
-<span class="eqno">(1)<a class="headerlink" href="#equation-0689556d-a118-4be8-b078-fd09d75f530f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-84c2cdbe-b44c-4853-8c31-a7dedb7db564">
+<span class="eqno">(1)<a class="headerlink" href="#equation-84c2cdbe-b44c-4853-8c31-a7dedb7db564" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:gradient}
-\nabla_{\boldsymbol{x}}f(\hat{\boldsymbol{x}}) =
+\nabla_{\boldsymbol{x}}f({\boldsymbol{\hat x}}) =
 \begin{bmatrix}
     \frac{\partial f(\hat{\boldsymbol{x}})}{\partial{x_1}}, &amp; \frac{\partial f(\hat{\boldsymbol{x}})}{\partial{x_2}}, &amp; \cdots &amp;, \frac{\partial f(\hat{\boldsymbol{x}})}{\partial{x_n}}
 \end{bmatrix}
 \end{equation}\]</div>
 <p>Similarly, the second derivative is generalized to higher dimensions and is referred to as the <em>Hessian</em> matrix,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b0676ef3-1f25-4f1e-b11e-e0d724ac6f5c">
-<span class="eqno">(2)<a class="headerlink" href="#equation-b0676ef3-1f25-4f1e-b11e-e0d724ac6f5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-29e6fa26-c559-41a1-92db-5f0a3a17da81">
+<span class="eqno">(2)<a class="headerlink" href="#equation-29e6fa26-c559-41a1-92db-5f0a3a17da81" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:hessian}
-\nabla_{\boldsymbol{x}}^2 f(\hat{\boldsymbol{x}}) =
+\nabla_{\boldsymbol{x}}^2 f({\boldsymbol{\hat x}}) =
 \begin{bmatrix}
     \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_1x_1}} &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_1x_2}} &amp; \cdots &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_1x_n}}\\[1ex]
     \vdots &amp; \ddots &amp; &amp; \vdots\\[1ex]
