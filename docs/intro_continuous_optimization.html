@@ -476,17 +476,14 @@ document.write(`
 <span class="c1"># sol = [float(-pi),12.275] # The two other minima are [9.42478, 2.475] and [pi,2.275]</span>
 <span class="c1"># plt.scatter([sol[0]], [sol[1]], [funky_function_lambda(sol[0], sol[1])], marker=&#39;o&#39;, color=&#39;r&#39;)</span>
 
-<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">branin_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">branin_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">%s</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="n">latex</span><span class="p">(</span><span class="n">branin_function</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">branin_function</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/b67a618491ff8ae89590db9e36920705e18834cb1d96eb44e463d822094a55c3.png" src="../_images/b67a618491ff8ae89590db9e36920705e18834cb1d96eb44e463d822094a55c3.png" />
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle 36 \left(- \frac{0.2125 x_{1}^{2}}{\pi^{2}} + \frac{5 x_{1}}{6 \pi} + \frac{x_{2}}{6} - 1\right)^{2} + \left(10 - \frac{5}{4 \pi}\right) \cos{\left(x_{1} \right)} + 10\]</div>
+<img alt="../_images/7867e0bfb2b62ec4053a28f9f17d6c8077ce627a776dc0d69d77e1020bd8a689.png" src="../_images/7867e0bfb2b62ec4053a28f9f17d6c8077ce627a776dc0d69d77e1020bd8a689.png" />
 </div>
 </div>
 <p>Another interesting test function with a unique global minimum at <span class="math notranslate nohighlight">\((-2.903534, -2.903534)\)</span>.</p>
@@ -512,17 +509,14 @@ document.write(`
 <span class="c1"># sol = [-2.903534, -2.903534] </span>
 <span class="c1"># plt.scatter([sol[0]], [sol[1]], [funky_function_lambda(sol[0], sol[1])], marker=&#39;o&#39;, color=&#39;r&#39;)</span>
 
-<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">stybtang_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">stybtang_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">%s</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="n">latex</span><span class="p">(</span><span class="n">stybtang_function</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">stybtang_function</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/7ea508e9e5a4d86207d6b1045518b53cf548fb3908f584b782966725a1dd6351.png" src="../_images/7ea508e9e5a4d86207d6b1045518b53cf548fb3908f584b782966725a1dd6351.png" />
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle 0.5 x_{1}^{4} - 8.0 x_{1}^{2} + 2.5 x_{1} + 0.5 x_{2}^{4} - 8.0 x_{2}^{2} + 2.5 x_{2}\]</div>
+<img alt="../_images/cfecfb03800dcb57afc1b41e2bacfce93c2bff10f526c1e97f9dfc11f430fb73.png" src="../_images/cfecfb03800dcb57afc1b41e2bacfce93c2bff10f526c1e97f9dfc11f430fb73.png" />
 </div>
 </div>
 <section id="saddle-points">
@@ -547,17 +541,14 @@ document.write(`
 <span class="n">saddle_function_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">],</span> <span class="n">saddle_function</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot3d</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">%s</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="n">latex</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">saddle_function</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/afb4f8b47ca122ecc06534cc6f7ae8f5ea6ffbaefe96f2a89a6a4395ad1dccb5.png" src="../_images/afb4f8b47ca122ecc06534cc6f7ae8f5ea6ffbaefe96f2a89a6a4395ad1dccb5.png" />
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle x_{1}^{2} - x_{2}^{2}\]</div>
+<img alt="../_images/e00b13c3f184045edac3fcdaf43ac89e9630fdcea14106acff9733da73618be5.png" src="../_images/e00b13c3f184045edac3fcdaf43ac89e9630fdcea14106acff9733da73618be5.png" />
 </div>
 </div>
 </section>
@@ -575,14 +566,14 @@ document.write(`
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span><span class="c1">#projection=&#39;3d&#39;)</span>
-<span class="n">p1</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">is_filled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">%s</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="n">latex</span><span class="p">(</span><span class="n">saddle_function</span><span class="p">),</span> <span class="n">is_filled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/c3bfdf7d006f8653f8af1ac9bf7fbd0bb717897275fb23c478b1e3da388d7482.png" src="../_images/c3bfdf7d006f8653f8af1ac9bf7fbd0bb717897275fb23c478b1e3da388d7482.png" />
+<img alt="../_images/01b74d2db057b277b02f1eb1e6e5d16f6120a1c882c02cd7d7171dd3b6bcfa6e.png" src="../_images/01b74d2db057b277b02f1eb1e6e5d16f6120a1c882c02cd7d7171dd3b6bcfa6e.png" />
 </div>
 </div>
 </section>
@@ -951,8 +942,8 @@ f(x)=\begin{cases}
 <section id="generalization-to-multivariate-functions">
 <h3>Generalization to multivariate functions<a class="headerlink" href="#generalization-to-multivariate-functions" title="Link to this heading">#</a></h3>
 <p>When function <span class="math notranslate nohighlight">\(f\)</span> has two or more inputs, the local optimality conditions above are generalized to use the <em>gradient</em> instead of the derivative (<span class="xref std std-ref">multivariate-necessary-localopt</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-506cc8e0-a7e5-4e97-8a75-f92796ad7925">
-<span class="eqno">(1)<a class="headerlink" href="#equation-506cc8e0-a7e5-4e97-8a75-f92796ad7925" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0689556d-a118-4be8-b078-fd09d75f530f">
+<span class="eqno">(1)<a class="headerlink" href="#equation-0689556d-a118-4be8-b078-fd09d75f530f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:gradient}
 \nabla_{\boldsymbol{x}}f(\hat{\boldsymbol{x}}) =
@@ -961,8 +952,8 @@ f(x)=\begin{cases}
 \end{bmatrix}
 \end{equation}\]</div>
 <p>Similarly, the second derivative is generalized to higher dimensions and is referred to as the <em>Hessian</em> matrix,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7445d24-adbc-4aa2-b61d-6e87bea42015">
-<span class="eqno">(2)<a class="headerlink" href="#equation-e7445d24-adbc-4aa2-b61d-6e87bea42015" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b0676ef3-1f25-4f1e-b11e-e0d724ac6f5c">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b0676ef3-1f25-4f1e-b11e-e0d724ac6f5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:hessian}
 \nabla_{\boldsymbol{x}}^2 f(\hat{\boldsymbol{x}}) =
@@ -988,93 +979,6 @@ f(x)=\begin{cases}
 <div class="admonition-if-you-re-curious admonition">
 <p class="admonition-title">If you’re curious…</p>
 <p>about how the Hessian can be used to improve unconstrained optimization, think about the saddle point we saw earlier. Let’s say you are using gradient descent to minimize a function that has saddle points. The descent reaches a point with zero gradient; is it a local minimum? We can compute the Hessian at that point (potentially computationally expensive in high dimensions!) and check if it is positive definite (strong local minimizer), negative definite (strong local maximizer), or has both positive and negative eigenvalues (saddle point). In the latter case, one can take a small random step from the current point to “escape” the saddle. This is discussed at length in this <a class="reference external" href="https://www.offconvex.org/2016/03/22/saddlepoints/">Off the convex path blog post</a>.</p>
-</div>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots()</span>
-<span class="c1"># # ax.set_axis_off()</span>
-
-<span class="c1"># # x = MatrixSymbol(&#39;x&#39;, 2, 1)</span>
-<span class="c1"># # line1 = x[0,0]+x[1,0]</span>
-<span class="c1"># # p1 = plot_contour(line1,  is_filled=False, fig=fig, ax=ax)</span>
-<span class="c1"># x1, x2 = symbols(&#39;x1 x2&#39;)</span>
-<span class="c1"># line1 = x1 + x2</span>
-<span class="c1"># quadratic1 = x1*x2 + 0.3*x1**2 + line1</span>
-<span class="c1"># # convex_function1 = x1*log(x2)</span>
-<span class="c1"># # objective_contour = plot_contour(line1,  (x1, -2, 6), (x2, -1, 2), {&quot;levels&quot;: 20}, is_filled=False, show=False, legend=False, fig=fig, ax=ax)</span>
-<span class="c1"># objective_contour = plot_contour(quadratic1,  (x1, -2, 6), (x2, -1, 2), {&quot;levels&quot;: 25}, is_filled=False, show=False, legend=False, fig=fig, ax=ax)</span>
-
-<span class="c1"># pt1, pt2, pt3, pt4, pt5 = [(0.25, 0.5), (1, 0), (5, 1), (0, 1), (2, 1)]</span>
-<span class="c1"># polytope = plot_geometry(Polygon(pt1, pt2, pt3, pt4, pt5), dict(color=&quot;purple&quot;, linewidth=2, label=&#39;&#39;, alpha=0.4), show_in_legend=False, is_filled=True, show=False, fig=fig, ax=ax)</span>
-
-<span class="c1"># objective_contour.append(polytope[0])</span>
-<span class="c1"># objective_contour.show()</span>
-
-<span class="c1"># # can use this to plot points: https://sympy-plot-backends.readthedocs.io/en/v2.2.0/modules/functions.html#spb.functions.plot_list</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig, ax = plt.subplots()</span>
-<span class="c1"># ax.set_axis_off()</span>
-
-<span class="c1"># # x = MatrixSymbol(&#39;x&#39;, 2, 1)</span>
-<span class="c1"># # line1 = x[0,0]+x[1,0]</span>
-<span class="c1"># # p1 = plot_contour(line1,  is_filled=False, fig=fig, ax=ax)</span>
-<span class="c1"># x1, x2 = symbols(&#39;x1 x2&#39;)</span>
-<span class="c1"># line1 = x1 + x2</span>
-<span class="c1"># quadratic1 = x1*x2 + 0.3*x1**2 + line1</span>
-<span class="c1"># # convex_function1 = x1*log(x2)</span>
-<span class="c1"># # objective_contour = plot_contour(line1,  (x1, -2, 6), (x2, -1, 2), {&quot;levels&quot;: 20}, is_filled=False, show=False, legend=False, fig=fig, ax=ax)</span>
-<span class="c1"># objective_contour = plot_contour(quadratic1,  (x1, -2, 6), (x2, -4, 6), {&quot;levels&quot;: 25}, is_filled=False, show=False, legend=False, fig=fig, ax=ax)</span>
-
-<span class="c1"># # pt1, pt2, pt3, pt4, pt5 = [(0.25, 0.5), (1, 0), (5, 1), (0, 1), (2, 1)]</span>
-<span class="c1"># # polytope = plot_geometry(Polygon(pt1, pt2, pt3, pt4, pt5), dict(color=&quot;purple&quot;, linewidth=2, label=&#39;&#39;, alpha=0.4), show_in_legend=False, is_filled=True, show=False, fig=fig, ax=ax)</span>
-<span class="c1"># polytope = plot_geometry(Ellipse(Point(2, 1), hradius=3, eccentricity=Rational(1, 5)), dict(color=&quot;purple&quot;, linestyle=&#39;--&#39;, linewidth=2, label=&#39;&#39;, alpha=0.4), show_in_legend=False, is_filled=False, show=False, fig=fig, ax=ax)</span>
-
-<span class="c1"># objective_contour.append(polytope[0])</span>
-<span class="c1"># objective_contour.show()</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import numpy as np</span>
-<span class="c1"># import matplotlib.pyplot as plt</span>
-
-<span class="c1"># soa = np.array([[-1, 1.5, 3, 2]])</span>
-<span class="c1"># X, Y, U, V = zip(*soa)</span>
-<span class="c1"># plt.figure()</span>
-<span class="c1"># ax = plt.gca()</span>
-<span class="c1"># ax.quiver(X, Y, U, V, angles=&#39;xy&#39;, scale_units=&#39;xy&#39;, scale=1)</span>
-<span class="c1"># ax.set_xlim([-1, 10])</span>
-<span class="c1"># ax.set_ylim([-1, 10])</span>
-<span class="c1"># plt.draw()</span>
-<span class="c1"># plt.show()</span>
-</pre></div>
-</div>
-</div>
-</details>
 </div>
 </section>
 </section>
