@@ -319,6 +319,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-halfspaces">Vectors and halfspaces</a></li>
 </ul>
             </nav>
         </div>
@@ -375,7 +376,12 @@ document.write(`
 <section class="definition-content" id="proof-content">
 <p>A <em>global minimizer</em> is a feasible solution <span class="math notranslate nohighlight">\(\boldsymbol{x^\star}\in\Omega\)</span> that is as good as any other feasible solution, i.e., <span class="math notranslate nohighlight">\(f({\boldsymbol{x^\star}}) \leq  f(\boldsymbol{x})\)</span> for all <span class="math notranslate nohighlight">\(\boldsymbol{x}\in\Omega\)</span>. There may be multiple global minima.</p>
 </section>
-</div><div class="cell docutils container">
+</div><div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1">#Symbol, symbols, sin, cos, Polygon, solve, lambdify, Rational, pi, N</span>
 <span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
@@ -397,8 +403,18 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+</section>
+<section id="vectors-and-halfspaces">
+<h2>Vectors and halfspaces<a class="headerlink" href="#vectors-and-halfspaces" title="Link to this heading">#</a></h2>
+<p><em>Linear constraints</em> are some of the most widely used types of constraints. They can be expressed as <span class="math notranslate nohighlight">\(c(\boldsymbol{x})\leq 0\)</span> where <span class="math notranslate nohighlight">\(c(\boldsymbol{x})=\boldsymbol{w}\cdot\boldsymbol{x} - b\)</span> (similarly for an equality constraint).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="c1"># ax.set_axis_off()</span>
@@ -408,21 +424,21 @@ document.write(`
 <span class="n">p1</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span>
     <span class="n">Eq</span><span class="p">(</span><span class="n">x1_dir</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2_dir</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-    <span class="p">{</span><span class="s2">&quot;linestyles&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">},</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{v}</span><span class="s1">}</span><span class="se">\\</span><span class="s1">cdot</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{x}</span><span class="s1">-b=0$&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
+    <span class="p">{</span><span class="s2">&quot;linestyles&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">},</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{w}</span><span class="s1">}</span><span class="se">\\</span><span class="s1">cdot</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{x}</span><span class="s1">-b=0$&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
     <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="c1">#\\vec{\\mathbf{v}}\\cdot\\mathbf{x}-b=0</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
     <span class="s2">&quot;Illustration of the normal vector of a line and its halfspaces.</span><span class="se">\n\</span>
-<span class="s2">    The line is the set of points satisfying </span><span class="se">\n</span><span class="s2">$</span><span class="se">\\</span><span class="s2">vec{</span><span class="se">\\</span><span class="s2">mathbf</span><span class="si">{v}</span><span class="s2">}</span><span class="se">\\</span><span class="s2">cdot</span><span class="se">\\</span><span class="s2">mathbf</span><span class="si">{x}</span><span class="s2">-b=0$ </span><span class="se">\</span>
-<span class="s2">    for $</span><span class="se">\\</span><span class="s2">vec{</span><span class="se">\\</span><span class="s2">mathbf</span><span class="si">{v}</span><span class="s2">}=(1,2)$ and $b=4$,</span><span class="se">\n</span><span class="s2">i.e., $x_1+2x_2-4=0$.&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.03</span><span class="p">)</span>
+<span class="s2">    The line is the set of points satisfying </span><span class="se">\n</span><span class="s2">$</span><span class="se">\\</span><span class="s2">vec{</span><span class="se">\\</span><span class="s2">mathbf</span><span class="si">{w}</span><span class="s2">}</span><span class="se">\\</span><span class="s2">cdot</span><span class="se">\\</span><span class="s2">mathbf</span><span class="si">{x}</span><span class="s2">-b=0$ </span><span class="se">\</span>
+<span class="s2">    for $</span><span class="se">\\</span><span class="s2">vec{</span><span class="se">\\</span><span class="s2">mathbf</span><span class="si">{w}</span><span class="s2">}=(1,2)$ and $b=4$,</span><span class="se">\n</span><span class="s2">i.e., $x_1+2x_2-4=0$.&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.03</span><span class="p">)</span>
 
 <span class="n">p2</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span><span class="n">x1_dir</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2_dir</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p3</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span><span class="n">x1_dir</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2_dir</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">p4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{v}</span><span class="s1">}</span><span class="se">\\</span><span class="s1">cdot</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{x}</span><span class="s1">-b</span><span class="se">\\</span><span class="s1">leq 0$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">p5</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{v}</span><span class="s1">}</span><span class="se">\\</span><span class="s1">cdot</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{x}</span><span class="s1">-b</span><span class="se">\\</span><span class="s1">geq 0$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">p4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{w}</span><span class="s1">}</span><span class="se">\\</span><span class="s1">cdot</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{x}</span><span class="s1">-b</span><span class="se">\\</span><span class="s1">leq 0$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">p5</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{w}</span><span class="s1">}</span><span class="se">\\</span><span class="s1">cdot</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{x}</span><span class="s1">-b</span><span class="se">\\</span><span class="s1">geq 0$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 
 <span class="n">obj_vec</span> <span class="o">=</span> <span class="n">graphics</span><span class="p">(</span><span class="n">arrow_2d</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">.5</span><span class="o">*</span><span class="n">x1_dir</span><span class="p">,</span> <span class="mf">.5</span><span class="o">*</span><span class="n">x2_dir</span><span class="p">),</span> <span class="n">rendering_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;orangered&#39;</span><span class="p">,</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">},</span> 
-                            <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{v}</span><span class="s1">}=(1,2)&#39;</span><span class="p">),</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+                            <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{w}</span><span class="s1">}=(1,2)&#39;</span><span class="p">),</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
 <span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -431,8 +447,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../_images/f7206de4d7391674dc06685df12d8b637f0e8288097950d8d0ea0bfa24aa57d9.png" src="../_images/f7206de4d7391674dc06685df12d8b637f0e8288097950d8d0ea0bfa24aa57d9.png" />
+<img alt="../_images/fa8222d75b89a1ca265f22726a39f75e098de9d2b66b5781b784d29e2a0580e3.png" src="../_images/fa8222d75b89a1ca265f22726a39f75e098de9d2b66b5781b784d29e2a0580e3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -481,7 +498,7 @@ document.write(`
 
 <span class="n">objective_function</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="n">x2</span>
 <span class="n">objective_contour</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">objective_function</span><span class="p">,</span>  <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> 
-                                 <span class="p">{</span><span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;cmap&quot;</span><span class="p">:</span> <span class="s2">&quot;cividis&quot;</span><span class="p">,</span> <span class="s2">&quot;linestyles&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;linewidths&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">},</span> 
+                                 <span class="p">{</span><span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;cmap&quot;</span><span class="p">:</span> <span class="s2">&quot;cividis&quot;</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">:</span><span class="mf">0.9</span><span class="p">,</span> <span class="s2">&quot;linestyles&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;linewidths&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">},</span> 
                                  <span class="n">is_filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
@@ -499,10 +516,11 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/spb/backends/matplotlib/renderers/contour.py:20: UserWarning: linewidths is ignored by contourf
 </pre></div>
 </div>
-<img alt="../_images/cf1b469aea8490dc09ab40de91ac602af7e181ebe82bdba46952f8f9953c6e91.png" src="../_images/cf1b469aea8490dc09ab40de91ac602af7e181ebe82bdba46952f8f9953c6e91.png" />
+<img alt="../_images/0f77e4fb39f684fe2299f69a8ef269ddc326ee5d8fd3fa163c038a2069039c94.png" src="../_images/0f77e4fb39f684fe2299f69a8ef269ddc326ee5d8fd3fa163c038a2069039c94.png" />
 </div>
 </div>
 <!-- <!--  -->
+<p>Constrained opt</p>
 <p>Taylor 1st order
 https://mathinsight.org/dot_product</p>
 <p>Constraints, polytopes, QLP illustration</p>
@@ -615,6 +633,7 @@ https://mathinsight.org/dot_product</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-halfspaces">Vectors and halfspaces</a></li>
 </ul>
   </nav></div>
 
