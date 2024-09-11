@@ -319,7 +319,6 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x1-x2-symbols-x1-x2">x1, x2 = symbols(‘x1 x2’)</a></li>
 </ul>
             </nav>
         </div>
@@ -387,7 +386,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">})</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
@@ -409,48 +408,61 @@ document.write(`
 <span class="n">p1</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span>
     <span class="n">Eq</span><span class="p">(</span><span class="n">x1_dir</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2_dir</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-    <span class="p">{</span><span class="s2">&quot;linestyles&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">},</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+    <span class="p">{</span><span class="s2">&quot;linestyles&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">},</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>
     <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
-    <span class="s2">&quot;Illustration of the normal vector of a line and its halfspaces&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.03</span><span class="p">)</span>
+    <span class="s2">&quot;Illustration of the normal vector of a line and its halfspaces.</span><span class="se">\n\</span>
+<span class="s2">    The line is the set of points satisfying $</span><span class="se">\\</span><span class="s2">vec{</span><span class="se">\\</span><span class="s2">mathbf</span><span class="si">{v}</span><span class="s2">}</span><span class="se">\\</span><span class="s2">cdot</span><span class="se">\\</span><span class="s2">mathbf</span><span class="si">{x}</span><span class="s2">-b=0$.&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.03</span><span class="p">)</span>
 
-<span class="n">obj_vec</span> <span class="o">=</span> <span class="n">graphics</span><span class="p">(</span><span class="n">arrow_2d</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">.5</span><span class="o">*</span><span class="n">x1_dir</span><span class="p">,</span> <span class="mf">.5</span><span class="o">*</span><span class="n">x2_dir</span><span class="p">),</span> <span class="n">rendering_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">},</span> 
-                            <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">vec v=(1,2)&#39;</span><span class="p">),</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span><span class="n">x1_dir</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2_dir</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span><span class="n">x1_dir</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2_dir</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{v}</span><span class="s1">}</span><span class="se">\\</span><span class="s1">cdot</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{x}</span><span class="s1">-b</span><span class="se">\\</span><span class="s1">leq 0$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">p5</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;$$</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{v}</span><span class="s1">}</span><span class="se">\\</span><span class="s1">cdot</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{x}</span><span class="s1">-b</span><span class="se">\\</span><span class="s1">geq 0$$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 
-<span class="n">p2</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span><span class="n">x1_dir</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2_dir</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">},</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">obj_vec</span> <span class="o">=</span> <span class="n">graphics</span><span class="p">(</span><span class="n">arrow_2d</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mf">.5</span><span class="o">*</span><span class="n">x1_dir</span><span class="p">,</span> <span class="mf">.5</span><span class="o">*</span><span class="n">x2_dir</span><span class="p">),</span> <span class="n">rendering_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">},</span> 
+                            <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">vec{</span><span class="se">\\</span><span class="s1">mathbf</span><span class="si">{v}</span><span class="s1">}=(1,2)&#39;</span><span class="p">),</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
 <span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">p3</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span><span class="n">x1_dir</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2_dir</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">},</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">p4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="s1">&#39;$x_1+2x_2-4\leq 0$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">p5</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;$x_1+2x_2-4\geq 0$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-
 <span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/aa53a1f418609dd13d9cdf9d38f5ad83f4b461142224cfa4f0724d7c3365eee9.png" src="../_images/aa53a1f418609dd13d9cdf9d38f5ad83f4b461142224cfa4f0724d7c3365eee9.png" />
+<img alt="../_images/5e67a97298e15ef5e7cf12daaabab0250a9d3761da88673600bec69d56ddb751.png" src="../_images/5e67a97298e15ef5e7cf12daaabab0250a9d3761da88673600bec69d56ddb751.png" />
 </div>
 </div>
-</section>
-<section id="x1-x2-symbols-x1-x2">
-<h2>x1, x2 = symbols(‘x1 x2’)<a class="headerlink" href="#x1-x2-symbols-x1-x2" title="Link to this heading">#</a></h2>
-<p>p1 = plot_implicit(
-Eq(x1 + x2 - 4, 0),
-Eq(-x1 + -2*x2 + 1, 0),
-Eq(x1, 0),
-Eq(x2, 0),
-(x1, -1, 5), (x2, -1, 5),
-rendering_kw={“linestyles”: “-“}, aspect=”equal”,
-show=False, grid=False)</p>
-<p>p2 = plot_implicit(
-And(x1 + x2 - 4 &lt;= 0, -x1 + -2*x2 + 1 &lt;= 0, -x1 &lt;= 0, -x2 &lt;= 0),
-(x1, -1, 5), (x2, -1, 5),
-{‘alpha’:0.1}, color=’k’, show=False, grid=False, show_in_legend=False)</p>
-<p>p1.append(p2[0])
-p1.show()</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## x1, x2 = symbols(&#39;x1 x2&#39;)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="o">-</span><span class="n">x1</span> <span class="o">+</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">Eq</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">rendering_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;linestyles&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">},</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span>
+    <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">p2</span> <span class="o">=</span> <span class="n">plot_implicit</span><span class="p">(</span>
+    <span class="n">And</span><span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">x1</span> <span class="o">+</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">x1</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">x2</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.2</span><span class="p">},</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/spb/series.py:2255: UserWarning: The provided expression contains Boolean functions. In order to plot the expression, the algorithm automatically switched to an adaptive sampling.
+</pre></div>
+</div>
+<img alt="../_images/933fa845e03ebe2377d4ad8fc24e3961d321ae75fe812b9c8f5969d98e01a108.png" src="../_images/933fa845e03ebe2377d4ad8fc24e3961d321ae75fe812b9c8f5969d98e01a108.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -486,7 +498,7 @@ p1.show()</p>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lyes/Dropbox/UofT/Teaching/MIE1666_F24/1666env/lib/python3.10/site-packages/spb/backends/matplotlib/renderers/contour.py:20: UserWarning: linewidths is ignored by contourf
 </pre></div>
 </div>
-<img alt="../_images/824f734d7742b189142f3b05a0f8da1ef34d43a505bc3a659de4760f59d78509.png" src="../_images/824f734d7742b189142f3b05a0f8da1ef34d43a505bc3a659de4760f59d78509.png" />
+<img alt="../_images/cf1b469aea8490dc09ab40de91ac602af7e181ebe82bdba46952f8f9953c6e91.png" src="../_images/cf1b469aea8490dc09ab40de91ac602af7e181ebe82bdba46952f8f9953c6e91.png" />
 </div>
 </div>
 <!-- <!--  -->
@@ -517,7 +529,7 @@ https://mathinsight.org/dot_product</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/50c9cb084ef776fec5cd985e7a82bf960efe68dddff4254f0415bc70a4647fcd.png" src="../_images/50c9cb084ef776fec5cd985e7a82bf960efe68dddff4254f0415bc70a4647fcd.png" />
+<img alt="../_images/140b6a6398ca4eb28631a531cacceb37574fdd5b62cbecfd19353887f312db52.png" src="../_images/140b6a6398ca4eb28631a531cacceb37574fdd5b62cbecfd19353887f312db52.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -532,15 +544,15 @@ https://mathinsight.org/dot_product</p>
 
 <span class="c1"># pt1, pt2, pt3, pt4, pt5 = [(0.25, 0.5), (1, 0), (5, 1), (0, 1), (2, 1)]</span>
 <span class="c1"># polytope = plot_geometry(Polygon(pt1, pt2, pt3, pt4, pt5), dict(color=&quot;purple&quot;, linewidth=2, label=&#39;&#39;, alpha=0.4), show_in_legend=False, is_filled=True, show=False, fig=fig, ax=ax)</span>
-<span class="n">polytope</span> <span class="o">=</span> <span class="n">plot_geometry</span><span class="p">(</span><span class="n">Ellipse</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">hradius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">eccentricity</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">),</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ellipse</span> <span class="o">=</span> <span class="n">plot_geometry</span><span class="p">(</span><span class="n">Ellipse</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">hradius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">eccentricity</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">),</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
-<span class="n">objective_contour</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">polytope</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">objective_contour</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ellipse</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">objective_contour</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ca6ddf47a841b8bbe221c5ecf414fb4ee1e6936fb655175a6440b36bab2c3dd8.png" src="../_images/ca6ddf47a841b8bbe221c5ecf414fb4ee1e6936fb655175a6440b36bab2c3dd8.png" />
+<img alt="../_images/2c710fa907cc6094a3adc3619672728ed5e07c626c97bee248ef8e8341c412e5.png" src="../_images/2c710fa907cc6094a3adc3619672728ed5e07c626c97bee248ef8e8341c412e5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -561,7 +573,7 @@ https://mathinsight.org/dot_product</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05c7829b80d21f1a11c21a4316f1ff2bbf5c19fcc6e40ee387b22a5e0c9bc696.png" src="../_images/05c7829b80d21f1a11c21a4316f1ff2bbf5c19fcc6e40ee387b22a5e0c9bc696.png" />
+<img alt="../_images/dceed53ef66c06feb7039d6c39a83a3250db165dd6244a4b50be4a16036af72c.png" src="../_images/dceed53ef66c06feb7039d6c39a83a3250db165dd6244a4b50be4a16036af72c.png" />
 </div>
 </div>
 </section>
@@ -623,7 +635,6 @@ https://mathinsight.org/dot_product</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x1-x2-symbols-x1-x2">x1, x2 = symbols(‘x1 x2’)</a></li>
 </ul>
   </nav></div>
 
