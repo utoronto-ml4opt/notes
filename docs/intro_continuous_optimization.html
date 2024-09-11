@@ -390,15 +390,24 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="c1"># sns.plotting_context(&quot;notebook&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
+
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">})</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
-<span class="c1"># sns.set_style(&quot;darkgrid&quot;, {&quot;axes.facecolor&quot;: &quot;.9&quot;})</span>
-<span class="c1"># sns.set_style(&quot;whitegrid&quot;, {&#39;axes.grid&#39; : False})</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s2">&quot;text.usetex&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># &quot;font.family&quot;: &quot;courier&quot;,</span>
+    <span class="s1">&#39;text.latex.preamble&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{amsfonts}</span><span class="s1">&#39;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="n">funky_function</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">sin</span><span class="p">(</span><span class="n">Rational</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
@@ -417,7 +426,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/54d3a6a917290c0e9a2b64cee46072d624c113d853145795a2229019bb631137.png" src="../_images/54d3a6a917290c0e9a2b64cee46072d624c113d853145795a2229019bb631137.png" />
+<img alt="../_images/93bb8034dd7a8f6c99b4eb98e9284018d0db139584a7111e1dc08ab6c7f8a40d.png" src="../_images/93bb8034dd7a8f6c99b4eb98e9284018d0db139584a7111e1dc08ab6c7f8a40d.png" />
 </div>
 </div>
 <div class="admonition-programming-note admonition">
@@ -451,7 +460,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/76f60f34115d1c0de6ab36d1f2284e63f03fe377747e1c8553004137dc8337c8.png" src="../_images/76f60f34115d1c0de6ab36d1f2284e63f03fe377747e1c8553004137dc8337c8.png" />
+<img alt="../_images/f6f7b13228d16a6dba07753f3ef879a0c92afea3be7a76b61d3ab81448040e2e.png" src="../_images/f6f7b13228d16a6dba07753f3ef879a0c92afea3be7a76b61d3ab81448040e2e.png" />
 </div>
 </div>
 <p>Let’s move on to some two-dimensional functions. This one is a famous “test function” referred to as <a class="reference external" href="https://www.sfu.ca/~ssurjano/branin.html"><em>Branin</em></a>. The color correspond to the z-axis values, more blue for smaller values, more yellow for larger values.</p>
@@ -483,7 +492,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/3309a550cf9168fcc49d21ca7656ccfe3c0655c386f4fdab84056872ee80ea5a.png" src="../_images/3309a550cf9168fcc49d21ca7656ccfe3c0655c386f4fdab84056872ee80ea5a.png" />
+<img alt="../_images/29423638fd9d59d07623df77c4e2d792cdf8e47e9d7d749b7aa59d8a92894bb0.png" src="../_images/29423638fd9d59d07623df77c4e2d792cdf8e47e9d7d749b7aa59d8a92894bb0.png" />
 </div>
 </div>
 <p>Another interesting test function with a unique global minimum at <span class="math notranslate nohighlight">\((-2.903534, -2.903534)\)</span>.</p>
@@ -516,7 +525,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/676aa5b6364d084f85e5dced038f78904e583eccb067d2d768541eda7aefc7f4.png" src="../_images/676aa5b6364d084f85e5dced038f78904e583eccb067d2d768541eda7aefc7f4.png" />
+<img alt="../_images/d27b14d877cdaf08de7d6d39e6e82a6d47b2f05d52e564a5bc22bfdb8dd14336.png" src="../_images/d27b14d877cdaf08de7d6d39e6e82a6d47b2f05d52e564a5bc22bfdb8dd14336.png" />
 </div>
 </div>
 <section id="saddle-points">
@@ -548,7 +557,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/48c051ca400b0978b19098c8ea008e8edfc81d4b64f24ae5c7df28c49c8b73fb.png" src="../_images/48c051ca400b0978b19098c8ea008e8edfc81d4b64f24ae5c7df28c49c8b73fb.png" />
+<img alt="../_images/30603b068a1df142698589af37a1c0030ae9f1eab70059d16e0bc96d1d7e9f72.png" src="../_images/30603b068a1df142698589af37a1c0030ae9f1eab70059d16e0bc96d1d7e9f72.png" />
 </div>
 </div>
 </section>
@@ -573,7 +582,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/01b74d2db057b277b02f1eb1e6e5d16f6120a1c882c02cd7d7171dd3b6bcfa6e.png" src="../_images/01b74d2db057b277b02f1eb1e6e5d16f6120a1c882c02cd7d7171dd3b6bcfa6e.png" />
+<img alt="../_images/a1a693f80a964803d66ecf8b4b2825ed9f0e0ba24a179d83b7693c3b7c9926f0.png" src="../_images/a1a693f80a964803d66ecf8b4b2825ed9f0e0ba24a179d83b7693c3b7c9926f0.png" />
 </div>
 </div>
 </section>
@@ -634,7 +643,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/67ecd25c803a3afa9ed3c4187ff70432b9abf98ba57cd949192d18fe66a600a7.png" src="../_images/67ecd25c803a3afa9ed3c4187ff70432b9abf98ba57cd949192d18fe66a600a7.png" />
+<img alt="../_images/b94089a4843c8460de70e69b63e3612ca6a33d2609103ad9e458eb1008334b36.png" src="../_images/b94089a4843c8460de70e69b63e3612ca6a33d2609103ad9e458eb1008334b36.png" />
 </div>
 </div>
 <section id="gradient-descent-implementation">
@@ -706,7 +715,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 [2.]
 </pre></div>
 </div>
-<img alt="../_images/aee38d6f1c5922f995102d4712c538c3d6ae5fe92fc927c956e970372498cea4.png" src="../_images/aee38d6f1c5922f995102d4712c538c3d6ae5fe92fc927c956e970372498cea4.png" />
+<img alt="../_images/1e766a5fea5a6de5bfa67309dd7cb7dc09b6c15a37944ca014befc94ad3b80a6.png" src="../_images/1e766a5fea5a6de5bfa67309dd7cb7dc09b6c15a37944ca014befc94ad3b80a6.png" />
 </div>
 </div>
 </section>
@@ -822,7 +831,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 [3.]
 </pre></div>
 </div>
-<img alt="../_images/04d002a2770215d518280080bf93fda218535e3b215f6f7bb2110fb8e23a0362.png" src="../_images/04d002a2770215d518280080bf93fda218535e3b215f6f7bb2110fb8e23a0362.png" />
+<img alt="../_images/567409a40a0514b5b2a32c7527f7ee58ccd5eae98d0420b8cb0410817746c589.png" src="../_images/567409a40a0514b5b2a32c7527f7ee58ccd5eae98d0420b8cb0410817746c589.png" />
 </div>
 </div>
 </section>
@@ -876,7 +885,7 @@ f''(x)=\frac{\partial}{\partial x}\left(\frac{\partial f(x)}{\partial x}\right).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/712340f3e5e38e156806fc59b181b2f9cca72839be513b6a961c6ccf0876997b.png" src="../_images/712340f3e5e38e156806fc59b181b2f9cca72839be513b6a961c6ccf0876997b.png" />
+<img alt="../_images/648a886a035df7bfcbcb631cd1177250905d4772283596da48114b290b20c6d4.png" src="../_images/648a886a035df7bfcbcb631cd1177250905d4772283596da48114b290b20c6d4.png" />
 </div>
 </div>
 <p>Before we state the two sets of conditions for local optimality, we need one more definition:</p>
@@ -935,15 +944,15 @@ f(x)=\begin{cases}
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/ec85f06a931ca2b1d4587777bf87a445396f61e7c422a3a4a5778275d46b398e.png" src="../_images/ec85f06a931ca2b1d4587777bf87a445396f61e7c422a3a4a5778275d46b398e.png" />
+<img alt="../_images/f42e99fff9ee3b451adc735b54c63844bcee4f2e5a124f3ca7e363ecfe3f4781.png" src="../_images/f42e99fff9ee3b451adc735b54c63844bcee4f2e5a124f3ca7e363ecfe3f4781.png" />
 </div>
 </div>
 </section>
 <section id="generalization-to-multivariate-functions">
 <h3>Generalization to multivariate functions<a class="headerlink" href="#generalization-to-multivariate-functions" title="Link to this heading">#</a></h3>
 <p>When function <span class="math notranslate nohighlight">\(f\)</span> has two or more inputs, the local optimality conditions above are generalized to use the <em>gradient</em> instead of the derivative (<span class="xref std std-ref">multivariate-necessary-localopt</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-95b6aba2-c602-4990-82bc-d8e8a0eaa381">
-<span class="eqno">(1)<a class="headerlink" href="#equation-95b6aba2-c602-4990-82bc-d8e8a0eaa381" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0d9ada14-2b97-41f9-87c9-d0ff26af5801">
+<span class="eqno">(1)<a class="headerlink" href="#equation-0d9ada14-2b97-41f9-87c9-d0ff26af5801" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:gradient}
 \nabla_{\boldsymbol{x}}f({\boldsymbol{\hat x}}) =
@@ -952,8 +961,8 @@ f(x)=\begin{cases}
 \end{bmatrix}
 \end{equation}\]</div>
 <p>Similarly, the second derivative is generalized to higher dimensions and is referred to as the <em>Hessian</em> matrix,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e6c368c-53d1-46c4-af81-d8e2238d899f">
-<span class="eqno">(2)<a class="headerlink" href="#equation-5e6c368c-53d1-46c4-af81-d8e2238d899f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a30fc115-a125-4e68-a726-c786e6887a8b">
+<span class="eqno">(2)<a class="headerlink" href="#equation-a30fc115-a125-4e68-a726-c786e6887a8b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:hessian}
 \nabla_{\boldsymbol{x}}^2 f({\boldsymbol{\hat x}}) =
