@@ -381,7 +381,12 @@ document.write(`
 <p>We will frequently make use of two-dimensional (or sometimes three-dimensional) plots to make sense of an optimization problem. Let us look at a continuous function <span class="math notranslate nohighlight">\(f:\mathbb{R}\mapsto\mathbb{R}\)</span>. This notation simply says that the function <span class="math notranslate nohighlight">\(f(\cdot)\)</span> maps from one real number to another. We will use it extensively.</p>
 <p>First off is this wiggly function in blue. Let’s minimize it assuming only bound constraints on <span class="math notranslate nohighlight">\(x\)</span>, i.e., with domain <span class="math notranslate nohighlight">\(\mathcal{X}=[-4,4]\)</span>. There is a unique <em>global minimum</em> at around <span class="math notranslate nohighlight">\(x=-2.25\)</span>. However, there are multiple other <em>critical points</em>, points where the function <span class="math notranslate nohighlight">\(f\)</span> in blue has derivatives (in orange) equal to zero. Some of these points are also <em>local minima</em>; others are <em>local maxima</em>.</p>
 <p>Since this optimization problem has only simple bound counstraints and involves a continuous function, one can compute all of its local minima and maxima by finding the roots of the function’s derivative. This is exactly what we’ve done in the code; see the next Note for more details on how to elegantly do this.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1">#Symbol, symbols, sin, cos, Polygon, solve, lambdify, Rational, pi, N</span>
 <span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
@@ -404,8 +409,14 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
@@ -425,6 +436,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/93bb8034dd7a8f6c99b4eb98e9284018d0db139584a7111e1dc08ab6c7f8a40d.png" src="../_images/93bb8034dd7a8f6c99b4eb98e9284018d0db139584a7111e1dc08ab6c7f8a40d.png" />
 </div>
@@ -951,8 +963,8 @@ f(x)=\begin{cases}
 <section id="generalization-to-multivariate-functions">
 <h3>Generalization to multivariate functions<a class="headerlink" href="#generalization-to-multivariate-functions" title="Link to this heading">#</a></h3>
 <p>When function <span class="math notranslate nohighlight">\(f\)</span> has two or more inputs, the local optimality conditions above are generalized to use the <em>gradient</em> instead of the derivative (<span class="xref std std-ref">multivariate-necessary-localopt</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0d9ada14-2b97-41f9-87c9-d0ff26af5801">
-<span class="eqno">(1)<a class="headerlink" href="#equation-0d9ada14-2b97-41f9-87c9-d0ff26af5801" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ff1b4ef-7eae-4896-b459-bd1b3437a1b4">
+<span class="eqno">(1)<a class="headerlink" href="#equation-2ff1b4ef-7eae-4896-b459-bd1b3437a1b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:gradient}
 \nabla_{\boldsymbol{x}}f({\boldsymbol{\hat x}}) =
@@ -961,8 +973,8 @@ f(x)=\begin{cases}
 \end{bmatrix}
 \end{equation}\]</div>
 <p>Similarly, the second derivative is generalized to higher dimensions and is referred to as the <em>Hessian</em> matrix,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a30fc115-a125-4e68-a726-c786e6887a8b">
-<span class="eqno">(2)<a class="headerlink" href="#equation-a30fc115-a125-4e68-a726-c786e6887a8b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e8296fcf-e553-4892-9a16-bf99c01ebf5d">
+<span class="eqno">(2)<a class="headerlink" href="#equation-e8296fcf-e553-4892-9a16-bf99c01ebf5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \LARGE
 \label{eq:hessian}
 \nabla_{\boldsymbol{x}}^2 f({\boldsymbol{\hat x}}) =
