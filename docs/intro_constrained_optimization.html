@@ -326,6 +326,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-programs">Beyond linear programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convexity">Convexity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-continuous-constrained-optimization-problems">Solving continuous constrained optimization problems</a></li>
 </ul>
             </nav>
@@ -733,6 +734,44 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="convexity">
+<h2>Convexity<a class="headerlink" href="#convexity" title="Link to this heading">#</a></h2>
+<p>Linear programs consist of a linear objective function and a polyhedral feasible region. The former is an example of a <em>convex function</em> whereas the latter is an example of a <em>convex set</em>.</p>
+<p><em>Convex optimization</em> deals with problems such as LPs but also more generally any optimization problem with a convex objective function and a convex feasible set. While we are yet to go over <em>complexity theory</em>, we can already note that convex optimization problems are “easy” to solve, i.e., they admit solution algorithms whose running times are polynomial in the “size” of the optimization problem (number of decision variables, number of constraints, etc.).</p>
+<div class="proof definition admonition" id="convex-comb">
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Convex combination)</p>
+<section class="definition-content" id="proof-content">
+<p>A <em>convex combination</em> of two vectors <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> is a vector
+<span class="math notranslate nohighlight">\(
+\alpha\boldsymbol{x} + (1-\alpha)\boldsymbol{y}
+\)</span>
+for some <span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>.</p>
+<p>A convex combination of <span class="math notranslate nohighlight">\(m\)</span> vectors is a vector
+<span class="math notranslate nohighlight">\(w_1\boldsymbol{v}^{(1)} + w_2\boldsymbol{v}^{(2)} + \dots + w_m\boldsymbol{v}^{(m)}\)</span>
+with <span class="math notranslate nohighlight">\(w_1,\dots,w_m\geq 0\)</span> and <span class="math notranslate nohighlight">\(\sum_{i=1}^{m}w_i=1\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="convex-set">
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (Convex set)</p>
+<section class="definition-content" id="proof-content">
+<p>A <em>convex set</em> is a set for which a line between any two points in the set is fully contained within the set. Formally, a set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is convex if the following is true:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-676f5c90-935d-4535-a6f7-4c01df8673bd">
+<span class="eqno">(3)<a class="headerlink" href="#equation-676f5c90-935d-4535-a6f7-4c01df8673bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   \alpha\boldsymbol{x} + (1-\alpha)\boldsymbol{y} \in\mathcal{S}
+\end{equation}\]</div>
+<p><strong>for all</strong> <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{S}\)</span> and <strong>for all</strong> <span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="convex-fun">
+<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Convex function)</p>
+<section class="definition-content" id="proof-content">
+<p>A <em>convex function</em> is a <em>bowl-shaped</em> function whose domain is a convex set. Any line connecting two points in the function’s domain does not lie <em>below</em> the function itself. Formally, a function <span class="math notranslate nohighlight">\(f\)</span> with domain a convex set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is convex if the following is true:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-96f20c1b-cf06-49d1-b5f0-a931167e22a9">
+<span class="eqno">(4)<a class="headerlink" href="#equation-96f20c1b-cf06-49d1-b5f0-a931167e22a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   f(\alpha\boldsymbol{x} + (1-\alpha)\boldsymbol{y}) \leq \alpha f(\boldsymbol{x}) + (1-\alpha)f(\boldsymbol{y})
+\end{equation}\]</div>
+<p><strong>for all</strong> <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{S}\)</span> and <strong>for all</strong> <span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>.</p>
+</section>
+</div><p><img alt="A460E617-D2C6-48A9-BCB6-6FD7D2600F23.png" src="docs/attachment:8f5a1d0e-c639-434b-ad06-a921a90e7c5d.png" /></p>
+</section>
 <section id="solving-continuous-constrained-optimization-problems">
 <h2>Solving continuous constrained optimization problems<a class="headerlink" href="#solving-continuous-constrained-optimization-problems" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://colab.research.google.com/drive/1HQOV751H6bjnWgFXuv1uuXWCpl805ebZ?usp=sharing">Google Colab example for CVXPY</a></p>
@@ -849,6 +888,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-programs">Beyond linear programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convexity">Convexity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-continuous-constrained-optimization-problems">Solving continuous constrained optimization problems</a></li>
 </ul>
   </nav></div>
