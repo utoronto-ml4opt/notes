@@ -329,7 +329,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-on-a-convex-function">Gradient descent on a convex function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-weak-local-minimum">What is a weak local minimum?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-to-multivariate-functions">Generalization to multivariate functions</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -383,7 +387,13 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="c1"># sns.plotting_context(&quot;notebook&quot;)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
+<span class="c1"># sns.set_style(&quot;darkgrid&quot;, {&quot;axes.facecolor&quot;: &quot;.9&quot;})</span>
+<span class="c1"># sns.set_style(&quot;whitegrid&quot;, {&#39;axes.grid&#39; : False})</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
@@ -394,7 +404,7 @@ document.write(`
 <span class="n">funky_function_derivative_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">funky_function</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">sols</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">funky_function_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sols</span><span class="p">,</span> <span class="p">[</span><span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">sols</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sols</span><span class="p">,</span> <span class="p">[</span><span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">sols</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -404,7 +414,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5ccb601419a13005b7d958e13088970d34d07e20c196eab2d5ec3223502befa1.png" src="../_images/5ccb601419a13005b7d958e13088970d34d07e20c196eab2d5ec3223502befa1.png" />
+<img alt="../_images/54d3a6a917290c0e9a2b64cee46072d624c113d853145795a2229019bb631137.png" src="../_images/54d3a6a917290c0e9a2b64cee46072d624c113d853145795a2229019bb631137.png" />
 </div>
 </div>
 <div class="admonition-programming-note admonition">
@@ -427,7 +437,7 @@ document.write(`
 <span class="n">funky_function2_derivative_lambda</span> <span class="o">=</span> <span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">funky_function2</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">sols</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">funky_function2_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sols</span><span class="p">,</span> <span class="p">[</span><span class="n">funky_function2_lambda</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">sols</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sols</span><span class="p">,</span> <span class="p">[</span><span class="n">funky_function2_lambda</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">sols</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function2</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function2</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
@@ -438,7 +448,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/cf8aacca439cb6a3226f8eefd1af3c2caded7a4d66e5cc19d036ca61a7a4e32b.png" src="../_images/cf8aacca439cb6a3226f8eefd1af3c2caded7a4d66e5cc19d036ca61a7a4e32b.png" />
+<img alt="../_images/76f60f34115d1c0de6ab36d1f2284e63f03fe377747e1c8553004137dc8337c8.png" src="../_images/76f60f34115d1c0de6ab36d1f2284e63f03fe377747e1c8553004137dc8337c8.png" />
 </div>
 </div>
 <p>Let’s move on to some two-dimensional functions. This one is a famous “test function” referred to as <a class="reference external" href="https://www.sfu.ca/~ssurjano/branin.html"><em>Branin</em></a>. The color correspond to the z-axis values, more blue for smaller values, more yellow for larger values.</p>
@@ -471,7 +481,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/9425d7b808d63bbe00367967cfa6a57bd39bd0065f4401b0f1615c32b418e6ac.png" src="../_images/9425d7b808d63bbe00367967cfa6a57bd39bd0065f4401b0f1615c32b418e6ac.png" />
+<img alt="../_images/b67a618491ff8ae89590db9e36920705e18834cb1d96eb44e463d822094a55c3.png" src="../_images/b67a618491ff8ae89590db9e36920705e18834cb1d96eb44e463d822094a55c3.png" />
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle 36 \left(- \frac{0.2125 x_{1}^{2}}{\pi^{2}} + \frac{5 x_{1}}{6 \pi} + \frac{x_{2}}{6} - 1\right)^{2} + \left(10 - \frac{5}{4 \pi}\right) \cos{\left(x_{1} \right)} + 10\]</div>
 </div>
@@ -507,7 +517,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/b0bf1555d18186a4cfb3cbddaa8fa98f469df8f74eacb92226efaa894237c129.png" src="../_images/b0bf1555d18186a4cfb3cbddaa8fa98f469df8f74eacb92226efaa894237c129.png" />
+<img alt="../_images/7ea508e9e5a4d86207d6b1045518b53cf548fb3908f584b782966725a1dd6351.png" src="../_images/7ea508e9e5a4d86207d6b1045518b53cf548fb3908f584b782966725a1dd6351.png" />
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle 0.5 x_{1}^{4} - 8.0 x_{1}^{2} + 2.5 x_{1} + 0.5 x_{2}^{4} - 8.0 x_{2}^{2} + 2.5 x_{2}\]</div>
 </div>
@@ -542,7 +552,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/7718e89fb51c9af724e4e3ead3573a300c787f39fb4a381e70ee08bce57299ed.png" src="../_images/7718e89fb51c9af724e4e3ead3573a300c787f39fb4a381e70ee08bce57299ed.png" />
+<img alt="../_images/afb4f8b47ca122ecc06534cc6f7ae8f5ea6ffbaefe96f2a89a6a4395ad1dccb5.png" src="../_images/afb4f8b47ca122ecc06534cc6f7ae8f5ea6ffbaefe96f2a89a6a4395ad1dccb5.png" />
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle x_{1}^{2} - x_{2}^{2}\]</div>
 </div>
@@ -569,7 +579,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/ef81a11cf170f03462b099b76d61d593febb63be95d496bb6978b11aa02e0ef3.png" src="../_images/ef81a11cf170f03462b099b76d61d593febb63be95d496bb6978b11aa02e0ef3.png" />
+<img alt="../_images/c3bfdf7d006f8653f8af1ac9bf7fbd0bb717897275fb23c478b1e3da388d7482.png" src="../_images/c3bfdf7d006f8653f8af1ac9bf7fbd0bb717897275fb23c478b1e3da388d7482.png" />
 </div>
 </div>
 </section>
@@ -615,13 +625,13 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 <span class="n">sols</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">funky_function_derivative_lambda</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
 <span class="n">point</span> <span class="o">=</span> <span class="n">sols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p2</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span><span class="s1">&#39;--&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-<span class="n">p3</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function_derivative_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">point</span><span class="p">)</span> <span class="o">+</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function_derivative_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">point</span><span class="p">)</span> <span class="o">+</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">},</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p3</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -630,7 +640,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/38d6654b20fb316c5fa80ed4d65862a5623ef2b9dad8a6a758c605f0f9ca2f5b.png" src="../_images/38d6654b20fb316c5fa80ed4d65862a5623ef2b9dad8a6a758c605f0f9ca2f5b.png" />
+<img alt="../_images/67ecd25c803a3afa9ed3c4187ff70432b9abf98ba57cd949192d18fe66a600a7.png" src="../_images/67ecd25c803a3afa9ed3c4187ff70432b9abf98ba57cd949192d18fe66a600a7.png" />
 </div>
 </div>
 <section id="gradient-descent-implementation">
@@ -681,8 +691,8 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 
 <span class="n">point</span> <span class="o">=</span> <span class="n">local_min</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">initial_point</span><span class="p">,</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">initial_point</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">point</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">initial_point</span><span class="p">,</span> <span class="n">funky_function_lambda</span><span class="p">(</span><span class="n">initial_point</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">funky_function</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -702,7 +712,7 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 [2.]
 </pre></div>
 </div>
-<img alt="../_images/17bdb170f0e10bc8dbbdc4d8dd756ff7c7bf6b8163bf88105e53490540e0e4ca.png" src="../_images/17bdb170f0e10bc8dbbdc4d8dd756ff7c7bf6b8163bf88105e53490540e0e4ca.png" />
+<img alt="../_images/aee38d6f1c5922f995102d4712c538c3d6ae5fe92fc927c956e970372498cea4.png" src="../_images/aee38d6f1c5922f995102d4712c538c3d6ae5fe92fc927c956e970372498cea4.png" />
 </div>
 </div>
 </section>
@@ -818,19 +828,21 @@ If you wanted to maximize <span class="math notranslate nohighlight">\(f\)</span
 [3.]
 </pre></div>
 </div>
-<img alt="../_images/ed02f7b8a37f301094da7f8570db28859dd280b51e6c149a73700815b8e19a9c.png" src="../_images/ed02f7b8a37f301094da7f8570db28859dd280b51e6c149a73700815b8e19a9c.png" />
+<img alt="../_images/04d002a2770215d518280080bf93fda218535e3b215f6f7bb2110fb8e23a0362.png" src="../_images/04d002a2770215d518280080bf93fda218535e3b215f6f7bb2110fb8e23a0362.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">
 <h2>Necessary and sufficient conditions for local optimality in unconstrained optimization<a class="headerlink" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization" title="Link to this heading">#</a></h2>
-<p>We’ve already seen that a point with derivative zero may or may not be a local optimum. For functions that are <em>twice-differentiable</em>, i.e., for which the function <span class="math notranslate nohighlight">\(f''(\cdot)\)</span> exists for all points in the domain of <span class="math notranslate nohighlight">\(f\)</span>, the second derivative of a univariate function is defined as</p>
+<p>We have already presented one definition of a local minimizer in <span class="xref std std-ref">local-min</span>. This definition is not very useful in computation since it requires comparing a candidate point <span class="math notranslate nohighlight">\(x^\star\)</span> to potentially infinitely many neighboring points.
+We’ve also seen that a point with derivative zero may or may not be a local optimum.</p>
+<p>It turns out that for functions that are <em>twice-differentiable</em>, i.e., for which the function <span class="math notranslate nohighlight">\(f''(\cdot)\)</span> exists for all points in the domain of <span class="math notranslate nohighlight">\(f\)</span>, the polarity (or sign) of the second derivative of a univariate function is crucial to determining whether a point is a local optimum or not. The second derivative is defined as</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-f''(x)=\frac{d}{dx}\left(\frac{d}{dx}\left( f(x)\right)\right)\text{.}
+f''(x)=\frac{\partial}{\partial x}\left(\frac{\partial f(x)}{\partial x}\right).
 \end{equation*}\]</div>
-<p>It turns out that the polarity (or sign) of the second derivative is crucial to determining whether a point is a local optimum or not. Let’s look at an illustrating example.</p>
+<p>Let’s look at an illustrating example.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -870,17 +882,111 @@ f''(x)=\frac{d}{dx}\left(\frac{d}{dx}\left( f(x)\right)\right)\text{.}
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/8ccbad371406b6b19bd0c2062fd2a6e154ff3ddf413340bfc4b9d97dd5ee94dd.png" src="../_images/8ccbad371406b6b19bd0c2062fd2a6e154ff3ddf413340bfc4b9d97dd5ee94dd.png" />
+<img alt="../_images/b43aaceec057e15aebfaa250b478ba34737bb7e744a76540733e04faac3bd4b7.png" src="../_images/b43aaceec057e15aebfaa250b478ba34737bb7e744a76540733e04faac3bd4b7.png" />
 </div>
 </div>
-<!-- Unconstrained wrap-up
-
-zero-order sufficient condition not useful
-
-Second derivative intuition
-
-Optimality conditions (second-derivative)
-
+<p>Before we state the two sets of conditions for local optimality, we need one more definition:</p>
+<div class="proof definition admonition" id="strong-local-min">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Strong local minimizer)</p>
+<section class="definition-content" id="proof-content">
+<p>A <em>strong local minimizer</em> is a point that <em>uniquely</em> minimizes a function <span class="math notranslate nohighlight">\(f\)</span> within a neighborhood. In other words, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{x}}\)</span> is a strong local minimizer if there exists a <span class="math notranslate nohighlight">\(\delta &gt; 0\)</span> such that <span class="math notranslate nohighlight">\(f(\hat{\boldsymbol{x}}) &lt;  f(x)\)</span> whenever <span class="math notranslate nohighlight">\(\hat{\boldsymbol{x}}\neq \boldsymbol{x}\)</span> and <span class="math notranslate nohighlight">\(\lVert \boldsymbol{x}-\hat{\boldsymbol{x}}\rVert&lt;\delta\)</span>.</p>
+</section>
+</div><p>A local minimum that is <em>not</em> a strong local minimizer is referred to as a <strong>weak</strong> local minimizer.</p>
+<div class="proof theorem admonition" id="univariate-sufficient-localopt">
+<p class="admonition-title"><span class="caption-number">Theorem 1 </span> (Sufficient conditions for a local minimum for univariate functions)</p>
+<section class="theorem-content" id="proof-content">
+<p>A point <span class="math notranslate nohighlight">\(\boldsymbol{x}^\star\)</span> is a <strong>strong</strong> local minimizer of a twice-differentiable function <span class="math notranslate nohighlight">\(f\)</span> if it satisfies the following:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(f'(\boldsymbol{x}^\star) = 0\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(f''(\boldsymbol{x}^\star) &gt; 0\)</span>.</p></li>
+</ol>
+</section>
+</div><div class="proof theorem admonition" id="univariate-necessary-localopt">
+<p class="admonition-title"><span class="caption-number">Theorem 2 </span> (Necessary conditions for a local minimum for univariate functions)</p>
+<section class="theorem-content" id="proof-content">
+<p>A local minimizer of a twice-differentiable function <span class="math notranslate nohighlight">\(f\)</span> satisfies the following:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(f'(\boldsymbol{x}^\star) = 0\)</span>, the <em>first-order necessary condition</em> (FONC);</p></li>
+<li><p><span class="math notranslate nohighlight">\(f''(\boldsymbol{x}^\star) \geq 0\)</span>, the <em>second-order necessary condition</em> (SONC).</p></li>
+</ol>
+</section>
+</div><p>Notice that the difference between the two sets of conditions is in the second one. Every point with zero derivative and <strong>strictly positive</strong> second derivative is guaranteed to be a strong local minimum. Every local minimum (weak or strong) has second derivative at least zero. Not every point with second derivative at least zero is a local minimum.</p>
+<section id="what-is-a-weak-local-minimum">
+<h3>What is a weak local minimum?<a class="headerlink" href="#what-is-a-weak-local-minimum" title="Link to this heading">#</a></h3>
+<p>We have just distinguished two types of local minimum, weak and strong. In many of illustrations above, the local minima we saw happened to be strong. If you look around them, you’ll see they uniquely minimize the function in that neighborhood, i.e., the neighborhood is <em>not</em> flat. Let’s see what weak minima look like!</p>
+<p>Consider the following function:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f(x)=\begin{cases} 
+        \left(x + 1\right)^{2} &amp; \text{for}\: x \leq -1 \\
+        0 &amp; \text{for}\: -1 &lt; x &lt; 1 \\
+        \left(x - 1\right)^{2} &amp; \text{for}\: x \geq 1 
+      \end{cases}
+\end{equation*}\]</div>
+<p>Clearly, all points in <span class="math notranslate nohighlight">\([-1,1]\)</span> are minimizers of this function with function value zero. However, none of them is a strong minimizer: the neighborhood around any point in the flat region of this function contains at least one other point with the same function value. These points are then weak minimizers.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">piecewise_fun</span> <span class="o">=</span> <span class="n">Piecewise</span><span class="p">(((</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">),</span> <span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">piecewise_fun</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/ec85f06a931ca2b1d4587777bf87a445396f61e7c422a3a4a5778275d46b398e.png" src="../_images/ec85f06a931ca2b1d4587777bf87a445396f61e7c422a3a4a5778275d46b398e.png" />
+</div>
+</div>
+</section>
+<section id="generalization-to-multivariate-functions">
+<h3>Generalization to multivariate functions<a class="headerlink" href="#generalization-to-multivariate-functions" title="Link to this heading">#</a></h3>
+<p>When function <span class="math notranslate nohighlight">\(f\)</span> has two or more inputs, the local optimality conditions above are generalized to use the <em>gradient</em> instead of the derivative (<span class="xref std std-ref">multivariate-necessary-localopt</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d1cdcfac-26f0-43ea-ba22-2bd34472eaa2">
+<span class="eqno">(1)<a class="headerlink" href="#equation-d1cdcfac-26f0-43ea-ba22-2bd34472eaa2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\LARGE
+\label{eq:gradient}
+\nabla_{\boldsymbol{x}}f(\hat{\boldsymbol{x}}) =
+\begin{bmatrix}
+    \frac{\partial f(\hat{\boldsymbol{x}})}{\partial{x_1}}, &amp; \frac{\partial f(\hat{\boldsymbol{x}})}{\partial{x_2}}, &amp; \cdots &amp;, \frac{\partial f(\hat{\boldsymbol{x}})}{\partial{x_n}}
+\end{bmatrix}
+\end{equation}\]</div>
+<p>Similarly, the second derivative is generalized to higher dimensions and is referred to as the <em>Hessian</em> matrix,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-674c0520-9728-493b-961a-ee913941c79d">
+<span class="eqno">(2)<a class="headerlink" href="#equation-674c0520-9728-493b-961a-ee913941c79d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\LARGE
+\label{eq:hessian}
+\nabla_{\boldsymbol{x}}^2 f(\hat{\boldsymbol{x}}) =
+\begin{bmatrix}
+    \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_1x_1}} &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_1x_2}} &amp; \cdots &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_1x_n}}\\[1ex]
+    \vdots &amp; \ddots &amp; &amp; \vdots\\[1ex]
+    \vdots &amp;  &amp; \ddots &amp; \vdots\\[1ex]
+    \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_nx_1}} &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_nx_2}} &amp; \cdots &amp; \frac{\partial^2 f(\hat{\boldsymbol{x}})}{\partial{x_nx_n}}
+\end{bmatrix}
+\end{equation}\]</div>
+<p>The <span class="math notranslate nohighlight">\((i,j)\)</span>-th entry of this matrix contains the value of the second derivative of <span class="math notranslate nohighlight">\(f\)</span> with respect to the two variables <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_j\)</span>. The Hessian is symmetric, i.e., <span class="math notranslate nohighlight">\(\left(\nabla_{\boldsymbol{x}}^2 f(\hat{\boldsymbol{x}})\right)_{i,j} = \left(\nabla_{\boldsymbol{x}}^2 f(\hat{\boldsymbol{x}})\right)_{j,i}\)</span>.</p>
+<div class="proof theorem admonition" id="multivariate-necessary-localopt">
+<p class="admonition-title"><span class="caption-number">Theorem 3 </span> (Necessary conditions for a local minimum for multivariate functions)</p>
+<section class="theorem-content" id="proof-content">
+<p>A local minimizer of a multivariate twice-differentiable function <span class="math notranslate nohighlight">\(f\)</span> satisfies the following:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\nabla_{\boldsymbol{x}}f(\boldsymbol{x}^\star) = \boldsymbol{0}\)</span>, the <em>first-order necessary condition</em> (FONC);</p></li>
+<li><p>The Hessian matrix <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol{x}}^2 f(\boldsymbol{x}^\star)\)</span> is positive semi-definite, the <em>second-order necessary condition</em> (SONC),</p></li>
+</ol>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{0}\)</span> is the <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector of all zeros.</p>
+</section>
+</div><p>We will not go into the mathematical definition of <em>positive semi-definiteness</em> here, but think of it as the multidimensional generalization of a univariate function being flat or curved upwards.</p>
+<div class="admonition-if-you-re-curious admonition">
+<p class="admonition-title">If you’re curious…</p>
+<p>about how the Hessian can be used to improve unconstrained optimization, think about the saddle point we saw earlier. Let’s say you are using gradient descent to minimize a function that has saddle points. The descent reaches a point with zero gradient; is it a local minimum? We can compute the Hessian at that point (potentially computationally expensive in high dimensions!) and check if it is positive definite (strong local minimizer), negative definite (strong local maximizer), or has both positive and negative eigenvalues (saddle point). In the latter case, one can take a small random step from the current point to “escape” the saddle. This is discussed at length in this <a class="reference external" href="https://www.offconvex.org/2016/03/22/saddlepoints/">Off the convex path blog post</a>.</p>
+</div>
+<!-- 
 Constrained opt
 
 Taylor 1st order 
@@ -985,6 +1091,7 @@ Solvers (cvxpy, ipopt)
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1053,7 +1160,11 @@ Solvers (cvxpy, ipopt)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-on-a-convex-function">Gradient descent on a convex function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#necessary-and-sufficient-conditions-for-local-optimality-in-unconstrained-optimization">Necessary and sufficient conditions for local optimality in unconstrained optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-weak-local-minimum">What is a weak local minimum?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-to-multivariate-functions">Generalization to multivariate functions</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
