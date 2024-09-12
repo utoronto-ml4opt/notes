@@ -319,7 +319,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polyhedra-as-intersection-of-halfspaces">Polyhedra as intersection of halfspaces</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -459,7 +462,41 @@ document.write(`
 <img alt="../_images/b743f7b6addc648088759fc17a07d4def1e5951aa4cb7406b8a8933176bf3c01.png" src="../_images/b743f7b6addc648088759fc17a07d4def1e5951aa4cb7406b8a8933176bf3c01.png" />
 </div>
 </div>
-<div class="cell tag_hide-input docutils container">
+<section id="polyhedra-as-intersection-of-halfspaces">
+<h3>Polyhedra as intersection of halfspaces<a class="headerlink" href="#polyhedra-as-intersection-of-halfspaces" title="Link to this heading">#</a></h3>
+<p>When we have two or more linear inequality constraints, the intersection of the satisfying halfspaces forms the feasible region, a <em>polyhedron</em>. Polyhedra are a central structure in mathematical optimization. The next two figures illustrate the intersection of two halfspaces and a bounded polyhedron, also referred to as a <em>polytope</em>. Formally, a polyhedron is the set of points <span class="math notranslate nohighlight">\(P\subset\mathbb{R}^n\)</span> that satisfy a set of <span class="math notranslate nohighlight">\(m\)</span> linear inequalities of the form <span class="math notranslate nohighlight">\(\boldsymbol{a}_j\cdot\boldsymbol{x}\leq b_j\)</span> for <span class="math notranslate nohighlight">\(j\in[m]\)</span>. The vectors <span class="math notranslate nohighlight">\(\boldsymbol{a}_j\)</span> are <span class="math notranslate nohighlight">\(n\)</span>-dimensional and <span class="math notranslate nohighlight">\(b_j\)</span> are scalars.</p>
+<p>A polyhedron can be expressed compactly as</p>
+<div class="math notranslate nohighlight">
+\[P=\{\boldsymbol{x}\in\mathbb{R}^n\;|\; A\boldsymbol{x}\leq\boldsymbol{b}\},\]</div>
+<p>where we have stacked the <span class="math notranslate nohighlight">\(\boldsymbol{a}_j\)</span> vectors as rows in a matrix <span class="math notranslate nohighlight">\(\boldsymbol{A}\in\mathbb{R}^{m\times n}\)</span> and the <span class="math notranslate nohighlight">\(b_j\)</span> scalars as a single <span class="math notranslate nohighlight">\(m\)</span>-dimensional column vector <span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{A} = 
+\left[
+  \begin{array}{ccc}
+    {\rule[.5ex]{2.5ex}{0.5pt}} &amp; \boldsymbol{a}^{\intercal}_{1} &amp; {\rule[.5ex]{2.5ex}{0.5pt}} \\
+    {\rule[.5ex]{2.5ex}{0.5pt}} &amp; \boldsymbol{a}^{\intercal}_{2} &amp; {\rule[.5ex]{2.5ex}{0.5pt}} \\
+             &amp; \vdots    &amp;          \\
+    {\rule[.5ex]{2.5ex}{0.5pt}} &amp; \boldsymbol{a}^{\intercal}_{m} &amp; {\rule[.5ex]{2.5ex}{0.5pt}}
+  \end{array}
+\right],\quad
+\boldsymbol{b} = 
+\left[
+  \begin{array}{c}
+    b_1\\
+    b_2\\
+    \vdots\\
+    b_m
+  \end{array}
+\right].\end{split}\]</div>
+<!-- $$
+A =
+  \begin{array}{ccc}
+    \horzbar & a^{T}_{1} & \horzbar \\
+    \horzbar & a^{T}_{2} & \horzbar \\
+             & \vdots    &          \\
+    \horzbar & a^{T}_{n} & \horzbar
+  \end{array}
+$$ --><div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell source</span>
@@ -664,6 +701,7 @@ https://mathinsight.org/dot_product</p>
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -721,7 +759,10 @@ https://mathinsight.org/dot_product</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polyhedra-as-intersection-of-halfspaces">Polyhedra as intersection of halfspaces</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
