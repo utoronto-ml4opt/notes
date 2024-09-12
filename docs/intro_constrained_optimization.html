@@ -326,7 +326,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-programs">Beyond linear programs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convexity">Convexity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convexity">Convexity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#illustrations-of-convex-sets-and-functions">Illustrations of convex sets and functions</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-continuous-constrained-optimization-problems">Solving continuous constrained optimization problems</a></li>
 </ul>
             </nav>
@@ -754,23 +757,36 @@ with <span class="math notranslate nohighlight">\(w_1,\dots,w_m\geq 0\)</span> a
 <p class="admonition-title"><span class="caption-number">Definition 7 </span> (Convex set)</p>
 <section class="definition-content" id="proof-content">
 <p>A <em>convex set</em> is a set for which a line between any two points in the set is fully contained within the set. Formally, a set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is convex if the following is true:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-676f5c90-935d-4535-a6f7-4c01df8673bd">
-<span class="eqno">(3)<a class="headerlink" href="#equation-676f5c90-935d-4535-a6f7-4c01df8673bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2e8f34ca-0fe1-428d-a849-fbb8c71052ce">
+<span class="eqno">(3)<a class="headerlink" href="#equation-2e8f34ca-0fe1-428d-a849-fbb8c71052ce" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \alpha\boldsymbol{x} + (1-\alpha)\boldsymbol{y} \in\mathcal{S}
 \end{equation}\]</div>
 <p><strong>for all</strong> <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{S}\)</span> and <strong>for all</strong> <span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>.</p>
 </section>
 </div><div class="proof definition admonition" id="convex-fun">
-<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Convex function)</p>
+<p class="admonition-title"><span class="caption-number">Definition 9 </span> (Convex function)</p>
 <section class="definition-content" id="proof-content">
 <p>A <em>convex function</em> is a <em>bowl-shaped</em> function whose domain is a convex set. Any line connecting two points in the function’s domain does not lie <em>below</em> the function itself. Formally, a function <span class="math notranslate nohighlight">\(f\)</span> with domain a convex set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is convex if the following is true:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-96f20c1b-cf06-49d1-b5f0-a931167e22a9">
-<span class="eqno">(4)<a class="headerlink" href="#equation-96f20c1b-cf06-49d1-b5f0-a931167e22a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7d7d51bd-3082-4c8e-b6f7-0348b7b27504">
+<span class="eqno">(4)<a class="headerlink" href="#equation-7d7d51bd-3082-4c8e-b6f7-0348b7b27504" title="Permalink to this equation">#</a></span>\[\begin{equation}
    f(\alpha\boldsymbol{x} + (1-\alpha)\boldsymbol{y}) \leq \alpha f(\boldsymbol{x}) + (1-\alpha)f(\boldsymbol{y})
 \end{equation}\]</div>
 <p><strong>for all</strong> <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{S}\)</span> and <strong>for all</strong> <span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>.</p>
 </section>
-</div><p><img alt="A460E617-D2C6-48A9-BCB6-6FD7D2600F23.png" src="docs/attachment:8f5a1d0e-c639-434b-ad06-a921a90e7c5d.png" /></p>
+</div><div class="proof definition admonition" id="convex-fun">
+<p class="admonition-title"><span class="caption-number">Definition 9 </span> (Strictly convex function)</p>
+<section class="definition-content" id="proof-content">
+<p>A function <span class="math notranslate nohighlight">\(f\)</span> with domain a convex set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is <em>strictly</em> convex if the following is true:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-551fbc92-6408-4200-9544-3f019ab8d454">
+<span class="eqno">(5)<a class="headerlink" href="#equation-551fbc92-6408-4200-9544-3f019ab8d454" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   f(\alpha\boldsymbol{x} + (1-\alpha)\boldsymbol{y}) &lt; \alpha f(\boldsymbol{x}) + (1-\alpha)f(\boldsymbol{y})
+\end{equation}\]</div>
+<p><strong>for all</strong> <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{S}\)</span> and <strong>for all</strong> <span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>.</p>
+</section>
+</div><section id="illustrations-of-convex-sets-and-functions">
+<h3>Illustrations of convex sets and functions<a class="headerlink" href="#illustrations-of-convex-sets-and-functions" title="Link to this heading">#</a></h3>
+<p>Let us look through Appendix C.3 on Convexity (page 436) in the book <a class="reference external" href="https://algorithmsbook.com/optimization/files/optimization.pdf">Kochenderfer, M. J. Algorithms for Optimization. The MIT Press Cambridge, 2019.</a>.</p>
+</section>
 </section>
 <section id="solving-continuous-constrained-optimization-problems">
 <h2>Solving continuous constrained optimization problems<a class="headerlink" href="#solving-continuous-constrained-optimization-problems" title="Link to this heading">#</a></h2>
@@ -888,7 +904,10 @@ with <span class="math notranslate nohighlight">\(w_1,\dots,w_m\geq 0\)</span> a
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-programs">Beyond linear programs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convexity">Convexity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convexity">Convexity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#illustrations-of-convex-sets-and-functions">Illustrations of convex sets and functions</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-continuous-constrained-optimization-problems">Solving continuous constrained optimization problems</a></li>
 </ul>
   </nav></div>
