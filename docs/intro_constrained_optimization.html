@@ -319,10 +319,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polyhedra-as-intersection-of-halfspaces">Polyhedra as intersection of halfspaces</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polyhedra-as-intersection-of-halfspaces">Polyhedra as intersection of halfspaces</a></li>
 </ul>
             </nav>
         </div>
@@ -419,7 +417,7 @@ document.write(`
 <p>When <span class="math notranslate nohighlight">\(b=0\)</span>, we refer to <span class="math notranslate nohighlight">\(\boldsymbol{w}\cdot\boldsymbol{x} = 0\)</span> simply as a <em>hyperplane</em> and drop “affine”; because <span class="math notranslate nohighlight">\(b=0\)</span>, the hyperplane goes through the origin of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
 <p>For simplicity in this lecture, we will refer to an affine constraint as a <em>linear constraint</em> regardles off the value of <span class="math notranslate nohighlight">\(b\)</span>.</p>
 <p>A hyperplane splits the space it lies in into two <em>halfspaces</em>: the points that are “above” it and those that are “below” it. The next figure illustrates this. The halfspace “above” the hyperplane <span class="math notranslate nohighlight">\(\boldsymbol{w}\cdot\boldsymbol{x} = b\)</span> consists of points that satisfy <span class="math notranslate nohighlight">\(\boldsymbol{w}\cdot\boldsymbol{x} \geq b\)</span> and vice versa for the halfspace “below”.</p>
-<!-- Note that a *point* $(x_1,x_2)\in\mathbb{R}^2$, for example, corresponds to a *vector* that starts at the origin $(0,0)$ and ends at that point.  --><div class="cell tag_hide-input docutils container">
+<div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell source</span>
@@ -462,8 +460,9 @@ document.write(`
 <img alt="../_images/b743f7b6addc648088759fc17a07d4def1e5951aa4cb7406b8a8933176bf3c01.png" src="../_images/b743f7b6addc648088759fc17a07d4def1e5951aa4cb7406b8a8933176bf3c01.png" />
 </div>
 </div>
+</section>
 <section id="polyhedra-as-intersection-of-halfspaces">
-<h3>Polyhedra as intersection of halfspaces<a class="headerlink" href="#polyhedra-as-intersection-of-halfspaces" title="Link to this heading">#</a></h3>
+<h2>Polyhedra as intersection of halfspaces<a class="headerlink" href="#polyhedra-as-intersection-of-halfspaces" title="Link to this heading">#</a></h2>
 <p>When we have two or more linear inequality constraints, the intersection of the satisfying halfspaces forms the feasible region, a <em>polyhedron</em>. Polyhedra are a central structure in mathematical optimization. The next two figures illustrate the intersection of two halfspaces and a bounded polyhedron, also referred to as a <em>polytope</em>. Formally, a polyhedron is the set of points <span class="math notranslate nohighlight">\(P\subset\mathbb{R}^n\)</span> that satisfy a set of <span class="math notranslate nohighlight">\(m\)</span> linear inequalities of the form <span class="math notranslate nohighlight">\(\boldsymbol{a}_j\cdot\boldsymbol{x}\leq b_j\)</span> for <span class="math notranslate nohighlight">\(j\in[m]\)</span>. The vectors <span class="math notranslate nohighlight">\(\boldsymbol{a}_j\)</span> are <span class="math notranslate nohighlight">\(n\)</span>-dimensional and <span class="math notranslate nohighlight">\(b_j\)</span> are scalars.</p>
 <p>A polyhedron can be expressed compactly as</p>
 <div class="math notranslate nohighlight">
@@ -701,7 +700,6 @@ https://mathinsight.org/dot_product</p>
 </div>
 </section>
 </section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -759,10 +757,8 @@ https://mathinsight.org/dot_product</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polyhedra-as-intersection-of-halfspaces">Polyhedra as intersection of halfspaces</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polyhedra-as-intersection-of-halfspaces">Polyhedra as intersection of halfspaces</a></li>
 </ul>
   </nav></div>
 
