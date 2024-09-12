@@ -736,13 +736,7 @@ document.write(`
 <section id="solving-continuous-constrained-optimization-problems">
 <h2>Solving continuous constrained optimization problems<a class="headerlink" href="#solving-continuous-constrained-optimization-problems" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://colab.research.google.com/drive/1HQOV751H6bjnWgFXuv1uuXWCpl805ebZ?usp=sharing">Google Colab example for CVXPY</a></p>
-<p>We make the following solver Python-oriented recommendations depending on the nature of the optimization problem.</p>
-<ol class="arabic simple">
-<li><p>Linear programs: For small-scale problems and basic prototyping, the widely used SciPy package provides the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html"><code class="docutils literal notranslate"><span class="pre">linprog()</span></code></a> function. For more serious LPs, Gurobi</p></li>
-</ol>
-<p>:::{table} Table caption
-:widths: auto
-:align: center</p>
+<p>We make the following solver Python-oriented recommendations depending on the nature of the optimization problem. “QP” refers to Quadratic Programming, where the objective and constraints are quadratic in the variables.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Solver</p></th>
@@ -760,28 +754,22 @@ document.write(`
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference external" href="https://www.gurobi.com/academia/academic-program-and-licenses/">Gurobi</a></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference external" href="https://www.cvxpy.org/">CVXPY</a></p></td>
-<td><p></p></td>
-<td><p></p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
 <td><p></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference external" href="https://github.com/mechmotum/cyipopt/">IPOPT</a></p></td>
 <td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>:::</p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
 </tr>
 </tbody>
 </table>
