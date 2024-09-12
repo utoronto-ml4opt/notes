@@ -321,7 +321,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polyhedra-as-intersection-of-halfspaces">Polyhedra as intersection of halfspaces</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-programming">Linear programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-programming">Linear programming</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-fonc-still-apply-to-lp">Does the FONC still apply to LP?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-optimization">Beyond linear optimization</a></li>
 </ul>
             </nav>
         </div>
@@ -458,7 +462,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/b743f7b6addc648088759fc17a07d4def1e5951aa4cb7406b8a8933176bf3c01.png" src="../_images/b743f7b6addc648088759fc17a07d4def1e5951aa4cb7406b8a8933176bf3c01.png" />
+<img alt="../_images/e495cbf67417f1eccd2eb0dc064297492e2c13f868089d9a2747ea1d86c38660.png" src="../_images/e495cbf67417f1eccd2eb0dc064297492e2c13f868089d9a2747ea1d86c38660.png" />
 </div>
 </div>
 </section>
@@ -613,7 +617,7 @@ $$ --><div class="cell tag_hide-input docutils container">
 <p>Linear programming (LP) is central to optimization. Having defined polyhedra earlier, we will simply add the assumption that the objective function being minimized or maximized over a polyhedron is <em>linear</em> in the decision variables, i.e., for a parameter (user-provided) vector of objective function coefficients <span class="math notranslate nohighlight">\(\boldsymbol{d}\in\mathbb{R}^{n}\)</span>, the objective writes
 $<span class="math notranslate nohighlight">\(f(\boldsymbol{x}) = \boldsymbol{d}\cdot\boldsymbol{x} = \boldsymbol{d}^{\intercal}\boldsymbol{x} = \sum_{i=1}^{n}d_i x_i.\)</span>$</p>
 <p>The next figure illustrates an LP on the polytope we have just looked at. Contour lines reflecting some objective function values are shown in greyscale. The objective function is optimized at corner points or <em>vertices</em> of the polytope. This will be the case in general: a linear objective function has a minimum or a maximum that is a vertex of the polytope representing the feasible region.</p>
-<p>For a two-dimensional problem such as the one in the illustration, you can visually <strong>maximize</strong> the LP by “sliding the ruler” corresponding to the line that is orthogonal to the objective coefficient vector in the direction of that vector. To <strong>minimize</strong> the same objective, slide the line in the direction <em>opposite</em> to the objective vector. The last feasible point that the line touches is an optimum.</p>
+<p>For a two-dimensional problem such as the one in the illustration, you can visually <strong>maximize</strong> the LP by “sliding the ruler” corresponding to the line that is orthogonal to the objective coefficient vector in the direction of that vector. To <strong>minimize</strong> the same objective, slide the line in the direction <em>opposite</em> to the objective vector. The last feasible point that the line touches is an optimum. Of course, such a method is not a general algorithm. In practice, LP solvers typically use either the <em>Simplex method</em> or an <em>interior-point method</em>. Simplex jumps from vertex to vertex, avoiding the interior of the polytope or any other points that are not vertices, until no neighboring vertex with a better value for <span class="math notranslate nohighlight">\(f\)</span> can be found. Interior-point methods start <em>inside</em> the polytope and find directions to move out towards its faces without exiting it.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -669,7 +673,22 @@ $<span class="math notranslate nohighlight">\(f(\boldsymbol{x}) = \boldsymbol{d}
 <img alt="../_images/ce512e293f132e0d6f295ce0f793e8dc07e1e0a8792109da90a1436a2309da42.png" src="../_images/ce512e293f132e0d6f295ce0f793e8dc07e1e0a8792109da90a1436a2309da42.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<section id="does-the-fonc-still-apply-to-lp">
+<h3>Does the FONC still apply to LP?<a class="headerlink" href="#does-the-fonc-still-apply-to-lp" title="Link to this heading">#</a></h3>
+<p>Recall that the <em>first-order necessary condition</em> (FONC) in <strong>unconstrained</strong> continuous optimization (see previous lecture) says that a local minimizer of a multivariate twice-differentiable function <span class="math notranslate nohighlight">\(f\)</span> satisfies <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol{x}}f(\boldsymbol{x}^\star) = \boldsymbol{0}\)</span>. Does it apply to LP?</p>
+<p>Let’s look at the global minimizer in the last figure, call it <span class="math notranslate nohighlight">\(\boldsymbol{x^\star}\)</span>; what is the gradient of the objective at <span class="math notranslate nohighlight">\(\boldsymbol{x^\star}\)</span>? Since <span class="math notranslate nohighlight">\(f(\boldsymbol{x})=-3x_1-8x_2\)</span>, the gradient is <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol{x}}f(\boldsymbol{x}^\star)=[-3,-8]\)</span> which is not equal to <span class="math notranslate nohighlight">\([0,0]\)</span> as required by the FONC for unconstrained optimization. This is despite <span class="math notranslate nohighlight">\(\boldsymbol{x^\star}\)</span> being a local (in fact global) minimum!</p>
+<p>This is simply to show that more elaborate optimality conditions are required when an optimization problem is constrained.</p>
+</section>
+</section>
+<section id="beyond-linear-optimization">
+<h2>Beyond linear optimization<a class="headerlink" href="#beyond-linear-optimization" title="Link to this heading">#</a></h2>
+<p>In an LP, both the objective <span class="math notranslate nohighlight">\(f(\cdot)\)</span> and constraints <span class="math notranslate nohighlight">\(c_j(\cdot)\)</span> are affine functions of the decision variables <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>. A <em>non-linear program</em> (NLP) is one in which either the objective or the constraints are <em>not</em> linear. The next two figures have a non-linear objective function over linear constraints (a polytope) and a non-linear objective over a non-linear constraint (an ellipse, described as a quadratic function of <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>), respectively.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
@@ -687,11 +706,17 @@ $<span class="math notranslate nohighlight">\(f(\boldsymbol{x}) = \boldsymbol{d}
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/214dbac8b7cf263f91b9a6b3205f185ac2b7d81aff59c6ea2f1073483603747e.png" src="../_images/214dbac8b7cf263f91b9a6b3205f185ac2b7d81aff59c6ea2f1073483603747e.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
@@ -710,6 +735,7 @@ $<span class="math notranslate nohighlight">\(f(\boldsymbol{x}) = \boldsymbol{d}
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/90909c2816f46bdae92adaa30ff57ba661954ee27986d0baa178bbaa1d39eb55.png" src="../_images/90909c2816f46bdae92adaa30ff57ba661954ee27986d0baa178bbaa1d39eb55.png" />
 </div>
@@ -775,7 +801,11 @@ $<span class="math notranslate nohighlight">\(f(\boldsymbol{x}) = \boldsymbol{d}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement-and-definitions">Problem statement and definitions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affine-linear-constraints-and-halfspaces">Affine/linear constraints and halfspaces</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polyhedra-as-intersection-of-halfspaces">Polyhedra as intersection of halfspaces</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-programming">Linear programming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-programming">Linear programming</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-fonc-still-apply-to-lp">Does the FONC still apply to LP?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-optimization">Beyond linear optimization</a></li>
 </ul>
   </nav></div>
 
