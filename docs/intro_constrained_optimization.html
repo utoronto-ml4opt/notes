@@ -325,7 +325,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-fonc-still-apply-to-lp">Does the FONC still apply to LP?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-optimization">Beyond linear optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-programs">Beyond linear programs</a></li>
 </ul>
             </nav>
         </div>
@@ -462,7 +462,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/e495cbf67417f1eccd2eb0dc064297492e2c13f868089d9a2747ea1d86c38660.png" src="../_images/e495cbf67417f1eccd2eb0dc064297492e2c13f868089d9a2747ea1d86c38660.png" />
+<img alt="../_images/b743f7b6addc648088759fc17a07d4def1e5951aa4cb7406b8a8933176bf3c01.png" src="../_images/b743f7b6addc648088759fc17a07d4def1e5951aa4cb7406b8a8933176bf3c01.png" />
 </div>
 </div>
 </section>
@@ -673,8 +673,8 @@ document.write(`
 <p>This is simply to show that more elaborate optimality conditions are required when an optimization problem is constrained.</p>
 </section>
 </section>
-<section id="beyond-linear-optimization">
-<h2>Beyond linear optimization<a class="headerlink" href="#beyond-linear-optimization" title="Link to this heading">#</a></h2>
+<section id="beyond-linear-programs">
+<h2>Beyond linear programs<a class="headerlink" href="#beyond-linear-programs" title="Link to this heading">#</a></h2>
 <p>In an LP, both the objective <span class="math notranslate nohighlight">\(f(\cdot)\)</span> and constraints <span class="math notranslate nohighlight">\(c_j(\cdot)\)</span> are affine functions of the decision variables <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>. A <em>non-linear program</em> (NLP) is one in which either the objective or the constraints are <em>not</em> linear. The next two figures have a non-linear objective function over linear constraints (a polytope) and a non-linear objective over a non-linear constraint (an ellipse, described as a quadratic function of <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span>), respectively.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -719,8 +719,6 @@ document.write(`
 <span class="n">quadratic1</span> <span class="o">=</span> <span class="n">x1</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">line1</span>
 <span class="n">objective_contour</span> <span class="o">=</span> <span class="n">plot_contour</span><span class="p">(</span><span class="n">quadratic1</span><span class="p">,</span>  <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">{</span><span class="s2">&quot;levels&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span> <span class="n">is_filled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
-<span class="c1"># pt1, pt2, pt3, pt4, pt5 = [(0.25, 0.5), (1, 0), (5, 1), (0, 1), (2, 1)]</span>
-<span class="c1"># polytope = plot_geometry(Polygon(pt1, pt2, pt3, pt4, pt5), dict(color=&quot;purple&quot;, linewidth=2, label=&#39;&#39;, alpha=0.4), show_in_legend=False, is_filled=True, show=False, fig=fig, ax=ax)</span>
 <span class="n">ellipse</span> <span class="o">=</span> <span class="n">plot_geometry</span><span class="p">(</span><span class="n">Ellipse</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">hradius</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">eccentricity</span><span class="o">=</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">),</span> <span class="n">show_in_legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">is_filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 
 <span class="n">objective_contour</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ellipse</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -798,7 +796,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#does-the-fonc-still-apply-to-lp">Does the FONC still apply to LP?</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-optimization">Beyond linear optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-linear-programs">Beyond linear programs</a></li>
 </ul>
   </nav></div>
 
