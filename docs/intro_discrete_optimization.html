@@ -319,14 +319,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bin-packing-continuous-and-discrete">Bin packing, continuous and discrete</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration">Enumeration?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-reduction">Problem reduction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-solutions-using-heuristics">Feasible solutions using heuristics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-bounds-using-relaxations">Lower bounds using relaxations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-stronger-lower-bound">A stronger lower bound</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bin-packing-continuous-and-discrete">Bin packing, continuous and discrete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration">Enumeration?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-reduction">Problem reduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-solutions-using-heuristics">Feasible solutions using heuristics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-bounds-using-relaxations">Lower bounds using relaxations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-stronger-lower-bound">A stronger lower bound</a></li>
 </ul>
             </nav>
         </div>
@@ -368,12 +366,13 @@ document.write(`
 \[\sum_{i=1}^{n}{y^{\star}_i}=\Bigg\lceil{\frac{1}{c}\sum_{i=1}^{n}{{w_j}}}\Bigg\rceil.\]</div>
 <p>Note that the liquid packing problem has a mix of discrete and continuous variables! However, the binary <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> variables are implied by the continuous <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> variables and are thus secondary. This problem admits an efficient algorithm as we’ve just argued. Let’s make things more interesting.</p>
 <p>Instead of packing liquids, we will now pack rectangular boxes. They all have the same width as the bins they will be packed into, but their heights <span class="math notranslate nohighlight">\(w_j&gt;0\)</span> vary. The formulation is the same with a crucial difference: boxes cannot be split into multiple bins! As such, we replace the last set of constraints with <span class="math notranslate nohighlight">\(x_{ij}\in\{0,1\}, \forall i\in[n],j\in[n]\)</span>. This seemingly minute change makes the bin packing problem theoretically intractable.</p>
+</section>
 <section id="enumeration">
-<h3>Enumeration?<a class="headerlink" href="#enumeration" title="Link to this heading">#</a></h3>
+<h2>Enumeration?<a class="headerlink" href="#enumeration" title="Link to this heading">#</a></h2>
 <p>A simple, parallelizable, algorithm for bin packing is <em>exhaustive enumeration</em>. Let’s count how many possible bin arrangements there are for <span class="math notranslate nohighlight">\(n\)</span> items and <span class="math notranslate nohighlight">\(b\)</span> bins; we assume <span class="math notranslate nohighlight">\(b\leq n\)</span> as in most cases one will not need to use <span class="math notranslate nohighlight">\(n\)</span> bins as more than one item will be packed into most bins. Of course, not all packings of the items into <span class="math notranslate nohighlight">\(b\)</span> bins is feasible in the capacity constraint. However, an upper bound is given by the Stirling number of the second kind, a formula for the number of partitions of a set of <span class="math notranslate nohighlight">\(n\)</span> items into <span class="math notranslate nohighlight">\(b\)</span> subsets. For a bin packing instance with say <span class="math notranslate nohighlight">\(n=50\)</span> items and <span class="math notranslate nohighlight">\(b=10\)</span> bins, this number is <a class="reference external" href="https://www.wolframalpha.com/input?i=StirlingS2%5B50%2C10%5D"><span class="math notranslate nohighlight">\(\approx 2.6\times 10^{43}\)</span></a>! Given that bin packing models logistics problems where containers need to be packed with three-dimensional rectangular boxes, for example in <a class="reference external" href="https://arxiv.org/abs/1804.06896">this paper by researchers at Alibaba</a>, we cannot rely strictly on enumeration. Even with a supercomputer that checks each of these possible assignments in parallel, enumeration will take a grotesque amount of time.</p>
 </section>
 <section id="problem-reduction">
-<h3>Problem reduction<a class="headerlink" href="#problem-reduction" title="Link to this heading">#</a></h3>
+<h2>Problem reduction<a class="headerlink" href="#problem-reduction" title="Link to this heading">#</a></h2>
 <p>The first thing we will do is to try to reduce the number of decisions we need to make. For example, if an instance of the problem has bin capacity <span class="math notranslate nohighlight">\(c=10\)</span>,   the smallest item has size <span class="math notranslate nohighlight">\(2\)</span>, and the largest item has size <span class="math notranslate nohighlight">\(9\)</span>, then the first bin can be assigned to the latter and closed to additional items. One need only search for ways to pack the remaining items into additional bins. In other words, any optimal solution to this instance includes a bin with only the size-<span class="math notranslate nohighlight">\(9\)</span> item, so we can fix <span class="math notranslate nohighlight">\(x^{\star}_{1i}=1, y^{\star}_1=1\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> is the index of said item. More generally, any valid preprocessing algorithm that seeks to reduce the problem instance must preserve optimality and feasibility (or infeasibility).</p>
 <p>This idea can be generalized to more than one item. For an item <span class="math notranslate nohighlight">\(i\)</span>, if there is a set <span class="math notranslate nohighlight">\(S\)</span> of <span class="math notranslate nohighlight">\(k-1\)</span> other items which fit together in a bin with <span class="math notranslate nohighlight">\(i\)</span> such that:</p>
 <ul class="simple">
@@ -393,7 +392,7 @@ Clearly, checking all such possible sets <span class="math notranslate nohighlig
 <p>The reduction algorithm optimally solves this instance. This will not be the case in general, but reducing the number of decisions we need to make is always a good thing.</p>
 </section>
 <section id="feasible-solutions-using-heuristics">
-<h3>Feasible solutions using heuristics<a class="headerlink" href="#feasible-solutions-using-heuristics" title="Link to this heading">#</a></h3>
+<h2>Feasible solutions using heuristics<a class="headerlink" href="#feasible-solutions-using-heuristics" title="Link to this heading">#</a></h2>
 <p>Let’s look at another instance with <span class="math notranslate nohighlight">\(n=12\)</span> and <span class="math notranslate nohighlight">\(c=100\)</span>. The items have sizes</p>
 <div class="math notranslate nohighlight">
 \[[50, 3, 48, 53, 53, 4, 3, 41, 23, 20, 52, 49]\]</div>
@@ -424,7 +423,7 @@ BFD:<span class="math notranslate nohighlight">\(\{53,41\}, \{53,23,20,4\},\{52,
 <p>The optimal packing for this instance uses <span class="math notranslate nohighlight">\(4\)</span> bins, so BFD is optimal whereas FFD is not in this case. In general, heuristics/approximations may not find an optimal solution. Even when they do, we need to computationally <em>prove</em> the optimality of a feasible solution, i.e., we cannot guarantee that a solution is optimal until we have eliminated the possibility that there are other better solutions. The next section is a step towards providing such a computational guarantee.</p>
 </section>
 <section id="lower-bounds-using-relaxations">
-<h3>Lower bounds using relaxations<a class="headerlink" href="#lower-bounds-using-relaxations" title="Link to this heading">#</a></h3>
+<h2>Lower bounds using relaxations<a class="headerlink" href="#lower-bounds-using-relaxations" title="Link to this heading">#</a></h2>
 <p>A <em>relaxation</em> of a set <span class="math notranslate nohighlight">\(\Omega\subset\mathbb{R}^n\)</span> is a possibly larger set <span class="math notranslate nohighlight">\(\Omega'\)</span> that subsumes <span class="math notranslate nohighlight">\(\Omega\)</span>, i.e., <span class="math notranslate nohighlight">\(\Omega\subseteq\Omega'\)</span>. In a discrete optimization problem, a simple way to relax is by dropping some or all of the integrality constraints. For bin packing, we have already looked at one such relaxation when we packed liquids instead of solid boxes! To do so, we let the <span class="math notranslate nohighlight">\(x_{ij}\in[0,1]\)</span> rather than <span class="math notranslate nohighlight">\(x_{ij}\in\{0,1\}\)</span>; clearly, <span class="math notranslate nohighlight">\([0,1]\)</span> is a subset of <span class="math notranslate nohighlight">\(\{0,1\}\)</span>. Relaxing the complicating constraints of bin packing, namely that items cannot be split across bins, allows for an easier optimization problem.</p>
 <p>Why care about relaxations if they are in some sense a simplification of the original problem we are interested in solving? Let <span class="math notranslate nohighlight">\(z^{\star}(\Omega)\)</span> be the <em>optimal value</em> of the problem <span class="math notranslate nohighlight">\(\min_{\boldsymbol{x}\in\Omega}f(\boldsymbol{x})\)</span>. The following inequality holds true for a relaxation <span class="math notranslate nohighlight">\(\Omega'\)</span> of <span class="math notranslate nohighlight">\(\Omega\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -451,7 +450,7 @@ x_{ij}\in[0,1], \;\forall i\in[n],j\in[n], y_i\in\{0,1\} \;\forall i\in[n],j\in[
 <p>Again, we will not always be so lucky and most relaxations to discrete optimization problems do not provide lower bounds that are equal to the optimal value. However, they can help us save time by avoiding suboptimal solutions when incorporated into a larger exact search algorithm, as we’ll see shortly.</p>
 </section>
 <section id="a-stronger-lower-bound">
-<h3>A stronger lower bound<a class="headerlink" href="#a-stronger-lower-bound" title="Link to this heading">#</a></h3>
+<h2>A stronger lower bound<a class="headerlink" href="#a-stronger-lower-bound" title="Link to this heading">#</a></h2>
 <p>Given two relaxations <span class="math notranslate nohighlight">\(\Omega'\)</span> and <span class="math notranslate nohighlight">\(\Omega''\)</span> of a set <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(\Omega'\)</span> is a <em>stronger relaxation</em> than <span class="math notranslate nohighlight">\(\Omega''\)</span> w.r.t. (with respect to) an objective function <span class="math notranslate nohighlight">\(f\)</span> if and only if <span class="math notranslate nohighlight">\(z^{\star}(\Omega')\geq z^{\star}(\Omega'')\)</span> <em>for all instances</em> of the problem. Clearly, a stronger (or tighter) lower bound is preferable because it is closer to an instance’s true optimal value.</p>
 <p>Referring to the lower bound from the liquid relaxation as <span class="math notranslate nohighlight">\(L_1\)</span>, we will look at a stronger bound, <span class="math notranslate nohighlight">\(L_2\)</span>. Let’s illustrate these with an example with <span class="math notranslate nohighlight">\(n=9\)</span> and <span class="math notranslate nohighlight">\(c=100\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -478,45 +477,14 @@ J_3&amp;=\{j\in[n]\;|\;\frac{c}{2} \geq w_j \geq\alpha \}
 \[L_2 = \max\left\{L_2(\alpha)\;|\; 0\leq\alpha\leq\frac{c}{2}, \alpha\text{ integer}\right\}.\]</div>
 <p>Continuing to apply the <span class="math notranslate nohighlight">\(L_2\)</span> bound to the previous example, we get</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}L(11) = 0 + 2 + \max(0,\lceil (160-70)/100 \rceil = 3\\
-L(33) = 1 + 1 + \max(0,\lceil (149-40)/100 \rceil = 4\\
-L(50) = 2 + 0 + \max(0,\lceil (50-0)/100 \rceil = 3,\end{split}\]</div>
+\[\begin{split}L_2(11) = 0 + 2 + \max(0,\lceil (160-70)/100 \rceil) = 3,\\
+L_2(33) = 1 + 1 + \max(0,\lceil (149-40)/100 \rceil) = 4,\\
+L_2(50) = 2 + 0 + \max(0,\lceil (50-0)/100 \rceil) = 3,\end{split}\]</div>
 <p>so <span class="math notranslate nohighlight">\(L_2=4\)</span> which matches the upper bound from the FFD solution, confirming that it is optimal.</p>
 <div class="admonition-further-reading-on-bin-packing admonition">
 <p class="admonition-title">Further reading on bin packing</p>
 <p>Many of the examples we’ve used are from these <a class="reference external" href="https://mathopt.be/Slides_LaRoche_Martello.pdf">lecture slides</a> by Prof. Silvano Martello, a pioneer in discrete optimization. A complete (possibly outdated) account of the bin packing is given in chapter 8 of the book <a class="reference external" href="https://librarysearch.library.utoronto.ca/permalink/01UTORONTO_INST/14bjeso/alma991106724929106196">Knapsack problems</a> by Martello and Toth.</p>
 </div>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1">#Symbol, symbols, sin, cos, Polygon, solve, lambdify, Rational, pi, N</span>
-<span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
-<span class="kn">from</span> <span class="nn">spb</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">})</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-    <span class="s2">&quot;text.usetex&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="c1"># &quot;font.family&quot;: &quot;courier&quot;,</span>
-    <span class="s1">&#39;text.latex.preamble&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{amsfonts}</span><span class="s1">&#39;</span>
-<span class="p">})</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-</section>
 </section>
 </section>
 
@@ -575,14 +543,12 @@ L(50) = 2 + 0 + \max(0,\lceil (50-0)/100 \rceil = 3,\end{split}\]</div>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bin-packing-continuous-and-discrete">Bin packing, continuous and discrete</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration">Enumeration?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-reduction">Problem reduction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-solutions-using-heuristics">Feasible solutions using heuristics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-bounds-using-relaxations">Lower bounds using relaxations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-stronger-lower-bound">A stronger lower bound</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bin-packing-continuous-and-discrete">Bin packing, continuous and discrete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration">Enumeration?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-reduction">Problem reduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-solutions-using-heuristics">Feasible solutions using heuristics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-bounds-using-relaxations">Lower bounds using relaxations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-stronger-lower-bound">A stronger lower bound</a></li>
 </ul>
   </nav></div>
 
