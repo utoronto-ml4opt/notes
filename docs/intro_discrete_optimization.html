@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to Discrete Optimization &#8212; Machine Learning for Mathematical Optimization</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/intro_discrete_optimization';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Introduction to Constrained Continuous Optimization" href="intro_constrained_optimization.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Machine Learning for Mathematical Optimization</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro_continuous_optimization.html">Introduction to Unconstrained Continuous Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_constrained_optimization.html">Introduction to Constrained Continuous Optimization</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Discrete Optimization</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/intro_discrete_optimization.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Discrete Optimization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bin-packing-continuous-and-discrete">Bin packing, continuous and discrete</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration">Enumeration?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-reduction">Problem reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-solutions-using-heuristics">Feasible solutions using heuristics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-bounds-using-relaxations">Lower bounds using relaxations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-stronger-lower-bound">A stronger lower bound</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-discrete-optimization">
+<h1>Introduction to Discrete Optimization<a class="headerlink" href="#introduction-to-discrete-optimization" title="Link to this heading">#</a></h1>
+<div class="admonition-learning-outcomes admonition">
+<p class="admonition-title">Learning outcomes</p>
+<p>After reading this note, you will be able to:</p>
+<ul class="simple">
+<li><p>Define a discrete optimization problem</p></li>
+<li><p>Model and solve discrete optimization problems</p></li>
+</ul>
+</div>
+<p>While useful in contexts as varied as <a class="reference external" href="https://flowlab.groups.et.byu.net/mdobook.pdf">engineering design</a> and deep learning, continuous optimization cannot model <em>discrete</em> decisions. For example, in a vehicle routing application, does this large package go on this delivery truck or the other? In a production planning setting, how many units of products A, B, and C should a company produce to maximize its revenue?</p>
+<p>To tackle such problems, we turn to <em>discrete optimization</em>. Some things we have learned in the continuous optimization lectures transfer to the discrete setting. For instance, some discrete problems are easier to solve than others. A surprising example of this split is that it is easy to find the <em>shortest path</em> between two nodes in a graph with non-negative edge weights (using <a class="reference external" href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra’s algorithm</a>), but finding the <em>longest path</em> (with no repeated vertices) is extremely challenging! “Easy” discrete optimization problems have efficient algorithms that can quickly find an optimal solution. “Hard” discrete optimization problems require some kind of exhaustive search over the space of all possible solutions, of which there are typically <strong>many</strong>.</p>
+<p>In this lecture, we will focus on <em>exact</em> (or <em>global</em>, or <em>complete</em>)  algorithms for hard discrete optimization problems. Run on an instance of an optimization problem for a sufficient amount of time, an exact algorithm either finds an optimal solution and <em>certifies its optimality</em>, i.e., it eliminates the possibility that there are any strictly better solutions, or proves that the instance is infeasible. A good exact algorithm uses a combination of divide-and-conquer search (i.e., recursively splitting up a problem into smaller subproblems that are hopefully easier to solve than the original problem), heuristics that find feasible solutions, preprocessing rules that reduce the number of decision variables and constraints, and domain reduction techniques to restrict the domains of the discrete variables or the feasible region.</p>
+<p>A sensible combination of these elements into an exact solver typically averts the need to examine all possible variable assignments. This makes it possible to tackle extremely challenging real-world problems every day, for example in the <a class="reference external" href="https://sites.rutgers.edu/jian-yang/wp-content/uploads/sites/191/2019/06/handbook.pdf">airline industry</a> or at the scale of a <a class="reference external" href="https://www.gurobi.com/news/chile-receives-franz-edelman-award-for-covid-19-research-supported-by-gurobi/">governmental response to COVID-19</a>.</p>
+<section id="bin-packing-continuous-and-discrete">
+<h2>Bin packing, continuous and discrete<a class="headerlink" href="#bin-packing-continuous-and-discrete" title="Link to this heading">#</a></h2>
+<img alt="Bin Packing instance" class="align-center" src="https://www.scipopt.org/doc/html/binpacking.png" />
+<p>We will build intuition using two versions of the a fundamental problem in discrete optimization: bin packing. You are given <span class="math notranslate nohighlight">\(n\)</span> cups of liquids each of size <span class="math notranslate nohighlight">\(w_j&gt;0\)</span> and as many buckets of size <span class="math notranslate nohighlight">\(c&gt;0\)</span>. The liquid packing problem asks you to choose the fraction of liquid <span class="math notranslate nohighlight">\(i\)</span> to empty into bucket <span class="math notranslate nohighlight">\(j\)</span> such that no bucket overflows, i.e., you do not pour more than <span class="math notranslate nohighlight">\(c\)</span> liters in any bucket and you minimize the number of buckets used. A bucket is used if its corresponding binary variable <span class="math notranslate nohighlight">\(y_i\)</span> is equal to one. The fraction of liquid <span class="math notranslate nohighlight">\(i\)</span> to empty into bucket <span class="math notranslate nohighlight">\(j\)</span> is represented by the <strong>continuous</strong> variable <span class="math notranslate nohighlight">\(x_{ij}\in[0,1]\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\min_{\boldsymbol{x}, \boldsymbol{y}} \quad &amp; \sum_{i=1}^{n}{y_i}\\
+\text{subject to} \quad 
+&amp; \sum_{j=1}^{n}{w_j x_{ij}} \leq c y_i, \quad &amp;\forall i\in[n],\\
+&amp; \sum_{i=1}^{n}{ x_{ij}} = 1, \quad&amp;\forall j\in[n],\\
+&amp; y_i\in\{0,1\}, \quad &amp;\forall i\in[n],\\
+&amp; x_{ij}\in[0,1], \quad &amp;\forall i\in[n],j\in[n].\end{split}\]</div>
+<p>An optimal solution to this problem can be obtained in the intuitive way: in any order, pour the liquids one after the other into a bucket until it is full. Repeat the same procedure using a new bucket and stop when all liquids have been poured. The optimal value of the solution <span class="math notranslate nohighlight">\((\boldsymbol{x}^\star, \boldsymbol{y}^\star)\)</span> produced by this algorithm is:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{n}{y^{\star}_i}=\Bigg\lceil{\frac{1}{c}\sum_{i=1}^{n}{{w_j}}}\Bigg\rceil.\]</div>
+<p>Note that the liquid packing problem has a mix of discrete and continuous variables! However, the binary <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span> variables are implied by the continuous <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> variables and are thus secondary. This problem admits an efficient algorithm as we’ve just argued. Let’s make things more interesting.</p>
+<p>Instead of packing liquids, we will now pack rectangular boxes. They all have the same width as the bins they will be packed into, but their heights <span class="math notranslate nohighlight">\(w_j&gt;0\)</span> vary. The formulation is the same with a crucial difference: boxes cannot be split into multiple bins! As such, we replace the last set of constraints with <span class="math notranslate nohighlight">\(x_{ij}\in\{0,1\}, \forall i\in[n],j\in[n]\)</span>. This seemingly minute change makes the bin packing problem theoretically intractable.</p>
+<section id="enumeration">
+<h3>Enumeration?<a class="headerlink" href="#enumeration" title="Link to this heading">#</a></h3>
+<p>A simple, parallelizable, algorithm for bin packing is <em>exhaustive enumeration</em>. Let’s count how many possible bin arrangements there are for <span class="math notranslate nohighlight">\(n\)</span> items and <span class="math notranslate nohighlight">\(b\)</span> bins; we assume <span class="math notranslate nohighlight">\(b\leq n\)</span> as in most cases one will not need to use <span class="math notranslate nohighlight">\(n\)</span> bins as more than one item will be packed into most bins. Of course, not all packings of the items into <span class="math notranslate nohighlight">\(b\)</span> bins is feasible in the capacity constraint. However, an upper bound is given by the Stirling number of the second kind, a formula for the number of partitions of a set of <span class="math notranslate nohighlight">\(n\)</span> items into <span class="math notranslate nohighlight">\(b\)</span> subsets. For a bin packing instance with say <span class="math notranslate nohighlight">\(n=50\)</span> items and <span class="math notranslate nohighlight">\(b=10\)</span> bins, this number is <a class="reference external" href="https://www.wolframalpha.com/input?i=StirlingS2%5B50%2C10%5D"><span class="math notranslate nohighlight">\(\approx 2.6\times 10^{43}\)</span></a>! Given that bin packing models logistics problems where containers need to be packed with three-dimensional rectangular boxes, for example in <a class="reference external" href="https://arxiv.org/abs/1804.06896">this paper by researchers at Alibaba</a>, we cannot rely strictly on enumeration. Even with a supercomputer that checks each of these possible assignments in parallel, enumeration will take a grotesque amount of time.</p>
+</section>
+<section id="problem-reduction">
+<h3>Problem reduction<a class="headerlink" href="#problem-reduction" title="Link to this heading">#</a></h3>
+<p>The first thing we will do is to try to reduce the number of decisions we need to make. For example, if an instance of the problem has bin capacity <span class="math notranslate nohighlight">\(c=10\)</span>,   the smallest item has size <span class="math notranslate nohighlight">\(2\)</span>, and the largest item has size <span class="math notranslate nohighlight">\(9\)</span>, then the first bin can be assigned to the latter and closed to additional items. One need only search for ways to pack the remaining items into additional bins. In other words, any optimal solution to this instance includes a bin with only the size-<span class="math notranslate nohighlight">\(9\)</span> item, so we can fix <span class="math notranslate nohighlight">\(x^{\star}_{1i}=1, y^{\star}_1=1\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> is the index of said item. More generally, any valid preprocessing algorithm that seeks to reduce the problem instance must preserve optimality and feasibility (or infeasibility).</p>
+<p>This idea can be generalized to more than one item. For an item <span class="math notranslate nohighlight">\(i\)</span>, if there is a set <span class="math notranslate nohighlight">\(S\)</span> of <span class="math notranslate nohighlight">\(k-1\)</span> other items which fit together in a bin with <span class="math notranslate nohighlight">\(i\)</span> such that:</p>
+<ul class="simple">
+<li><p>There does not exist another set <span class="math notranslate nohighlight">\(S'\)</span> which is larger than <span class="math notranslate nohighlight">\(S\)</span> and that also fits with <span class="math notranslate nohighlight">\(i\)</span>, or;</p></li>
+<li><p>Any other set <span class="math notranslate nohighlight">\(S'\)</span> fills has total size less than that of <span class="math notranslate nohighlight">\(S\)</span>.
+Clearly, checking all such possible sets <span class="math notranslate nohighlight">\(S\)</span> is intractable. However, one could check for small sets with size for example at most 3. We will not discuss the algorithm that does this here, but provide an example of the reduction next.</p></li>
+</ul>
+<p>Let <span class="math notranslate nohighlight">\(n=12\)</span> and <span class="math notranslate nohighlight">\(c=100\)</span>. The items have sizes</p>
+<div class="math notranslate nohighlight">
+\[[99, 93, 90, 88, 80, 10, 10, 6, 5, 5, 4, 4]\]</div>
+<ol class="arabic simple">
+<li><p>99 must be in its own bin; 93 can be packed with at most one more item and the best item is 6 (largest that fits) since it minimizes wasted space.</p></li>
+<li><p>Reduced instance: <span class="math notranslate nohighlight">\([90, 88, 80, 10, 10, 5, 5, 4, 4]\)</span>. 90 can be packed with at most two other items. To minimize wasted space, we should use either 10 or 5+5. 10 is a better choice since the two 5s can be potentially put split into separate bins later on whereas 10 cannot.</p></li>
+<li><p>Reduced instance: <span class="math notranslate nohighlight">\([88, 80, 10, 5, 5, 4, 4]\)</span>. 88 can be packed with at most two other items. 10 dominates 5+5 for the same reason as in step 2.</p></li>
+<li><p>Reduced instance: <span class="math notranslate nohighlight">\([80, 5, 5, 4, 4]\)</span>. The sizes sum up to <span class="math notranslate nohighlight">\(98\leq c\)</span> so we put them in one bin.</p></li>
+</ol>
+<p>The reduction algorithm optimally solves this instance. This will not be the case in general, but reducing the number of decisions we need to make is always a good thing.</p>
+</section>
+<section id="feasible-solutions-using-heuristics">
+<h3>Feasible solutions using heuristics<a class="headerlink" href="#feasible-solutions-using-heuristics" title="Link to this heading">#</a></h3>
+<p>Let’s look at another instance with <span class="math notranslate nohighlight">\(n=12\)</span> and <span class="math notranslate nohighlight">\(c=100\)</span>. The items have sizes</p>
+<div class="math notranslate nohighlight">
+\[[50, 3, 48, 53, 53, 4, 3, 41, 23, 20, 52, 49]\]</div>
+<p>It may be possible to reduce the instance but let us ignore that for a minute. We would like to construct a good solution using a fast heuristic algorithm. A <em>heuristic</em> is an algorithm for which there are no theoretical performance guarantees on the problem that it addresses. An <em>approximation</em> algorithm is one for which worst-case performance guarantees can be derived. In this lecture, we will not expand on approximation algorithms and how their guarantees are derived; chapter 11 of the book <a class="reference external" href="https://librarysearch.library.utoronto.ca/permalink/01UTORONTO_INST/14bjeso/alma991106508891106196"><em>Algorithm design</em> by Kleinberg and Tardos</a> is a good introduction to this rich topic. We will nonetheless describe and use some approximation algorithms for bin packing.</p>
+<p>In the previous example of problem reduction, the items were sorted in decreasing order of their weights. This is a order in which to process the items because larger ones need to be assigned early on to bins whereas smaller ones may be more flexibly appended to bins which have a small amount of remaining space. Sorting our current items yields</p>
+<div class="math notranslate nohighlight">
+\[[53, 53, 52, 50, 49, 48, 41, 23, 20, 4, 3, 3].\]</div>
+<p>The two algorithms have “Decreasing” in their name because they process the items one by one in decreasing order of their weights.</p>
+<ol class="arabic simple">
+<li><p><strong>First-Fit Decreasing</strong> (FFD) packs the net item into the lowest indexed bin where it fits, or opens a new bin if it does not fit in any of the existing ones.</p></li>
+<li><p><strong>Best-Fit Decreasing</strong> (BFD) packs the net item into a bin where it fits and minimizes residual space, or opens a new bin if it does not fit in any of the existing ones.</p></li>
+</ol>
+<p>Let’s see how FFD and BFD work on our example. They make the same choices in the first 9 iterations:</p>
+<ol class="arabic simple">
+<li><p>The largest four items need their separate bins so the first 4 iterations give <span class="math notranslate nohighlight">\(\{53\}, \{53\},\{52\},\{50\}\)</span>.</p></li>
+<li><p>Item <span class="math notranslate nohighlight">\(49\)</span> fits best and first with <span class="math notranslate nohighlight">\(50\)</span>, <span class="math notranslate nohighlight">\(48\)</span> with <span class="math notranslate nohighlight">\(52\)</span>, <span class="math notranslate nohighlight">\(41\)</span> with the first bin that has <span class="math notranslate nohighlight">\(53\)</span>, <span class="math notranslate nohighlight">\(23\)</span> with the second bin that has <span class="math notranslate nohighlight">\(53\)</span>. Eight iterations in, the current packing for both FFD and BFD is <span class="math notranslate nohighlight">\(\{53,41\}, \{53,23\},\{52,48\},\{50,49\}\)</span>.</p></li>
+<li><p>Item <span class="math notranslate nohighlight">\(20\)</span> fits best and first in the second bin, giving: <span class="math notranslate nohighlight">\(\{53,41\}, \{53,23,20\},\{52,48\},\{50,49\}\)</span>.</p></li>
+<li><p>Item <span class="math notranslate nohighlight">\(4\)</span> is where FFD and BFD diverge. The first bin can fit <span class="math notranslate nohighlight">\(4\)</span>, leading to residual space of <span class="math notranslate nohighlight">\(100-(53+41+4)=3\)</span>; this is FFD’s choice. As for BFD, it observes that the second bin can also fit <span class="math notranslate nohighlight">\(4\)</span> but with smaller residual space, <span class="math notranslate nohighlight">\(100-(53+23+20+4)=0\)</span>.<br />
+FFD:<span class="math notranslate nohighlight">\(\{53,41,4\}, \{53,23,20\},\{52,48\},\{50,49\}\)</span><br />
+BFD:<span class="math notranslate nohighlight">\(\{53,41\}, \{53,23,20,4\},\{52,48\},\{50,49\}\)</span></p></li>
+<li><p>The last two items are of size <span class="math notranslate nohighlight">\(3\)</span>. BFD can fit both of them in the first bin. FFD can fit only one of them in the second bin and has to open a new fifth bin for the other <span class="math notranslate nohighlight">\(3\)</span>. The final solution are then:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+   \text{FFD}:\; &amp;\{53,41,4\}, &amp;\{53,23,20,3\},\; &amp;\{52,48\},&amp;\{50,49\}, \;&amp;\{3\},\\
+   \text{BFD}:\; &amp;\{53,41,3,3\}, &amp;\{53,23,20,4\},\; &amp;\{52,48\},&amp;\{50,49\}\;.
+\end{align}\end{split}\]</div>
+<p>The optimal packing for this instance uses <span class="math notranslate nohighlight">\(4\)</span> bins, so BFD is optimal whereas FFD is not in this case. In general, heuristics/approximations may not find an optimal solution. Even when they do, we need to computationally <em>prove</em> the optimality of a feasible solution, i.e., we cannot guarantee that a solution is optimal until we have eliminated the possibility that there are other better solutions. The next section is a step towards providing such a computational guarantee.</p>
+</section>
+<section id="lower-bounds-using-relaxations">
+<h3>Lower bounds using relaxations<a class="headerlink" href="#lower-bounds-using-relaxations" title="Link to this heading">#</a></h3>
+<p>A <em>relaxation</em> of a set <span class="math notranslate nohighlight">\(\Omega\subset\mathbb{R}^n\)</span> is a possibly larger set <span class="math notranslate nohighlight">\(\Omega'\)</span> that subsumes <span class="math notranslate nohighlight">\(\Omega\)</span>, i.e., <span class="math notranslate nohighlight">\(\Omega\subseteq\Omega'\)</span>. In a discrete optimization problem, a simple way to relax is by dropping some or all of the integrality constraints. For bin packing, we have already looked at one such relaxation when we packed liquids instead of solid boxes! To do so, we let the <span class="math notranslate nohighlight">\(x_{ij}\in[0,1]\)</span> rather than <span class="math notranslate nohighlight">\(x_{ij}\in\{0,1\}\)</span>; clearly, <span class="math notranslate nohighlight">\([0,1]\)</span> is a subset of <span class="math notranslate nohighlight">\(\{0,1\}\)</span>. Relaxing the complicating constraints of bin packing, namely that items cannot be split across bins, allows for an easier optimization problem.</p>
+<p>Why care about relaxations if they are in some sense a simplification of the original problem we are interested in solving? Let <span class="math notranslate nohighlight">\(z^{\star}(\Omega)\)</span> be the <em>optimal value</em> of the problem <span class="math notranslate nohighlight">\(\min_{\boldsymbol{x}\in\Omega}f(\boldsymbol{x})\)</span>. The following inequality holds true for a relaxation <span class="math notranslate nohighlight">\(\Omega'\)</span> of <span class="math notranslate nohighlight">\(\Omega\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[z^{\star}(\Omega')\leq z^{\star}(\Omega).\]</div>
+<p>In words, the optimal value of the relaxation <em>lower bounds</em> that of the original problem. It is easy to see why: all optimal solutions in <span class="math notranslate nohighlight">\(\Omega\)</span> are also in the superset <span class="math notranslate nohighlight">\(\Omega'\)</span>. Since <span class="math notranslate nohighlight">\(\Omega'\)</span> potentially includes additional optima that are not in <span class="math notranslate nohighlight">\(\Omega\)</span>, its optimal value with respect to objective function <span class="math notranslate nohighlight">\(f\)</span> may be better (lower).</p>
+<p>Let’s relax bin packing using the liquid version:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Omega=\left\{
+x_{ij}\in\{0,1\}  \;\forall i\in[n],j\in[n], y_i\in\{0,1\} \;\forall i\in[n],j\in[n] \; \Bigg| \;
+\sum_{j=1}^{n}{w_j x_{ij}} \leq c y_i, \; \forall i\in[n],
+\sum_{i=1}^{n}{ x_{ij}} = 1, \;\forall j\in[n].
+\right\}\\
+\Omega'=\left\{
+x_{ij}\in[0,1], \;\forall i\in[n],j\in[n], y_i\in\{0,1\} \;\forall i\in[n],j\in[n] \; \Bigg| \;
+\sum_{j=1}^{n}{w_j x_{ij}} \leq c y_i, \; \forall i\in[n],
+\sum_{i=1}^{n}{ x_{ij}} = 1, \;\forall j\in[n].
+\right\}\end{split}\]</div>
+<p>We are now ready to use this lower bound. We revisit the example instance from the previous section. BFD found a feasible solution of value <span class="math notranslate nohighlight">\(4\)</span>. What is the lower bound on this instance’s optimal value? We argued when we introduced the liquid packing problem that its optimal value is given by</p>
+<div class="math notranslate nohighlight">
+\[\left\lceil{\frac{1}{c}\sum_{i=1}^{n}{{w_j}}}\right\rceil=\left\lceil{\frac{399}{100}}\right\rceil=4.\]</div>
+<p>The lower bound from this relaxation <em>matches the upper bound</em> provided by BFD! This proves that BFD’s solution is optimal for this instance since its optimal value is also <span class="math notranslate nohighlight">\(4\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[z^{\star}(\Omega')=4\leq z^{\star}(\Omega)\leq 4.\]</div>
+<p>Again, we will not always be so lucky and most relaxations to discrete optimization problems do not provide lower bounds that are equal to the optimal value. However, they can help us save time by avoiding suboptimal solutions when incorporated into a larger exact search algorithm, as we’ll see shortly.</p>
+</section>
+<section id="a-stronger-lower-bound">
+<h3>A stronger lower bound<a class="headerlink" href="#a-stronger-lower-bound" title="Link to this heading">#</a></h3>
+<p>Given two relaxations <span class="math notranslate nohighlight">\(\Omega'\)</span> and <span class="math notranslate nohighlight">\(\Omega''\)</span> of a set <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(\Omega'\)</span> is a <em>stronger relaxation</em> than <span class="math notranslate nohighlight">\(\Omega''\)</span> w.r.t. (with respect to) an objective function <span class="math notranslate nohighlight">\(f\)</span> if and only if <span class="math notranslate nohighlight">\(z^{\star}(\Omega')\geq z^{\star}(\Omega'')\)</span> <em>for all instances</em> of the problem. Clearly, a stronger (or tighter) lower bound is preferable because it is closer to an instance’s true optimal value.</p>
+<p>Referring to the lower bound from the liquid relaxation as <span class="math notranslate nohighlight">\(L_1\)</span>, we will look at a stronger bound, <span class="math notranslate nohighlight">\(L_2\)</span>. Let’s illustrate these with an example with <span class="math notranslate nohighlight">\(n=9\)</span> and <span class="math notranslate nohighlight">\(c=100\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[[70, 60, 50, 33, 33, 33, 11, 7, 3].\]</div>
+<p>An optimal solution to this instance requires <span class="math notranslate nohighlight">\(4\)</span> bins, for example with FFD’s solution <span class="math notranslate nohighlight">\(\{70,11,7,3\}, \{60,33\},\{50,33\},\{33\}\)</span>. However, the liquid bound does not match the optimal value since <span class="math notranslate nohighlight">\(L_1=\left\lceil\frac{300}{100}\right\rceil=3\)</span>, i.e., it might lead us to believe that there exists a “super”-optimal solution with value <span class="math notranslate nohighlight">\(3\)</span>, which is not the case. Generally, <span class="math notranslate nohighlight">\(L_1\)</span> will provide good lower bounds when item sizes are much smaller than the bin capacity <span class="math notranslate nohighlight">\(c\)</span>, in which case optimal bins will typically not have much residual capacity left and so splitting an item across bins is a reasonable approximation to the optimum.</p>
+<p>Another way to relax bin packing is to simply drop some items and pack the rest! Clearly, this would require at most as many bins as the full problem. This is the first step towards the stronger <span class="math notranslate nohighlight">\(L_2\)</span> bound, which discards a few “small” items. What’s “small” here? Let <span class="math notranslate nohighlight">\(\alpha\)</span> be an integer satisfying <span class="math notranslate nohighlight">\(0\leq\alpha\leq\frac{c}{2}\)</span>. Items with <span class="math notranslate nohighlight">\(w_j&lt;\alpha\)</span> will be ignored. The remaining items will be partitioned into three sets:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+J_1&amp;=\{j\in[n]\;|\;w_j &gt; c-\alpha \}\\
+J_2&amp;=\{j\in[n]\;|\;c-\alpha \geq w_j &gt; \frac{c}{2} \}\\
+J_3&amp;=\{j\in[n]\;|\;\frac{c}{2} \geq w_j \geq\alpha \}
+\end{align}\end{split}\]</div>
+<p>Let’s apply this partitioning to our example, using <span class="math notranslate nohighlight">\(\alpha=33\leq 50\)</span>. First, we drop the items with weights <span class="math notranslate nohighlight">\(11, 7,\)</span> and <span class="math notranslate nohighlight">\(3\)</span>. We are left with <span class="math notranslate nohighlight">\([70, 60, 50, 33, 33, 33, 11]\)</span> which are partitioned into:</p>
+<div class="math notranslate nohighlight">
+\[J_1=[70], J_2=[60], J_3=[50, 33, 33, 33, 11].\]</div>
+<p>It is generally true for any <span class="math notranslate nohighlight">\(\alpha\leq\frac{c}{2}\)</span> that items in <span class="math notranslate nohighlight">\(J_1\)</span> and <span class="math notranslate nohighlight">\(J_2\)</span> cannot share any bins, meaning that our lower bound is at least <span class="math notranslate nohighlight">\(|J_1|+|J_2|\)</span>. What about the items in <span class="math notranslate nohighlight">\(J_3\)</span>? Since they have size at least <span class="math notranslate nohighlight">\(\alpha\)</span> each, they cannot be packed in a bin that contains an element from <span class="math notranslate nohighlight">\(J_1\)</span>, the latter having size <span class="math notranslate nohighlight">\(w_j &gt; c-\alpha\)</span>, meaning that adding <span class="math notranslate nohighlight">\(\alpha\)</span> or more would exceed the capacity <span class="math notranslate nohighlight">\(c\)</span>. They could fill some of the residual space in the bins of <span class="math notranslate nohighlight">\(J_2\)</span> items in addition to new bins. We can use the liquid lower bound to estimate how many bins are needed for <span class="math notranslate nohighlight">\(J_3\)</span>. Assume you could split items from <span class="math notranslate nohighlight">\(J_3\)</span> into multiple bins. Then, the first thing to do is to fill up the residual space in bins of <span class="math notranslate nohighlight">\(J_2\)</span> items. The latter currently fill up <span class="math notranslate nohighlight">\(|J_2|c-\sum_{j\in J_2}{w_j}\)</span> of their bins; this is just the total capacity of all <span class="math notranslate nohighlight">\(J_2\)</span> bins minus their total sizes. Let’s fill this space up with as much of the <span class="math notranslate nohighlight">\(J_3\)</span> items as we can. The remaining amount to fill requires, by the <span class="math notranslate nohighlight">\(L_1\)</span> bound, at least</p>
+<div class="math notranslate nohighlight">
+\[\max\left( 0, \left\lceil \frac{\sum_{j\in J_3}{w_j-(|J_2|c-\sum_{j\in J_2}{w_j})}}{c} \right\rceil  \right)\]</div>
+<p>bins. The final <span class="math notranslate nohighlight">\(L_2\)</span> bound for a given <span class="math notranslate nohighlight">\(\alpha\)</span> is then</p>
+<div class="math notranslate nohighlight">
+\[L_2(\alpha) = |J_1| + |J_2| + \max\left( 0, \left\lceil \frac{\sum_{j\in J_3}{w_j-(|J_2|c-\sum_{j\in J_2}{w_j})}}{c} \right\rceil  \right).\]</div>
+<p>Each value of <span class="math notranslate nohighlight">\(\alpha\)</span> provides a lower bound, but we prefer stronger ones. As such, the <span class="math notranslate nohighlight">\(L_2\)</span> bound tries out all possible values of <span class="math notranslate nohighlight">\(0\leq\alpha\leq\frac{c}{2}\)</span> and returns the maximum:</p>
+<div class="math notranslate nohighlight">
+\[L_2 = \max\left\{L_2(\alpha)\;|\; 0\leq\alpha\leq\frac{c}{2}, \alpha\text{ integer}\right\}.\]</div>
+<p>Continuing to apply the <span class="math notranslate nohighlight">\(L_2\)</span> bound to the previous example, we get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}L(11) = 0 + 2 + \max(0,\lceil (160-70)/100 \rceil = 3\\
+L(33) = 1 + 1 + \max(0,\lceil (149-40)/100 \rceil = 4\\
+L(50) = 2 + 0 + \max(0,\lceil (50-0)/100 \rceil = 3,\end{split}\]</div>
+<p>so <span class="math notranslate nohighlight">\(L_2=4\)</span> which matches the upper bound from the FFD solution, confirming that it is optimal.</p>
+<div class="admonition-further-reading-on-bin-packing admonition">
+<p class="admonition-title">Further reading on bin packing</p>
+<p>Many of the examples we’ve used are from these <a class="reference external" href="https://mathopt.be/Slides_LaRoche_Martello.pdf">lecture slides</a> by Prof. Silvano Martello, a pioneer in discrete optimization. A complete (possibly outdated) account of the bin packing is given in chapter 8 of the book <a class="reference external" href="https://librarysearch.library.utoronto.ca/permalink/01UTORONTO_INST/14bjeso/alma991106724929106196">Knapsack problems</a> by Martello and Toth.</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1">#Symbol, symbols, sin, cos, Polygon, solve, lambdify, Rational, pi, N</span>
+<span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
+<span class="kn">from</span> <span class="nn">spb</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;notebook&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s2">&quot;text.usetex&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># &quot;font.family&quot;: &quot;courier&quot;,</span>
+    <span class="s1">&#39;text.latex.preamble&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{amsfonts}</span><span class="s1">&#39;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro_constrained_optimization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to Constrained Continuous Optimization</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bin-packing-continuous-and-discrete">Bin packing, continuous and discrete</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration">Enumeration?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-reduction">Problem reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feasible-solutions-using-heuristics">Feasible solutions using heuristics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-bounds-using-relaxations">Lower bounds using relaxations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-stronger-lower-bound">A stronger lower bound</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Elias B. Khalil
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

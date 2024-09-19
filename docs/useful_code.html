@@ -169,6 +169,7 @@
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_continuous_optimization.html">Introduction to Unconstrained Continuous Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro_constrained_optimization.html">Introduction to Constrained Continuous Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_discrete_optimization.html">Introduction to Discrete Optimization</a></li>
 </ul>
 
     </div>
@@ -390,6 +391,40 @@ document.write(`
     <span class="n">plane</span><span class="p">(</span><span class="n">Plane</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">)),</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">)),</span>
     <span class="n">plane</span><span class="p">(</span><span class="n">Plane</span><span class="p">((</span><span class="n">pt1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pt1_val</span><span class="p">),</span> <span class="p">(</span><span class="n">pt2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pt2_val</span><span class="p">)),</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">)),</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># bin packing vis</span>
+<span class="c1"># # https://stackoverflow.com/questions/66717610/how-to-rearrange-the-small-rectangular-into-a-big-rectangular-in-bin-packing-alg</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="c1"># from matplotlib.patches import Rectangle</span>
+<span class="c1"># fig = plt.figure() </span>
+<span class="c1"># ax = fig.add_subplot(111) </span>
+<span class="c1"># ax.set_axis_off()</span>
+
+<span class="c1"># temp_y=0</span>
+<span class="c1"># i=0</span>
+<span class="c1"># layout_height = 300</span>
+<span class="c1"># layout_width = 300</span>
+
+<span class="c1"># ax.set_xlim([0, layout_height])</span>
+<span class="c1"># ax.set_ylim([0, layout_width])</span>
+
+<span class="c1"># area_width = [[50, 46], [52], [52], [50, 48], [25, 40], [48]]</span>
+<span class="c1"># area_height = 25#, 75, 50, 60, 52, 72, 100, 120, 150]</span>
+
+<span class="c1"># # for (i,j) in zip(area_height, area_width):</span>
+<span class="c1"># for bin in area_width:</span>
+<span class="c1">#     coords = (0, temp_y)</span>
+<span class="c1">#     for item_width in bin:</span>
+<span class="c1">#         r = ax.add_patch(Rectangle(coords, item_width, area_height, edgecolor =&#39;black&#39;,facecolor = &#39;red&#39;))</span>
+<span class="c1">#         centerx = 0.5</span>
+<span class="c1">#         centery = temp_y + area_height[0]/2.0 # obviously use a different formula for different shapes</span>
+<span class="c1">#         plt.text(centerx, centery,&#39;%d&#39; % (j))</span>
+<span class="c1">#     temp_y = temp_y + area_height</span>
 </pre></div>
 </div>
 </div>
