@@ -465,8 +465,8 @@ x_{ij}\in[0,1], \;\forall i\in[n],j\in[n], y_i\in\{0,1\} \;\forall i\in[n],j\in[
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align}
 J_1&amp;=\{j\in[n]\;|\;w_j &gt; c-\alpha \}\\
-J_2&amp;=\{j\in[n]\;|\;c-\alpha \geq w_j &gt; \frac{c}{2} \}\\
-J_3&amp;=\{j\in[n]\;|\;\frac{c}{2} \geq w_j \geq\alpha \}
+J_2&amp;=\{j\in[n]\;|\;c-\alpha \geq w_j &gt; {c}/{2} \}\\
+J_3&amp;=\{j\in[n]\;|\;{c}/{2} \geq w_j \geq\alpha \}
 \end{align}\end{split}\]</div>
 <p>Let’s apply this partitioning to our example, using <span class="math notranslate nohighlight">\(\alpha=33\leq 50\)</span>. First, we drop the items with weights <span class="math notranslate nohighlight">\(11, 7,\)</span> and <span class="math notranslate nohighlight">\(3\)</span>. We are left with <span class="math notranslate nohighlight">\([70, 60, 50, 33, 33, 33]\)</span> which are partitioned into:</p>
 <div class="math notranslate nohighlight">
@@ -479,13 +479,15 @@ J_3&amp;=\{j\in[n]\;|\;\frac{c}{2} \geq w_j \geq\alpha \}
 \[L_2(\alpha) = |J_1| + |J_2| + \max\left( 0, \left\lceil \frac{\sum_{j\in J_3}{w_j-(|J_2|c-\sum_{j\in J_2}{w_j})}}{c} \right\rceil  \right).\]</div>
 <p>Each value of <span class="math notranslate nohighlight">\(\alpha\)</span> provides a lower bound, but we prefer stronger ones. As such, the <span class="math notranslate nohighlight">\(L_2\)</span> bound tries out all possible values of <span class="math notranslate nohighlight">\(0\leq\alpha\leq\frac{c}{2}\)</span> and returns the maximum:</p>
 <div class="math notranslate nohighlight">
-\[L_2 = \max\left\{L_2(\alpha)\;|\; 0\leq\alpha\leq\frac{c}{2}, \alpha\text{ integer}\right\}.\]</div>
+\[L_2 = \max\left\{L_2(\alpha)\;|\; 0\leq\alpha\leq{c}/{2}, \alpha\text{ integer}\right\}.\]</div>
 <p>Continuing to apply the <span class="math notranslate nohighlight">\(L_2\)</span> bound to the previous example, we get</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}L_2(11) = 0 + 2 + \max(0,\lceil (160-(200-130))/100 \rceil) = 3,\\
-L_2(33) = 1 + 1 + \max(0,\lceil (149-(100-60))/100 \rceil) = 4,\\
-L_2(50) = 2 + 0 + \max(0,\lceil (50-0)/100 \rceil) = 3,\end{split}\]</div>
-<p>so <span class="math notranslate nohighlight">\(L_2=4\)</span> which matches the upper bound from the FFD solution, confirming that it is optimal.</p>
+\[\begin{split}\begin{align}
+L_2(11) &amp;= 0 + 2 + \max(0,\lceil (160-(200-130))/100 \rceil) &amp;= 3,\\
+L_2(33) &amp;= 1 + 1 + \max(0,\lceil (149-(100-60))/100 \rceil) &amp;= 4,\\
+L_2(50) &amp;= 2 + 0 + \max(0,\lceil (50-0)/100 \rceil) &amp;= 3,
+\end{align}\end{split}\]</div>
+<p>so <span class="math notranslate nohighlight">\(L_2=4\)</span> which matches the upper bound from the FFD solution, confirming that it is optimal. Note that we did not have to test out all possible integer <span class="math notranslate nohighlight">\(\alpha\)</span> values; the work of Martello and Toth in the reference below shows that testing out only values of <span class="math notranslate nohighlight">\(\alpha\)</span> that are equal to some item size is sufficient.</p>
 <div class="admonition-further-reading-on-bin-packing admonition">
 <p class="admonition-title">Further reading on bin packing</p>
 <p>Many of the examples we’ve used are from these <a class="reference external" href="https://mathopt.be/Slides_LaRoche_Martello.pdf">lecture slides</a> by Prof. Silvano Martello, a pioneer in discrete optimization. A complete (possibly outdated) account of the bin packing is given in chapter 8 of the book <a class="reference external" href="https://librarysearch.library.utoronto.ca/permalink/01UTORONTO_INST/14bjeso/alma991106724929106196">Knapsack problems</a> by Martello and Toth.</p>
