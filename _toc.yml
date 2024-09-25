@@ -3,3 +3,4 @@ root: docs/index
 sections:
 - file: docs/intro_continuous_optimization
 - file: docs/intro_constrained_optimization
+- file: docs/intro_discrete_optimization
