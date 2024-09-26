@@ -172,6 +172,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro_continuous_optimization.html">Introduction to Unconstrained Continuous Optimization</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Constrained Continuous Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro_discrete_optimization.html">Introduction to Discrete Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_integer_programming.html">Introduction to Integer Programming</a></li>
 </ul>
 
     </div>
@@ -759,8 +760,8 @@ with <span class="math notranslate nohighlight">\(w_1,\dots,w_m\geq 0\)</span> a
 <p class="admonition-title"><span class="caption-number">Definition 7 </span> (Convex set)</p>
 <section class="definition-content" id="proof-content">
 <p>A <em>convex set</em> is a set for which a line between any two points in the set is fully contained within the set. Formally, a set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is convex if the following is true:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-67a3b01c-13ed-46c9-bb6e-e891b2baa0b4">
-<span class="eqno">(3)<a class="headerlink" href="#equation-67a3b01c-13ed-46c9-bb6e-e891b2baa0b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-057a5836-63f0-4b09-a9fc-5564d9186dc2">
+<span class="eqno">(3)<a class="headerlink" href="#equation-057a5836-63f0-4b09-a9fc-5564d9186dc2" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \alpha\boldsymbol{x} + (1-\alpha)\boldsymbol{y} \in\mathcal{S}
 \end{equation}\]</div>
 <p><strong>for all</strong> <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{S}\)</span> and <strong>for all</strong> <span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>.</p>
@@ -769,8 +770,8 @@ with <span class="math notranslate nohighlight">\(w_1,\dots,w_m\geq 0\)</span> a
 <p class="admonition-title"><span class="caption-number">Definition 9 </span> (Convex function)</p>
 <section class="definition-content" id="proof-content">
 <p>A <em>convex function</em> is a <em>bowl-shaped</em> function whose domain is a convex set. Any line connecting two points in the function’s domain does not lie <em>below</em> the function itself. Formally, a function <span class="math notranslate nohighlight">\(f\)</span> with domain a convex set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is convex if the following is true:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9dc84cb8-03cf-4659-ad02-acd61b971729">
-<span class="eqno">(4)<a class="headerlink" href="#equation-9dc84cb8-03cf-4659-ad02-acd61b971729" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7584076e-5d34-4216-8da8-c808139705f6">
+<span class="eqno">(4)<a class="headerlink" href="#equation-7584076e-5d34-4216-8da8-c808139705f6" title="Permalink to this equation">#</a></span>\[\begin{equation}
    f(\alpha\boldsymbol{x} + (1-\alpha)\boldsymbol{y}) \leq \alpha f(\boldsymbol{x}) + (1-\alpha)f(\boldsymbol{y})
 \end{equation}\]</div>
 <p><strong>for all</strong> <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{S}\)</span> and <strong>for all</strong> <span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>.</p>
@@ -779,8 +780,8 @@ with <span class="math notranslate nohighlight">\(w_1,\dots,w_m\geq 0\)</span> a
 <p class="admonition-title"><span class="caption-number">Definition 9 </span> (Strictly convex function)</p>
 <section class="definition-content" id="proof-content">
 <p>A function <span class="math notranslate nohighlight">\(f\)</span> with domain a convex set <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> is <em>strictly</em> convex if the following is true:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-953a4dd6-d900-45ac-af7f-1f4645aabc64">
-<span class="eqno">(5)<a class="headerlink" href="#equation-953a4dd6-d900-45ac-af7f-1f4645aabc64" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-57e6fe77-9496-476d-9a6e-c7d01c76e73f">
+<span class="eqno">(5)<a class="headerlink" href="#equation-57e6fe77-9496-476d-9a6e-c7d01c76e73f" title="Permalink to this equation">#</a></span>\[\begin{equation}
    f(\alpha\boldsymbol{x} + (1-\alpha)\boldsymbol{y}) &lt; \alpha f(\boldsymbol{x}) + (1-\alpha)f(\boldsymbol{y})
 \end{equation}\]</div>
 <p><strong>for all</strong> <span class="math notranslate nohighlight">\(\boldsymbol{x}, \boldsymbol{y}\in\mathcal{S}\)</span> and <strong>for all</strong> <span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>.</p>

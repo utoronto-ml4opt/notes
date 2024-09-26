@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/intro_discrete_optimization';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction to Integer Programming" href="intro_integer_programming.html" />
     <link rel="prev" title="Introduction to Constrained Continuous Optimization" href="intro_constrained_optimization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -171,6 +172,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro_continuous_optimization.html">Introduction to Unconstrained Continuous Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="intro_constrained_optimization.html">Introduction to Constrained Continuous Optimization</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Discrete Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_integer_programming.html">Introduction to Integer Programming</a></li>
 </ul>
 
     </div>
@@ -382,7 +384,7 @@ document.write(`
 <p>This idea can be generalized to more than one item. For an item <span class="math notranslate nohighlight">\(i\)</span>, if there is a set <span class="math notranslate nohighlight">\(S\)</span> of <span class="math notranslate nohighlight">\(k-1\)</span> other items which fit together in a bin with <span class="math notranslate nohighlight">\(i\)</span> such that:</p>
 <ul class="simple">
 <li><p>There does not exist another set <span class="math notranslate nohighlight">\(S'\)</span> which is larger than <span class="math notranslate nohighlight">\(S\)</span> and that also fits with <span class="math notranslate nohighlight">\(i\)</span>, or;</p></li>
-<li><p>Any other set <span class="math notranslate nohighlight">\(S'\)</span> fills has total size less than that of <span class="math notranslate nohighlight">\(S\)</span>.
+<li><p>Any other set <span class="math notranslate nohighlight">\(S'\)</span> that fits with <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\(S\)</span>.
 Clearly, checking all such possible sets <span class="math notranslate nohighlight">\(S\)</span> is intractable. However, one could check for small sets with size for example at most 3. We will not discuss the algorithm that does this here, but provide an example of the reduction next.</p></li>
 </ul>
 <p>Let <span class="math notranslate nohighlight">\(n=12\)</span> and <span class="math notranslate nohighlight">\(c=100\)</span>. The items have sizes</p>
@@ -533,6 +535,15 @@ L_2(50) &amp;= 2 + 0 + \max(0,\lceil (50-0)/100 \rceil) &amp;= 3,
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Introduction to Constrained Continuous Optimization</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="intro_integer_programming.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to Integer Programming</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
