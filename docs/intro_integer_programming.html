@@ -538,7 +538,12 @@ document.write(`
 <img alt="../_images/e296f7d5ea428f2e96a0b531090e91b3403f31eb2dff1d1e82435cf6c5eed941.png" src="../_images/e296f7d5ea428f2e96a0b531090e91b3403f31eb2dff1d1e82435cf6c5eed941.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="c1"># ax.set_axis_off()</span>
@@ -582,11 +587,17 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/7a26194787f4d4f574c814901bf029a04bfadff0a7d34d37a2941cc8cda4f143.png" src="../_images/7a26194787f4d4f574c814901bf029a04bfadff0a7d34d37a2941cc8cda4f143.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="c1"># ax.set_axis_off()</span>
@@ -630,11 +641,17 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/92dca87d2e18c31a6dac520c7da5f56186a3235001c32b9ff5dc7200d48fd69e.png" src="../_images/92dca87d2e18c31a6dac520c7da5f56186a3235001c32b9ff5dc7200d48fd69e.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="c1"># ax.set_axis_off()</span>
@@ -678,6 +695,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/e8a14490de1423df60409ac3775adb82d37365d191db6a14f75f1ebbb12d2735.png" src="../_images/e8a14490de1423df60409ac3775adb82d37365d191db6a14f75f1ebbb12d2735.png" />
 </div>
@@ -717,7 +735,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">sympy.solvers.simplex</span> <span class="kn">import</span> <span class="n">lpmax</span>
 <span class="n">minimizer</span> <span class="o">=</span> <span class="p">(</span><span class="n">lpmax</span><span class="p">(</span><span class="o">-</span><span class="n">objective_function</span><span class="p">,</span> <span class="p">[</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">x1</span> <span class="o">+</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x2</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]))</span>
 <span class="c1"># maximizer = (lpmax(objective_function, [x1 + x2 - 4 &lt;= 0, -x1 + -2*x2 + 1 &lt;= 0, x1 &gt;= 0, x2 &gt;= 0]))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;IP optimum $(</span><span class="si">%d</span><span class="s1">,</span><span class="si">%d</span><span class="s1">)$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">maximizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x1</span><span class="p">],</span> <span class="n">maximizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x2</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;IP optimum $(</span><span class="si">%d</span><span class="s1">,</span><span class="si">%d</span><span class="s1">)$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">minimizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x1</span><span class="p">],</span> <span class="n">minimizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x2</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LP relax. opt. $(</span><span class="si">%.2f</span><span class="s1">,</span><span class="si">%.2f</span><span class="s1">)$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">minimizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x1</span><span class="p">],</span> <span class="n">minimizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x2</span><span class="p">]))</span>
 
 <span class="n">integer_points</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
@@ -733,19 +751,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">29</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="n">minimizer</span> <span class="o">=</span> <span class="p">(</span><span class="n">lpmax</span><span class="p">(</span><span class="o">-</span><span class="n">objective_function</span><span class="p">,</span> <span class="p">[</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">x1</span> <span class="o">+</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x2</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]))</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># maximizer = (lpmax(objective_function, [x1 + x2 - 4 &lt;= 0, -x1 + -2*x2 + 1 &lt;= 0, x1 &gt;= 0, x2 &gt;= 0]))</span>
-<span class="ne">---&gt; </span><span class="mi">29</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;IP optimum $(</span><span class="si">%d</span><span class="s1">,</span><span class="si">%d</span><span class="s1">)$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">maximizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x1</span><span class="p">],</span> <span class="n">maximizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x2</span><span class="p">]))</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">minimizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x1</span><span class="p">],</span> <span class="n">minimizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x2</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LP relax. opt. $(</span><span class="si">%.2f</span><span class="s1">,</span><span class="si">%.2f</span><span class="s1">)$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">minimizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x1</span><span class="p">],</span> <span class="n">minimizer</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">x2</span><span class="p">]))</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">integer_points</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span>
-
-<span class="ne">NameError</span>: name &#39;maximizer&#39; is not defined
-</pre></div>
-</div>
-<img alt="../_images/deeee651588a670174df0ca0113227adcba99b828a5ec9012e728f84aeb268d9.png" src="../_images/deeee651588a670174df0ca0113227adcba99b828a5ec9012e728f84aeb268d9.png" />
+<img alt="../_images/b478ef2f2587d24e31df488da672581aa39ae5a0648c36452aee2a4bd86d349d.png" src="../_images/b478ef2f2587d24e31df488da672581aa39ae5a0648c36452aee2a4bd86d349d.png" />
 </div>
 </div>
 </section>
